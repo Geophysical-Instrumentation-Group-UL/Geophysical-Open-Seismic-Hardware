@@ -47,6 +47,11 @@
 - le SERIAL pour le RS485 est le SERIAL3 aux pin RX=15 et TX=14
 - LE 3.3 et le GND au bout du board vont faire al chip RS485
 - Le SPI utilise les pin standars du teensy, soit CS=10, MOSI=SDI=11,MISO=SDO=12
-- 
+
+
+
+## Notes sur le circuit du THVD8000
+
+- pense pas que j'ai besoin d'avoir un pull up ou pull down resistor sur le R et D car ces pins sont relié aux pins du port serial du TEENSY. Sinon pour la pin mode je peux toujours la déclaré dans le code avec la condition input_pull_down
 
  
