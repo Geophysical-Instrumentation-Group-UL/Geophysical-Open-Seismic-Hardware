@@ -57,3 +57,4 @@
  ## Questions pour Christian
 
 - Est-ce que les différentes sources (combinaisons capaciteurs/sources 5V) dans le schematic des drivers sont nécessaire? Est-ce que je pourrai utiliser seulement 1 pour tous les drivers?
+- LEs résistances pour les entrées analogiques : est-ce que la précision doit être élevé et aussi le drift en temps? Pour l'instant j'ai 0.5% et 25ppm/°C
