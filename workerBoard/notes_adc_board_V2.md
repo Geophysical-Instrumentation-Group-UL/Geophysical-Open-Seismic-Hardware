@@ -33,9 +33,9 @@
 - delete les drivers pour les channel 4-8 -- OK
 -  Decoupling capacitor Vref- --- OK
 - Conception d'un circuit d'alimentation pour drop le voltage de la ligne
-- Switch plus petite (bouton seulement)
-- Choix des résistances pour les entrées analogiques. Peut être demander à Analog device pourquoi il faut ces résistances -- En attente de la réponse de AD
-- 
+- Switch plus petite (bouton seulement) -- OK
+- Choix des résistances pour les entrées analogiques. Peut être demander à Analog device pourquoi il faut ces résistances -- En attente de la réponse de AD -- JEVAIS JUSTE  LES METTRES... --OK
+- Changer le footprint des capacitors pour du 0603
 
 ## Notes sur les pins du Teensy
 
