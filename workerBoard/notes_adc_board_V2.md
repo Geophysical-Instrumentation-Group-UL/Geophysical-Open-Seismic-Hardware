@@ -64,3 +64,12 @@
 ## Conception du voltage regulator
 
 - Besoins de drop 250V à 5V avec au moins 1A de courant...
+
+
+
+## Avancement actuel
+
+- LE board du power supply est mis de côté pour l'instant en attendant d'Avoir plus de détails sur la puissance requise par le système de couplage
+- Le THVD8000 est ok et les drivers aussi et les ADC aussi, mais il faudrait check les electrical rules
+- Le prochain schematic à faire est celui pour les accels
+
