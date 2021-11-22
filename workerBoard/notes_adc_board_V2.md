@@ -35,7 +35,9 @@
 - Conception d'un circuit d'alimentation pour drop le voltage de la ligne
 - Switch plus petite (bouton seulement) -- OK
 - Choix des résistances pour les entrées analogiques. Peut être demander à Analog device pourquoi il faut ces résistances -- En attente de la réponse de AD -- JEVAIS JUSTE  LES METTRES... --OK
-- Changer le footprint des capacitors pour du 0603
+- Changer le footprint des capacitors pour du 0603 -- OK
+- REgarder pour les microphonicics capacitors
+- REgarder pour des tantalu
 
 ## Notes sur les pins du Teensy
 
@@ -58,3 +60,7 @@
 
 - Est-ce que les différentes sources (combinaisons capaciteurs/sources 5V) dans le schematic des drivers sont nécessaire? Est-ce que je pourrai utiliser seulement 1 pour tous les drivers?
 - LEs résistances pour les entrées analogiques : est-ce que la précision doit être élevé et aussi le drift en temps? Pour l'instant j'ai 0.5% et 25ppm/°C
+
+## Conception du voltage regulator
+
+- Besoins de drop 250V à 5V avec au moins 1A de courant...
