@@ -63,13 +63,20 @@
 
 ## Conception du voltage regulator
 
-- Besoins de drop 250V à 5V avec au moins 1A de courant...
+- Besoins de drop 250V à 12V avec au moins 1A de courant...
+- Du 12v on veux avoir 
+  - une 5V crass pour power les ADC et les teensy. Ce 5V doit pouvoir tiré jusqu'a 0.3 A mettons
+  - un 5V vraiment clean pour alimenter les accels
 
 
 
-## Avancement actuel
+## Avancement actuel -- 19 novembre
 
 - LE board du power supply est mis de côté pour l'instant en attendant d'Avoir plus de détails sur la puissance requise par le système de couplage
 - Le THVD8000 est ok et les drivers aussi et les ADC aussi, mais il faudrait check les electrical rules
 - Le prochain schematic à faire est celui pour les accels
 
+## Next - 25 novembre
+
+- Conception du circuit pour les accels
+  - Creation de la pièce pour accel
