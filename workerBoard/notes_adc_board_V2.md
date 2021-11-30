@@ -80,3 +80,9 @@
 
 - Conception du circuit pour les accels
   - Creation de la pièce pour accel
+
+## 29 Novembre
+
+Circuit accels ok, peut etre rajouté un condensateur pour réduire le bruit venant du 5V de référence
+
+Fouille pour des connecteurs, trouvé les omnetics ou les harwins 
