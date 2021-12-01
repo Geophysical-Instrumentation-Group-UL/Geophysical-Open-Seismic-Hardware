@@ -86,3 +86,11 @@
 Circuit accels ok, peut etre rajouté un condensateur pour réduire le bruit venant du 5V de référence
 
 Fouille pour des connecteurs, trouvé les omnetics ou les harwins 
+
+finalement va y aller avec les harwins a moins d'Avis contraire mais il faut que je demande à Christian
+
+Pour la suite du routing:
+
+- essayer de laccer les decoupling capacitor sur le bottom layer (autant pour less Vref que pour l'ADC)
+- Signaux digitaux de l'ADC vers le teensy sur el bottom plane et du teensy vers le RS485 sur le top plane 
+
