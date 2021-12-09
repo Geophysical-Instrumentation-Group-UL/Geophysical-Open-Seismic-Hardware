@@ -94,3 +94,10 @@ Pour la suite du routing:
 - essayer de laccer les decoupling capacitor sur le bottom layer (autant pour less Vref que pour l'ADC)
 - Signaux digitaux de l'ADC vers le teensy sur el bottom plane et du teensy vers le RS485 sur le top plane 
 
+## 9 décembre
+
+-  Ne pas oublier d'acheter des résistance pour le diviseur de tension du 12V vers le 5V qui peut soutenir 6W environ (12V et 0.5A)
+- Notes pour Vref :
+  - MAnque les connections au 12V pour le ref et le 5V no clean
+- Est-ce que la puce V3 ref est capable de pousser pour le thvd8000?
+- 
