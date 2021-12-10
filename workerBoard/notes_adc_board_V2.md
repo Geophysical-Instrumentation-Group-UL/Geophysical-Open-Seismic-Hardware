@@ -97,9 +97,16 @@ Pour la suite du routing:
 ## 9 décembre
 
 -  Ne pas oublier d'acheter des résistance pour le diviseur de tension du 12V vers le 5V qui peut soutenir 6W environ (12V et 0.5A)
+
 - Notes pour Vref :
+
   - MAnque les connections au 12V pour le ref et le 5V no clean
+
 - Est-ce que la puce V3 ref est capable de pousser pour le thvd8000?
-- DRC à tous les endroit ou j'ai un via qui se connecte au ground ou au 5V
+
+- DRC à tous les endroit ou j'ai un via qui se connecte au ground ou au 5V FIXED : set the split plane to the good net (see github psush comment)
+
   - Les connections qui emploi un via entre le top et le bottom layer eux n'ont pas d'erreur. 
   - Les erreurs sont donc liées au plan ground et 5V
+
+  
