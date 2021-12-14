@@ -815,7 +815,7 @@ GenerateClassCluster=0
 DocumentUniqueId=EFOWAMTH
 
 [Document46]
-DocumentPath=accel_draft.PcbDoc
+DocumentPath=accel.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -849,6 +849,10 @@ GenerateClassCluster=0
 DocumentUniqueId=PSJYQXAX
 
 [GeneratedDocument1]
+DocumentPath=Project Outputs for workerBoard\Design Rule Check - accel_draft.html
+DItemRevisionGUID=
+
+[GeneratedDocument2]
 DocumentPath=Project Outputs for workerBoard\Design Rule Check - ADC_RS_MCU.html
 DItemRevisionGUID=
 

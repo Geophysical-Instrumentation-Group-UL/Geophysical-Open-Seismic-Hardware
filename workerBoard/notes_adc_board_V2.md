@@ -116,9 +116,36 @@ Choix des connecteurs :
   - pin map : 
     - channel 3 16-15-8-7 -u9    p14-p16
     - channel 2 14-13-6-5 -u8    p13-p11
+    - channel 1 12-11 4-3  p12-p5
+    - channel 0 10-9  2-1 p17-p15
 
 - Réarrangement des drivers pour laisser la place aux connecteurs
 
 - placer le modèle 3D
 
   
+
+## 14 décembre
+
+- RAjouter des vis sur le board d'Accel pour le fixer au accel holder -- DONE
+- FAire une liste de révision complète:
+  - Vérifier les pins de l'ADC si cest les même connections que pour l'ancien board et la datasheet -- OK
+  - Vérifivier la limite de Puissance pour les résistances -- OK, mais plusieurs quesitons, voir plus bas
+  - Vérifier la capacité des Vrf en courant -> faire un tableau de la demande et de la capacité
+  - Vérifier les connections du THVD8000 - vérifier la vitesse max de transfert sur le cable du treuil
+  - Vérifier les connections du teensy -- OK
+  - Vérifier les connections des amplis -- OK
+  - Générer les BOM et vérifier que tout est dispo chez les fournisseurs
+- Passer les commandes de pièces et de PCB
+  - Rajouter de la pate à souder
+- Passer la commandes pour les accels
+
+
+
+> Questions pour Christian:
+>
+> - Est-ce que le V4ref est équivalent ou jai besoins de dupliquer?
+> - Pin DIN doit être maintenu à GND avec une pull-down resistor est ce que la config est ok?
+> - Vérifier les résistance du voltage régulator pour le 5V no clean : est-ceque les résistances sont ok avec 1/10W et est-ce que je suis obliger de faire le voltage divider selon la datasheet?
+> - Résistance d'entre GND et entrées analogue est ce que cest ok 1/10W? Avec précision de 0.5%
+> - Résistance dans le module THVD8000 cest 120omhs 1/10W et 0.1%, pas assez résistant? Il n'y aura plus de DC à ce moment
