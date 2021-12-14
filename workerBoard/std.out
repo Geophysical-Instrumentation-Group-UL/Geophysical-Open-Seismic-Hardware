@@ -1,0 +1,4 @@
+ERROR - C:\Program Files\PTC\Creo 7.0.2.0\Common Files\text\config.pro, linenum 1 :  Keyword 'DRAWING_SETUP_FILE' is not valid.
+ERROR - C:\Program Files\PTC\Creo 7.0.2.0\Common Files\text\config.pro, linenum 2 :  Keyword 'FORMAT_SETUP_FILE' is not valid.
+ERROR - C:\Program Files\PTC\Creo 7.0.2.0\Common Files\text\config.pro, linenum 11:  Keyword 'TODAYS_DATE_NOTE_FORMAT' is not valid.
+ERROR - C:\Program Files\PTC\Creo 7.0.2.0\Common Files\text\config.pro, linenum 13:  Keyword 'WELD_UI_STANDARD' is not valid.
