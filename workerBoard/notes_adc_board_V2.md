@@ -131,10 +131,11 @@ Choix des connecteurs :
 - FAire une liste de révision complète:
   - Vérifier les pins de l'ADC si cest les même connections que pour l'ancien board et la datasheet -- OK
   - Vérifivier la limite de Puissance pour les résistances -- OK, mais plusieurs quesitons, voir plus bas
-  - Vérifier la capacité des Vrf en courant -> faire un tableau de la demande et de la capacité
+  - Vérifier la capacité des Vrf en courant -> faire un tableau de la demande et de la capacité -- OK et changé le 3.3V
   - Vérifier les connections du THVD8000 - vérifier la vitesse max de transfert sur le cable du treuil
   - Vérifier les connections du teensy -- OK
   - Vérifier les connections des amplis -- OK
+  - REgarder pour la grosseur des traces requise pour le 12V 0.4 AMp (plus gros que 0.254 mils?)
   - Générer les BOM et vérifier que tout est dispo chez les fournisseurs
 - Passer les commandes de pièces et de PCB
   - Rajouter de la pate à souder
@@ -144,8 +145,13 @@ Choix des connecteurs :
 
 > Questions pour Christian:
 >
-> - Est-ce que le V4ref est équivalent ou jai besoins de dupliquer?
-> - Pin DIN doit être maintenu à GND avec une pull-down resistor est ce que la config est ok?
-> - Vérifier les résistance du voltage régulator pour le 5V no clean : est-ceque les résistances sont ok avec 1/10W et est-ce que je suis obliger de faire le voltage divider selon la datasheet?
-> - Résistance d'entre GND et entrées analogue est ce que cest ok 1/10W? Avec précision de 0.5%
-> - Résistance dans le module THVD8000 cest 120omhs 1/10W et 0.1%, pas assez résistant? Il n'y aura plus de DC à ce moment
+> - Est-ce que le V4ref est équivalent ou jai besoins de dupliquer? -- OK si les impédance de ref1 et ref2 sont pareils -- pas trouvé d'info la dessu...
+> - Pin DIN doit être maintenu à GND avec une pull-down resistor est ce que la config est ok? -- OK au pire no short
+> - Vérifier les résistance du voltage régulator pour le 5V no clean : est-ce que les résistances sont ok avec 1/10W et est-ce que je suis obliger de faire le voltage divider selon la datasheet? OK je crois quon va envoyer le 12V direct dans le ENABLE donc meme pas de diviseur de tension
+> - Résistance d'entre GND et entrées analogue est ce que cest ok 1/10W? Avec précision de 0.5% -- Oui C'est ok
+> - Résistance dans le module THVD8000 cest 120omhs 1/10W et 0.1%, pas assez résistant? Il n'y aura plus de DC à ce moment -- OK pas bp de courant qui va passé là.
+>
+> changer les vis pour des m3
+> changer le connecteurs 12V pour des vis
+> vRifier l'impédance de Vref1 vs Vref2, si cest les même cest ok, ligne a 6 et 43 de même longueur
+> Bord THVD8000 à révisier
