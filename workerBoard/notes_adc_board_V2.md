@@ -160,4 +160,11 @@ Choix des connecteurs :
 - révision des circruits thvd8000 -- OK
   - retrait des bobines du baord principales : celles-ci seront sur le power supply -- OK
 - Le retrait des bobines laisse plus de place : il faut donc réarranger le board dans ce coin -- OK
-- NEXT : générer le BOM et faire la commande pour lundi
+- NEXT : générer le BOM et faire la commande pour lundi -- OK
+
+## 20 décembre
+
+J'ai vérifié si toutes les pièces du BOM de altium sont présentes dans les paniers de digikey et mouser
+
+J'Ai aussi vérifier qu'il n'y a pas d'article de trop dans les paniers
+
