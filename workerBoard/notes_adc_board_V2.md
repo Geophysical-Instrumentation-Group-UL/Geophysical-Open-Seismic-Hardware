@@ -155,9 +155,9 @@ Choix des connecteurs :
 > changer le connecteurs 12V pour des vis -- OK
 > Bord THVD8000 à révisier
 
-## 17 décembre
+## 17 et 19 décembre
 
-- révision des circruits thvd8000
-  - retrait des bobines du baord principales : celles-ci seront sur le power supply
+- révision des circruits thvd8000 -- OK
+  - retrait des bobines du baord principales : celles-ci seront sur le power supply -- OK
 - Le retrait des bobines laisse plus de place : il faut donc réarranger le board dans ce coin -- OK
 - NEXT : générer le BOM et faire la commande pour lundi
