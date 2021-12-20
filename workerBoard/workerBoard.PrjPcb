@@ -849,10 +849,138 @@ GenerateClassCluster=0
 DocumentUniqueId=PSJYQXAX
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for workerBoard\Design Rule Check - accel_draft.html
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument2]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GD1
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GG1
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM1
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM2
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM3
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM5
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM7
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM13
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM15
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM16
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GP1
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GP2
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GPB
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GPT
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument23]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument24]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument25]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument26]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.REP
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TX1
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TX2
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TX3
+DItemRevisionGUID=
+
+[GeneratedDocument31]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TX4
+DItemRevisionGUID=
+
+[GeneratedDocument32]
+DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument33]
+DocumentPath=Project Outputs for workerBoard\Design Rule Check - accel_draft.html
+DItemRevisionGUID=
+
+[GeneratedDocument34]
 DocumentPath=Project Outputs for workerBoard\Design Rule Check - ADC_RS_MCU.html
 DItemRevisionGUID=
 
@@ -1135,20 +1263,20 @@ Name=Fabrication Outputs
 Description=
 TargetPrinter=Microsoft Print to PDF
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
-OutputType1=Board Stack Report
-OutputName1=Report Board Stack
+OutputType1=CompositeDrill
+OutputName1=Composite Drill Drawing
 OutputDocumentPath1=
 OutputVariantName1=
 OutputDefault1=0
 PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType2=CompositeDrill
-OutputName2=Composite Drill Drawing
+OutputType2=Drill
+OutputName2=Drill Drawing/Guides
 OutputDocumentPath2=
 OutputVariantName2=
 OutputDefault2=0
 PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType3=Drill
-OutputName3=Drill Drawing/Guides
+OutputType3=Board Stack Report
+OutputName3=Report Board Stack
 OutputDocumentPath3=
 OutputVariantName3=
 OutputDefault3=0
@@ -1159,48 +1287,56 @@ OutputDocumentPath4=
 OutputVariantName4=[No Variations]
 OutputDefault4=0
 PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType5=Gerber
-OutputName5=Gerber Files
+OutputType5=Gerber X2
+OutputName5=Gerber X2 Files
 OutputDocumentPath5=
-OutputVariantName5=[No Variations]
+OutputVariantName5=
 OutputDefault5=0
-OutputType6=Gerber X2
-OutputName6=Gerber X2 Files
+OutputType6=ODB
+OutputName6=ODB++ Files
 OutputDocumentPath6=
-OutputVariantName6=
+OutputVariantName6=[No Variations]
 OutputDefault6=0
-OutputType7=IPC2581
-OutputName7=IPC-2581 Files
+OutputType7=Mask
+OutputName7=Solder/Paste Mask Prints
 OutputDocumentPath7=
 OutputVariantName7=
 OutputDefault7=0
-OutputType8=Mask
-OutputName8=Solder/Paste Mask Prints
+PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType8=NC Drill
+OutputName8=NC Drill Files
 OutputDocumentPath8=
 OutputVariantName8=
 OutputDefault8=0
-PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType9=NC Drill
-OutputName9=NC Drill Files
+Configuration8_Name1=ForceUpdateSettings
+Configuration8_Item1=False
+Configuration8_Name2=OutputConfigurationParameter1
+Configuration8_Item2=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=5|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressLeadingZeroes|DocumentPath=C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\workerBoard\ADC_RS_MCU.PcbDoc
+OutputType9=IPC2581
+OutputName9=IPC-2581 Files
 OutputDocumentPath9=
 OutputVariantName9=
 OutputDefault9=0
-OutputType10=ODB
-OutputName10=ODB++ Files
+OutputType10=Plane
+OutputName10=Power-Plane Prints
 OutputDocumentPath10=
-OutputVariantName10=[No Variations]
+OutputVariantName10=
 OutputDefault10=0
-OutputType11=Plane
-OutputName11=Power-Plane Prints
+PageOptions10=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType11=Test Points
+OutputName11=Test Point Report
 OutputDocumentPath11=
 OutputVariantName11=
 OutputDefault11=0
-PageOptions11=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType12=Test Points
-OutputName12=Test Point Report
+OutputType12=Gerber
+OutputName12=Gerber Files
 OutputDocumentPath12=
-OutputVariantName12=
+OutputVariantName12=[No Variations]
 OutputDefault12=0
+Configuration12_Name1=ForceUpdateSettings
+Configuration12_Item1=False
+Configuration12_Name2=OutputConfigurationParameter1
+Configuration12_Item2=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GenerateReports=True|GerberUnit=Imperial|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=True|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=50|MinusApertureTolerance=50|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=5|NumberOfDecimals=5|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray,16973830~1,16973832~1,16973834~1,16777217~1,16842753~1,16842754~1,16842751~1,16973835~1,16973833~1,16973831~1,16908289~1,16908290~1,16908291~1,16908293~1,16908295~1,16908301~1,16908303~1,16908304~1,16973848~1,16973849~1|PlotDrillDrawingLayerPair0_Backdrill=False|PlotDrillDrawingLayerPair0_DrillType=Regular|PlotDrillDrawingLayerPair0_HighLayer=Bottom Layer|PlotDrillDrawingLayerPair0_LowLayer=Top Layer|PlotDrillGuideLayerPair0_Backdrill=False|PlotDrillGuideLayerPair0_DrillType=Regular|PlotDrillGuideLayerPair0_HighLayer=Bottom Layer|PlotDrillGuideLayerPair0_LowLayer=Top Layer|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=50|PlusApertureTolerance=50|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False|DocumentPath=C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\workerBoard\ADC_RS_MCU.PcbDoc
 
 [OutputGroup6]
 Name=Report Outputs
@@ -1218,13 +1354,15 @@ Configuration1_Item1=CaptionAsName
 Configuration1_Name2=ForceUpdateSettings
 Configuration1_Item2=False
 Configuration1_Name3=General
-Configuration1_Item3=OpenExported=False|AddToProject=False|ReportBOMViolationsInMessages=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePcbData=False|IncludeVaultData=False|IncludeCloudData=False|IncludeDocumentData=True|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|TemplateVaultGuid=|TemplateItemGuid=|TemplateRevisionGuid=|BatchMode=5|FormWidth=1200|FormHeight=710|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=USD|SolutionsPerItem=1|SuppliersPerSolution=1|ViewType=0|UseDirectApi=False|BomSetName=
+Configuration1_Item3=OpenExported=False|AddToProject=False|ReportBOMViolationsInMessages=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePcbData=False|IncludeVaultData=False|IncludeCloudData=False|IncludeDocumentData=True|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|TemplateVaultGuid=|TemplateItemGuid=|TemplateRevisionGuid=|BatchMode=5|FormWidth=1671|FormHeight=1241|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=USD|SolutionsPerItem=1|SuppliersPerSolution=1|ViewType=0|UseDirectApi=False|BomSetName=
 Configuration1_Name4=GroupOrder
 Configuration1_Item4=Comment=True|Footprint=True
 Configuration1_Name5=SortOrder
 Configuration1_Item5=Designator=Up|Comment=Up|Footprint=Up
 Configuration1_Name6=VisibleOrder
-Configuration1_Item6=Comment=120|Description=120|Designator=120|Footprint=120|LibRef=120|Quantity=120
+Configuration1_Item6=Comment=120|Description=120|Designator=120|Footprint=120|LibRef=120|Quantity=120|DocumentName=100
+Configuration1_Name7=VisibleOrder_Flat
+Configuration1_Item7=Comment=120|Description=120|Designator=120|Footprint=120|LibRef=120|Quantity=120|DocumentName=100
 OutputType2=BOM_ReportCompare
 OutputName2=BOM Compare
 OutputDocumentPath2=
@@ -1894,8 +2032,8 @@ ComponentUpdate6=1
 ComponentIsDeviceSheet6=0
 ComponentLibIdentifierKind7=Any
 ComponentLibraryIdentifier7=
-ComponentDesignItemID7=GRM32EC72A106KE05K
-ComponentSymbolReference7=GRM32EC72A106KE05K
+ComponentDesignItemID7=F981C225MMA
+ComponentSymbolReference7=F981C225MMA
 ComponentUpdate7=1
 ComponentIsDeviceSheet7=0
 ComponentLibIdentifierKind8=Any
@@ -1935,95 +2073,107 @@ ComponentSymbolReference13=RT0603DRD071ML
 ComponentUpdate13=1
 ComponentIsDeviceSheet13=0
 ComponentLibIdentifierKind14=Library Name And Type
-ComponentLibraryIdentifier14=ad7768_testboard.SCHLIB
-ComponentDesignItemID14=AD7768-4BSTZ
-ComponentSymbolReference14=AD7768-4BSTZ
+ComponentLibraryIdentifier14=1053141216.IntLib
+ComponentDesignItemID14=1053141216
+ComponentSymbolReference14=1053141216
 ComponentUpdate14=1
 ComponentIsDeviceSheet14=0
 ComponentLibIdentifierKind15=Library Name And Type
-ComponentLibraryIdentifier15=DEV-15583.IntLib
-ComponentDesignItemID15=DEV-15583
-ComponentSymbolReference15=DEV-15583
+ComponentLibraryIdentifier15=ad7768_testboard.SCHLIB
+ComponentDesignItemID15=AD7768-4BSTZ
+ComponentSymbolReference15=AD7768-4BSTZ
 ComponentUpdate15=1
 ComponentIsDeviceSheet15=0
 ComponentLibIdentifierKind16=Library Name And Type
-ComponentLibraryIdentifier16=DSC1001AI2-032P7680.SchLib
-ComponentDesignItemID16=DSC1001AI2-032.7680
-ComponentSymbolReference16=DSC1001AI2-032.7680
+ComponentLibraryIdentifier16=ADP7118ARDZ-3P3-R7.IntLib
+ComponentDesignItemID16=ADP7118ARDZ-3.3-R7
+ComponentSymbolReference16=ADP7118ARDZ-3.3-R7
 ComponentUpdate16=1
 ComponentIsDeviceSheet16=0
 ComponentLibIdentifierKind17=Library Name And Type
-ComponentLibraryIdentifier17=GRM31CR61E476ME44K.IntLib
-ComponentDesignItemID17=GRM31CR61E476ME44K
-ComponentSymbolReference17=GRM31CR61E476ME44K
+ComponentLibraryIdentifier17=DEV-15583.IntLib
+ComponentDesignItemID17=DEV-15583
+ComponentSymbolReference17=DEV-15583
 ComponentUpdate17=1
 ComponentIsDeviceSheet17=0
 ComponentLibIdentifierKind18=Library Name And Type
-ComponentLibraryIdentifier18=Miscellaneous Connectors.IntLib
-ComponentDesignItemID18=Header 4
-ComponentSymbolReference18=Header 4
+ComponentLibraryIdentifier18=DSC1001AI2-032P7680.SchLib
+ComponentDesignItemID18=DSC1001AI2-032.7680
+ComponentSymbolReference18=DSC1001AI2-032.7680
 ComponentUpdate18=1
 ComponentIsDeviceSheet18=0
 ComponentLibIdentifierKind19=Library Name And Type
-ComponentLibraryIdentifier19=Miscellaneous Connectors.IntLib
-ComponentDesignItemID19=Plug
-ComponentSymbolReference19=Plug
+ComponentLibraryIdentifier19=GRM31CR61E476ME44K.IntLib
+ComponentDesignItemID19=GRM31CR61E476ME44K
+ComponentSymbolReference19=GRM31CR61E476ME44K
 ComponentUpdate19=1
 ComponentIsDeviceSheet19=0
 ComponentLibIdentifierKind20=Library Name And Type
-ComponentLibraryIdentifier20=THVD8000DDFR.IntLib
-ComponentDesignItemID20=THVD8000DDFR
-ComponentSymbolReference20=THVD8000DDFR
+ComponentLibraryIdentifier20=Miscellaneous Connectors.IntLib
+ComponentDesignItemID20=Header 4
+ComponentSymbolReference20=Header 4
 ComponentUpdate20=1
 ComponentIsDeviceSheet20=0
-ComponentLibIdentifierKind21=Library Name Only
-ComponentLibraryIdentifier21=Altium Content Vault
-ComponentDesignItemID21=CMP-0384-01677-1
-ComponentSymbolReference21=ADI-AD8XXX_823_A48X1-X-8
+ComponentLibIdentifierKind21=Library Name And Type
+ComponentLibraryIdentifier21=Miscellaneous Connectors.IntLib
+ComponentDesignItemID21=Plug
+ComponentSymbolReference21=Plug
 ComponentUpdate21=1
 ComponentIsDeviceSheet21=0
-ComponentLibIdentifierKind22=Library Name Only
-ComponentLibraryIdentifier22=Altium Content Vault
-ComponentDesignItemID22=CMP-0395-00135-2
-ComponentSymbolReference22=TI-REG103-5D8
+ComponentLibIdentifierKind22=Library Name And Type
+ComponentLibraryIdentifier22=Simulation Generic Components.IntLib
+ComponentDesignItemID22=Capacitor
+ComponentSymbolReference22=Capacitor
 ComponentUpdate22=1
 ComponentIsDeviceSheet22=0
-ComponentLibIdentifierKind23=Library Name Only
-ComponentLibraryIdentifier23=Altium Content Vault
-ComponentDesignItemID23=CMP-05618-000029-1
-ComponentSymbolReference23=3d0627a2b91f68de89d2c38e02ec842
+ComponentLibIdentifierKind23=Library Name And Type
+ComponentLibraryIdentifier23=THVD8000DDFR.IntLib
+ComponentDesignItemID23=THVD8000DDFR
+ComponentSymbolReference23=THVD8000DDFR
 ComponentUpdate23=1
 ComponentIsDeviceSheet23=0
 ComponentLibIdentifierKind24=Library Name Only
 ComponentLibraryIdentifier24=Altium Content Vault
-ComponentDesignItemID24=CMP-0784-00188-1
-ComponentSymbolReference24=ADI-ADR45xx-R-8
+ComponentDesignItemID24=CMP-0384-01677-1
+ComponentSymbolReference24=ADI-AD8XXX_823_A48X1-X-8
 ComponentUpdate24=1
 ComponentIsDeviceSheet24=0
 ComponentLibIdentifierKind25=Library Name Only
 ComponentLibraryIdentifier25=Altium Content Vault
-ComponentDesignItemID25=CMP-0784-00192-1
-ComponentSymbolReference25=ADI-ADR45xx-R-8
+ComponentDesignItemID25=CMP-0395-00135-2
+ComponentSymbolReference25=TI-REG103-5D8
 ComponentUpdate25=1
 ComponentIsDeviceSheet25=0
 ComponentLibIdentifierKind26=Library Name Only
 ComponentLibraryIdentifier26=Altium Content Vault
-ComponentDesignItemID26=CMP-0784-00373-1
-ComponentSymbolReference26=ADI-ADR43x-R_RM-8
+ComponentDesignItemID26=CMP-05618-000029-1
+ComponentSymbolReference26=3d0627a2b91f68de89d2c38e02ec842
 ComponentUpdate26=1
 ComponentIsDeviceSheet26=0
 ComponentLibIdentifierKind27=Library Name Only
 ComponentLibraryIdentifier27=Altium Content Vault
-ComponentDesignItemID27=CMP-2000-05018-1
-ComponentSymbolReference27=CAP-NP-2
+ComponentDesignItemID27=CMP-0784-00192-1
+ComponentSymbolReference27=ADI-ADR45xx-R-8
 ComponentUpdate27=1
 ComponentIsDeviceSheet27=0
 ComponentLibIdentifierKind28=Library Name Only
-ComponentLibraryIdentifier28=GIGUL
-ComponentDesignItemID28=CMP-010-00024-1
-ComponentSymbolReference28=SI1521L-Symbol-1
+ComponentLibraryIdentifier28=Altium Content Vault
+ComponentDesignItemID28=CMP-0784-00226-1
+ComponentSymbolReference28=ADI-ADR43x-R_RM-8
 ComponentUpdate28=1
 ComponentIsDeviceSheet28=0
+ComponentLibIdentifierKind29=Library Name Only
+ComponentLibraryIdentifier29=Altium Content Vault
+ComponentDesignItemID29=CMP-2000-05018-1
+ComponentSymbolReference29=CAP-NP-2
+ComponentUpdate29=1
+ComponentIsDeviceSheet29=0
+ComponentLibIdentifierKind30=Library Name Only
+ComponentLibraryIdentifier30=GIGUL
+ComponentDesignItemID30=CMP-010-00024-1
+ComponentSymbolReference30=SI1521L-Symbol-1
+ComponentUpdate30=1
+ComponentIsDeviceSheet30=0
 FullReplace=1
 UpdateDesignatorLock=1
 UpdatePartIDLock=1
@@ -2083,178 +2233,192 @@ ParameterName21=Contact Resistance
 ParameterUpdate21=1
 ParameterName22=Copyright
 ParameterUpdate22=1
-ParameterName23=Current Rating
+ParameterName23=CPAR
 ParameterUpdate23=1
-ParameterName24=Datasheet Link
+ParameterName24=Current Rating
 ParameterUpdate24=1
-ParameterName25=Datasheet URL
+ParameterName25=Datasheet Link
 ParameterUpdate25=1
-ParameterName26=Datasheet Version
+ParameterName26=Datasheet URL
 ParameterUpdate26=1
-ParameterName27=DatasheetVersion
+ParameterName27=Datasheet Version
 ParameterUpdate27=1
-ParameterName28=Depth
+ParameterName28=DatasheetVersion
 ParameterUpdate28=1
-ParameterName29=Description
+ParameterName29=Depth
 ParameterUpdate29=1
-ParameterName30=Dielectric
+ParameterName30=Description
 ParameterUpdate30=1
-ParameterName31=Digi-Key_Part_Number
+ParameterName31=Dielectric
 ParameterUpdate31=1
-ParameterName32=Digi-Key_Part_Number_1
+ParameterName32=Digi-Key_Part_Number
 ParameterUpdate32=1
-ParameterName33=Digi-Key_Purchase_URL
+ParameterName33=Digi-Key_Part_Number_1
 ParameterUpdate33=1
-ParameterName34=Eco-Plan
+ParameterName34=Digi-Key_Purchase_URL
 ParameterUpdate34=1
-ParameterName35=Electrical Life
+ParameterName35=Eco-Plan
 ParameterUpdate35=1
-ParameterName36=Fixed Output Options(V)
+ParameterName36=Electrical Life
 ParameterUpdate36=1
-ParameterName37=Generic Part Number
+ParameterName37=Fixed Output Options(V)
 ParameterUpdate37=1
-ParameterName38=Height
+ParameterName38=Generic Part Number
 ParameterUpdate38=1
-ParameterName39=Illumination Type
+ParameterName39=Height
 ParameterUpdate39=1
-ParameterName40=Input Bias Current
+ParameterName40=Illumination Type
 ParameterUpdate40=1
-ParameterName41=Input Offset Voltage
+ParameterName41=Input Bias Current
 ParameterUpdate41=1
-ParameterName42=Iout(Max)(A)
+ParameterName42=Input Offset Voltage
 ParameterUpdate42=1
-ParameterName43=Iq(Typ)(mA)
+ParameterName43=Iout(Max)(A)
 ParameterUpdate43=1
-ParameterName44=Iq/Amp
+ParameterName44=Iq(Typ)(mA)
 ParameterUpdate44=1
-ParameterName45=LatestRevisionDate
+ParameterName45=Iq/Amp
 ParameterUpdate45=1
-ParameterName46=LatestRevisionNote
+ParameterName46=LatestRevisionDate
 ParameterUpdate46=1
-ParameterName47=Lead Free
+ParameterName47=LatestRevisionNote
 ParameterUpdate47=1
-ParameterName48=Length
+ParameterName48=Lead Free
 ParameterUpdate48=1
-ParameterName49=Library Reference
+ParameterName49=Length
 ParameterUpdate49=1
-ParameterName50=Manufacturer
+ParameterName50=Library Reference
 ParameterUpdate50=1
-ParameterName51=Manufacturer URL
+ParameterName51=LSER
 ParameterUpdate51=1
-ParameterName52=Manufacturer_Name
+ParameterName52=Manufacturer
 ParameterUpdate52=1
-ParameterName53=Manufacturer_Part_Number
+ParameterName53=Manufacturer URL
 ParameterUpdate53=1
-ParameterName54=Max Current Rating
+ParameterName54=Manufacturer_Name
 ParameterUpdate54=1
-ParameterName55=Max Operating Temperature
+ParameterName55=Manufacturer_Part_Number
 ParameterUpdate55=1
-ParameterName56=Max V Supply (V)
+ParameterName56=Max Current Rating
 ParameterUpdate56=1
-ParameterName57=Max Voltage Rating (DC)
+ParameterName57=Max Operating Temperature
 ParameterUpdate57=1
-ParameterName58=Mechanical Life
+ParameterName58=Max V Supply (V)
 ParameterUpdate58=1
-ParameterName59=MF
+ParameterName59=Max Voltage Rating (DC)
 ParameterUpdate59=1
-ParameterName60=Mfr_Name
+ParameterName60=Mechanical Life
 ParameterUpdate60=1
-ParameterName61=Min Operating Temperature
+ParameterName61=MF
 ParameterUpdate61=1
-ParameterName62=Min V Supply (V)
+ParameterName62=Mfr_Name
 ParameterUpdate62=1
-ParameterName63=Mount
+ParameterName63=Min Operating Temperature
 ParameterUpdate63=1
-ParameterName64=Mounting Technology
+ParameterName64=Min V Supply (V)
 ParameterUpdate64=1
-ParameterName65=Mouser2 Part Number
+ParameterName65=Mount
 ParameterUpdate65=1
-ParameterName66=Mouser2 Price/Stock
+ParameterName66=Mounting Technology
 ParameterUpdate66=1
-ParameterName67=MP
+ParameterName67=Mouser2 Part Number
 ParameterUpdate67=1
-ParameterName68=Operating Force
+ParameterName68=Mouser2 Price/Stock
 ParameterUpdate68=1
-ParameterName69=Operating Temp Range
+ParameterName69=MP
 ParameterUpdate69=1
-ParameterName70=Orientation
+ParameterName70=Operating Force
 ParameterUpdate70=1
-ParameterName71=Package
+ParameterName71=Operating Temp Range
 ParameterUpdate71=1
-ParameterName72=Package Quantity
+ParameterName72=Orientation
 ParameterUpdate72=1
-ParameterName73=PackageDescription
+ParameterName73=Package
 ParameterUpdate73=1
-ParameterName74=PackageReference
+ParameterName74=Package Quantity
 ParameterUpdate74=1
-ParameterName75=PackageVersion
+ParameterName75=PackageDescription
 ParameterUpdate75=1
-ParameterName76=Packaging
+ParameterName76=PackageReference
 ParameterUpdate76=1
-ParameterName77=Packing
+ParameterName77=PackageVersion
 ParameterUpdate77=1
-ParameterName78=PartNumber
+ParameterName78=Packaging
 ParameterUpdate78=1
-ParameterName79=Power Good
+ParameterName79=Packing
 ParameterUpdate79=1
-ParameterName80=Price
+ParameterName80=PartNumber
 ParameterUpdate80=1
-ParameterName81=Publisher
+ParameterName81=Power Good
 ParameterUpdate81=1
-ParameterName82=Radiation Hardening
+ParameterName82=Price
 ParameterUpdate82=1
-ParameterName83=Rated Voltage
+ParameterName83=Publisher
 ParameterUpdate83=1
-ParameterName84=REACH SVHC
+ParameterName84=Radiation Hardening
 ParameterUpdate84=1
-ParameterName85=Ref Out TC (ppm/C)
+ParameterName85=Rated Voltage
 ParameterUpdate85=1
-ParameterName86=RefDes
+ParameterName86=REACH SVHC
 ParameterUpdate86=1
-ParameterName87=Series
+ParameterName87=Ref Out TC (ppm/C)
 ParameterUpdate87=1
-ParameterName88=Size
+ParameterName88=RefDes
 ParameterUpdate88=1
-ParameterName89=Slew Rate
+ParameterName89=RLSHUNT
 ParameterUpdate89=1
-ParameterName90=Small Signal Bandwidth
+ParameterName90=RPAR
 ParameterUpdate90=1
-ParameterName91=SnapEDA_Link
+ParameterName91=RSER
 ParameterUpdate91=1
-ParameterName92=SubFamily
+ParameterName92=Series
 ParameterUpdate92=1
-ParameterName93=Switch Function
+ParameterName93=SimulationGenericComponent
 ParameterUpdate93=1
-ParameterName94=Switch Travel
+ParameterName94=Size
 ParameterUpdate94=1
-ParameterName95=Termination
+ParameterName95=Slew Rate
 ParameterUpdate95=1
-ParameterName96=Throw Configuration
+ParameterName96=Small Signal Bandwidth
 ParameterUpdate96=1
-ParameterName97=Tolerance (%)
+ParameterName97=SnapEDA_Link
 ParameterUpdate97=1
-ParameterName98=Type
+ParameterName98=SubFamily
 ParameterUpdate98=1
-ParameterName99=V Span Max
+ParameterName99=Switch Function
 ParameterUpdate99=1
-ParameterName100=V Span Min
+ParameterName100=Switch Travel
 ParameterUpdate100=1
-ParameterName101=Value
+ParameterName101=TEMP
 ParameterUpdate101=1
-ParameterName102=Vdo(Typ)(mV)
+ParameterName102=Termination
 ParameterUpdate102=1
-ParameterName103=Vin(Max)(V)
+ParameterName103=Throw Configuration
 ParameterUpdate103=1
-ParameterName104=Vin(Min)(V)
+ParameterName104=Tolerance (%)
 ParameterUpdate104=1
-ParameterName105=Voltage Rating (DC)
+ParameterName105=Type
 ParameterUpdate105=1
-ParameterName106=Vout
+ParameterName106=V Span Max
 ParameterUpdate106=1
-ParameterName107=Vout Adj(Max)(V)
+ParameterName107=V Span Min
 ParameterUpdate107=1
-ParameterName108=Vout Adj(Min)(V)
+ParameterName108=Value
 ParameterUpdate108=1
+ParameterName109=Vdo(Typ)(mV)
+ParameterUpdate109=1
+ParameterName110=Vin(Max)(V)
+ParameterUpdate110=1
+ParameterName111=Vin(Min)(V)
+ParameterUpdate111=1
+ParameterName112=Voltage Rating (DC)
+ParameterUpdate112=1
+ParameterName113=Vout
+ParameterUpdate113=1
+ParameterName114=Vout Adj(Max)(V)
+ParameterUpdate114=1
+ParameterName115=Vout Adj(Min)(V)
+ParameterUpdate115=1
 ModelTypeGroup0=PCBLIB
 ModelTypeUpdate0=1
 ModelType0=PCBLIB
@@ -2297,10 +2461,10 @@ ModelType12=PCBLIB
 ModelName12=CAPC3216X94X50NL20T25
 ModelUpdate12=1
 ModelType13=PCBLIB
-ModelName13=CAPC3225X270N
+ModelName13=CAPC3326X280N
 ModelUpdate13=1
 ModelType14=PCBLIB
-ModelName14=CAPC3326X280N
+ModelName14=CON_1053141216
 ModelUpdate14=1
 ModelType15=PCBLIB
 ModelName15=D0008A_L
@@ -2350,11 +2514,19 @@ ModelUpdate29=1
 ModelType30=PCBLIB
 ModelName30=RESC1608X55N
 ModelUpdate30=1
+ModelType31=PCBLIB
+ModelName31=SOIC_08_EP_3P9X4P9_ADI
+ModelUpdate31=1
 ModelTypeGroup1=SI
 ModelTypeUpdate1=1
-ModelType31=SI
-ModelName31=Connector
-ModelUpdate31=1
+ModelType32=SI
+ModelName32=Connector
+ModelUpdate32=1
+ModelTypeGroup2=SIM
+ModelTypeUpdate2=1
+ModelType33=SIM
+ModelName33=C_Capacitor_Default
+ModelUpdate33=1
 
 [DatabaseUpdateOptions]
 SelectedOnly=0
