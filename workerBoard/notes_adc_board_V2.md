@@ -151,7 +151,13 @@ Choix des connecteurs :
 > - Résistance d'entre GND et entrées analogue est ce que cest ok 1/10W? Avec précision de 0.5% -- Oui C'est ok
 > - Résistance dans le module THVD8000 cest 120omhs 1/10W et 0.1%, pas assez résistant? Il n'y aura plus de DC à ce moment -- OK pas bp de courant qui va passé là.
 >
-> changer les vis pour des m3
-> changer le connecteurs 12V pour des vis
-> vRifier l'impédance de Vref1 vs Vref2, si cest les même cest ok, ligne a 6 et 43 de même longueur
+> changer les vis pour des m3 -- OK
+> changer le connecteurs 12V pour des vis -- OK
 > Bord THVD8000 à révisier
+
+## 17 décembre
+
+- révision des circruits thvd8000
+  - retrait des bobines du baord principales : celles-ci seront sur le power supply
+- Le retrait des bobines laisse plus de place : il faut donc réarranger le board dans ce coin
+- NEXT : générer le BOM et faire la commande pour lundi
