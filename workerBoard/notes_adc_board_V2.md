@@ -159,5 +159,5 @@ Choix des connecteurs :
 
 - révision des circruits thvd8000
   - retrait des bobines du baord principales : celles-ci seront sur le power supply
-- Le retrait des bobines laisse plus de place : il faut donc réarranger le board dans ce coin
+- Le retrait des bobines laisse plus de place : il faut donc réarranger le board dans ce coin -- OK
 - NEXT : générer le BOM et faire la commande pour lundi
