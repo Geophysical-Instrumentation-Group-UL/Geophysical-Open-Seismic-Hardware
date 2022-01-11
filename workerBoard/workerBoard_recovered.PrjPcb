@@ -828,6 +828,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=PSJYQXAX
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for workerBoard_recovered\Design Rule Check - ADC_RS_MCU.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
