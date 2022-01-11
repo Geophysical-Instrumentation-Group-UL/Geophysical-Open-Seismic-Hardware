@@ -33,11 +33,7 @@ FSMEncodingStyle=eFMSDropDownList_OneHot
 IsProjectConflictPreventionWarningsEnabled=0
 OutputPath=
 LogFolderPath=
-ManagedProjectGUID=3C567272-8121-4FFB-BD25-12B1B9D2A723
-VaultGUID=BB7379C8-1D21-445C-8575-C23909C8C0D6
-ReleaseVaultName=GIGUL
-ItemGUID=3C567272-8121-4FFB-BD25-12B1B9D2A723
-VcsMigrated=BB7379C8-1D21-445C-8575-C23909C8C0D6|3C567272-8121-4FFB-BD25-12B1B9D2A723
+ManagedProjectGUID=
 IncludeDesignInRelease=0
 CrossRefSheetStyle=1
 CrossRefLocationStyle=1
@@ -201,7 +197,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=LSQJLXNJ
+DocumentUniqueId=
 
 [Document10]
 DocumentPath=SnapDocs\switch.SchLib
@@ -320,7 +316,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=NVSMQQVM
+DocumentUniqueId=
 
 [Document17]
 DocumentPath=SnapDocs\RTAN1206BKE33R0.SchLib
@@ -456,7 +452,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=UYHSAUSQ
+DocumentUniqueId=
 
 [Document25]
 DocumentPath=thvd8000.SchDoc
@@ -507,7 +503,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=QMBABPNP
+DocumentUniqueId=
 
 [Document28]
 DocumentPath=SnapDocs\RT0603BRD0733RL.SchLib
@@ -541,7 +537,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=QEECNVWR
+DocumentUniqueId=
 
 [Document30]
 DocumentPath=SnapDocs\RT0603BRD071K5L.SchLib
@@ -575,7 +571,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=OIAYPLPI
+DocumentUniqueId=
 
 [Document32]
 DocumentPath=SnapDocs\ERA-3AEB121V.SchLib
@@ -609,7 +605,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=CNXQDNOC
+DocumentUniqueId=
 
 [Document34]
 DocumentPath=SnapDocs\MCT0603MD1000DP500.SchLib
@@ -643,7 +639,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=ADHFTPSW
+DocumentUniqueId=
 
 [Document36]
 DocumentPath=SnapDocs\RT0603DRD071ML.SchLib
@@ -677,7 +673,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=ATIMIBXQ
+DocumentUniqueId=
 
 [Document38]
 DocumentPath=SnapDocs\GRM32EC72A106KE05K.SchLib
@@ -711,7 +707,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=WLLIFYHY
+DocumentUniqueId=
 
 [Document40]
 DocumentPath=accel.SchDoc
@@ -779,7 +775,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=URXCUOXP
+DocumentUniqueId=
 
 [Document44]
 DocumentPath=SnapDocs\GRM31CR61E476ME44K.PcbLib
@@ -796,7 +792,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=GGLQWKRS
+DocumentUniqueId=
 
 [Document45]
 DocumentPath=ADC_RS_MCU_draft.PcbDoc
@@ -882,142 +878,6 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
-
-[GeneratedDocument1]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument4]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument5]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GBP
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument7]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GD1
-DItemRevisionGUID=
-
-[GeneratedDocument8]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GG1
-DItemRevisionGUID=
-
-[GeneratedDocument9]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM1
-DItemRevisionGUID=
-
-[GeneratedDocument10]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM2
-DItemRevisionGUID=
-
-[GeneratedDocument11]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM3
-DItemRevisionGUID=
-
-[GeneratedDocument12]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM5
-DItemRevisionGUID=
-
-[GeneratedDocument13]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM7
-DItemRevisionGUID=
-
-[GeneratedDocument14]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM13
-DItemRevisionGUID=
-
-[GeneratedDocument15]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM15
-DItemRevisionGUID=
-
-[GeneratedDocument16]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GM16
-DItemRevisionGUID=
-
-[GeneratedDocument17]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GP1
-DItemRevisionGUID=
-
-[GeneratedDocument18]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GP2
-DItemRevisionGUID=
-
-[GeneratedDocument19]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GPB
-DItemRevisionGUID=
-
-[GeneratedDocument20]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GPT
-DItemRevisionGUID=
-
-[GeneratedDocument21]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument22]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument23]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GTP
-DItemRevisionGUID=
-
-[GeneratedDocument24]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument25]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument26]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.REP
-DItemRevisionGUID=
-
-[GeneratedDocument27]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument28]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TX1
-DItemRevisionGUID=
-
-[GeneratedDocument29]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TX2
-DItemRevisionGUID=
-
-[GeneratedDocument30]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TX3
-DItemRevisionGUID=
-
-[GeneratedDocument31]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TX4
-DItemRevisionGUID=
-
-[GeneratedDocument32]
-DocumentPath=Project Outputs for workerBoard\ADC_RS_MCU.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument33]
-DocumentPath=Project Outputs for workerBoard\Design Rule Check - accel_draft.html
-DItemRevisionGUID=
-
-[GeneratedDocument34]
-DocumentPath=Project Outputs for workerBoard\Design Rule Check - ADC_RS_MCU.html
-DItemRevisionGUID=
 
 [Configuration1]
 Name=Sources
