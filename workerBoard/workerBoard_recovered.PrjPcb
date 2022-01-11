@@ -798,23 +798,6 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document45]
-DocumentPath=accel.PcbDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=FKPJCXWM
-
-[Document46]
 DocumentPath=ADC_RS_MCU.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -830,6 +813,23 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=PSJYQXAX
+
+[Document46]
+DocumentPath=accel.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=FKPJCXWM
 
 [GeneratedDocument1]
 DocumentPath=Project Outputs for workerBoard_recovered\Design Rule Check - ADC_RS_MCU.html
