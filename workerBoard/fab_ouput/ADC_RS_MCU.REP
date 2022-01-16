@@ -1,0 +1,444 @@
+*************************************************************
+FileName = ADC_RS_MCU.GBR
+AutoAperture = True
+*************************************************************
+Generating : Top Courtyard
+      File : ADC_RS_MCU.GM3
+
+    Adding Layer      : Top Courtyard
+
+
+Used DCodes :
+    D11
+*************************************************************
+
+*************************************************************
+Generating : Top 3D Body
+      File : ADC_RS_MCU.GM2
+
+    Adding Layer      : Top 3D Body
+
+
+Used DCodes :
+    D11
+*************************************************************
+
+*************************************************************
+Generating : Top Layer
+      File : ADC_RS_MCU.GTL
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D15
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
+    D33
+    D34
+    D35
+    D57
+    D58
+    D59
+    D60
+    D61
+    D62
+    D63
+    D64
+*************************************************************
+
+*************************************************************
+Generating : GND
+      File : ADC_RS_MCU.GP1
+
+    Adding Layer      : GND
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D65
+    D66
+    D67
+    D68
+    D69
+    D70
+    D71
+    D72
+    D73
+    D74
+    D75
+    D76
+    D77
+*************************************************************
+
+*************************************************************
+Generating : Top Component Center
+      File : ADC_RS_MCU.GM16
+
+    Adding Layer      : Top Component Center
+
+
+Used DCodes :
+    D83
+*************************************************************
+
+*************************************************************
+Generating : Mechanical 15
+      File : ADC_RS_MCU.GM15
+
+    Adding Layer      : Mechanical 15
+
+
+Used DCodes :
+    D13
+    D14
+    D83
+    D88
+    D89
+*************************************************************
+
+*************************************************************
+Generating : Mechanical 13
+      File : ADC_RS_MCU.GM13
+
+    Adding Layer      : Mechanical 13
+
+
+Used DCodes :
+    D11
+    D14
+    D15
+    D83
+    D84
+    D85
+    D86
+    D87
+*************************************************************
+
+*************************************************************
+Generating : Mechanical 1
+      File : ADC_RS_MCU.GM1
+
+    Adding Layer      : Mechanical 1
+
+
+Used DCodes :
+    D83
+*************************************************************
+
+*************************************************************
+Generating : Bottom Overlay
+      File : ADC_RS_MCU.GBO
+
+    Adding Layer      : Bottom Overlay
+
+
+Used DCodes :
+    D15
+*************************************************************
+
+*************************************************************
+Generating : Bottom Paste
+      File : ADC_RS_MCU.GBP
+
+    Adding Layer      : Bottom Paste
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D16
+    D23
+    D79
+    D80
+*************************************************************
+
+*************************************************************
+Generating : Bottom Solder
+      File : ADC_RS_MCU.GBS
+
+    Adding Layer      : Bottom Solder
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D36
+    D43
+    D50
+    D51
+    D52
+    D53
+    D54
+    D55
+    D56
+    D81
+    D82
+*************************************************************
+
+*************************************************************
+Generating : Bottom Pad Master
+      File : ADC_RS_MCU.GPB
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D16
+    D23
+    D58
+    D59
+    D60
+    D61
+    D79
+    D80
+*************************************************************
+
+*************************************************************
+Generating : Bottom Layer
+      File : ADC_RS_MCU.GBL
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D15
+    D16
+    D23
+    D58
+    D59
+    D60
+    D61
+    D62
+    D63
+    D64
+    D79
+    D80
+*************************************************************
+
+*************************************************************
+Generating : 5V
+      File : ADC_RS_MCU.GP2
+
+    Adding Layer      : 5V
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D65
+    D66
+    D67
+    D68
+    D70
+    D71
+    D72
+    D73
+    D74
+    D75
+    D76
+    D78
+*************************************************************
+
+*************************************************************
+Generating : Top Assembly
+      File : ADC_RS_MCU.GM5
+
+    Adding Layer      : Top Assembly
+
+
+Used DCodes :
+    D11
+*************************************************************
+
+*************************************************************
+Generating : Mechanical 7
+      File : ADC_RS_MCU.GM7
+
+    Adding Layer      : Mechanical 7
+
+
+Used DCodes :
+    D84
+*************************************************************
+
+*************************************************************
+Generating : Top Solder
+      File : ADC_RS_MCU.GTS
+
+    Adding Layer      : Top Solder
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D27
+    D28
+    D29
+    D30
+    D34
+    D35
+    D36
+    D37
+    D38
+    D39
+    D40
+    D41
+    D42
+    D43
+    D44
+    D45
+    D46
+    D47
+    D48
+    D49
+    D50
+    D51
+    D52
+    D53
+    D54
+    D55
+    D56
+*************************************************************
+
+*************************************************************
+Generating : Top Paste
+      File : ADC_RS_MCU.GTP
+
+    Adding Layer      : Top Paste
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
+    D33
+    D34
+    D35
+*************************************************************
+
+*************************************************************
+Generating : Top Overlay
+      File : ADC_RS_MCU.GTO
+
+    Adding Layer      : Top Overlay
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+    D14
+    D15
+*************************************************************
+
+*************************************************************
+Generating : Top Pad Master
+      File : ADC_RS_MCU.GPT
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
+    D33
+    D34
+    D35
+    D58
+    D59
+    D60
+    D61
+*************************************************************
+
+*************************************************************
+Generating : Drill Drawing
+      File : ADC_RS_MCU.GD1
+
+    Adding Drill Pair : Top Layer-Bottom Layer
+
+    Adding Layer      : Drill Drawing
+
+
+Used DCodes :
+    D89
+    D90
+*************************************************************
+
+*************************************************************
+Generating : Drill Guide
+      File : ADC_RS_MCU.GG1
+
+    Adding Drill Pair : Top Layer-Bottom Layer
+
+    Adding Layer      : Drill Guide
+
+
+Used DCodes :
+    D89
+*************************************************************
+

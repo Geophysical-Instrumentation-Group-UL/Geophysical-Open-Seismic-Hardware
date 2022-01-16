@@ -1,0 +1,6 @@
+Layer Pairs Export File for PCB: C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\workerBoard\ADC_RS_MCU.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=adc_rs_mcu.txt|DrillLayers=gtl,gp1,gp2,gbl
+LayersSetName=Top_GND_Blind_Vias|DrillFile=adc_rs_mcu.tx1|DrillLayers=gtl,gp1
+LayersSetName=Top_5V_Blind_Vias|DrillFile=adc_rs_mcu.tx2|DrillLayers=gtl,gp1,gp2
+LayersSetName=GND_Bot_Blind_Vias|DrillFile=adc_rs_mcu.tx3|DrillLayers=gp1,gp2,gbl
+LayersSetName=5V_Bot_Blind_Vias|DrillFile=adc_rs_mcu.tx4|DrillLayers=gp2,gbl
