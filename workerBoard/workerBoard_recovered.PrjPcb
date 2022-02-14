@@ -49,6 +49,9 @@ CrossRefFollowFromMainSettings=1
 PrefsVaultGUID=
 PrefsRevisionGUID=
 
+[Release]
+ReleaseTarget=3
+
 [Document1]
 DocumentPath=ad7768.SchDoc
 AnnotationEnabled=1
@@ -203,7 +206,7 @@ GenerateClassCluster=0
 DocumentUniqueId=FKPJCXWM
 
 [Document10]
-DocumentPath=CAMtastic1.Cam
+DocumentPath=fab_ouput\accel\CAMtastic1.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -220,7 +223,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document11]
-DocumentPath=CAMtastic2.Cam
+DocumentPath=fab_ouput\accel\CAMtastic2.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -237,134 +240,222 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.DRR
+DocumentPath=Project Outputs for workerBoard_recovered\accel.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.EXTREP
+DocumentPath=Project Outputs for workerBoard_recovered\accel.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GBL
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GBO
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GBP
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GBS
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GD1
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GD1
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GG1
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GG1
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM1
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GM1
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM2
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GM13
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM3
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GM15
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM5
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GPB
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM7
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GPT
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM13
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM15
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM16
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument17]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GP1
+DocumentPath=Project Outputs for workerBoard_recovered\accel.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument18]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GP2
+DocumentPath=Project Outputs for workerBoard_recovered\accel.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument19]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GPB
+DocumentPath=Project Outputs for workerBoard_recovered\accel.REP
 DItemRevisionGUID=
 
 [GeneratedDocument20]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GPT
+DocumentPath=Project Outputs for workerBoard_recovered\accel.RUL
 DItemRevisionGUID=
 
 [GeneratedDocument21]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GTL
+DocumentPath=Project Outputs for workerBoard_recovered\accel.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument22]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GTO
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument23]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GTP
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument24]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GTS
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument25]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.LDP
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument26]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.REP
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument27]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.RUL
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument28]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TX1
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GD1
 DItemRevisionGUID=
 
 [GeneratedDocument29]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TX2
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GG1
 DItemRevisionGUID=
 
 [GeneratedDocument30]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TX3
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM1
 DItemRevisionGUID=
 
 [GeneratedDocument31]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TX4
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM2
 DItemRevisionGUID=
 
 [GeneratedDocument32]
-DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TXT
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM3
 DItemRevisionGUID=
 
 [GeneratedDocument33]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM5
+DItemRevisionGUID=
+
+[GeneratedDocument34]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM7
+DItemRevisionGUID=
+
+[GeneratedDocument35]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM13
+DItemRevisionGUID=
+
+[GeneratedDocument36]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM15
+DItemRevisionGUID=
+
+[GeneratedDocument37]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GM16
+DItemRevisionGUID=
+
+[GeneratedDocument38]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GP1
+DItemRevisionGUID=
+
+[GeneratedDocument39]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GP2
+DItemRevisionGUID=
+
+[GeneratedDocument40]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GPB
+DItemRevisionGUID=
+
+[GeneratedDocument41]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GPT
+DItemRevisionGUID=
+
+[GeneratedDocument42]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument43]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument44]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument45]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument46]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument47]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.REP
+DItemRevisionGUID=
+
+[GeneratedDocument48]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument49]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TX1
+DItemRevisionGUID=
+
+[GeneratedDocument50]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TX2
+DItemRevisionGUID=
+
+[GeneratedDocument51]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TX3
+DItemRevisionGUID=
+
+[GeneratedDocument52]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TX4
+DItemRevisionGUID=
+
+[GeneratedDocument53]
+DocumentPath=Project Outputs for workerBoard_recovered\ADC_RS_MCU.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument54]
+DocumentPath=Project Outputs for workerBoard_recovered\Design Rule Check - accel.html
+DItemRevisionGUID=
+
+[GeneratedDocument55]
 DocumentPath=Project Outputs for workerBoard_recovered\Design Rule Check - ADC_RS_MCU.html
 DItemRevisionGUID=
 
@@ -377,6 +468,26 @@ Variant=[No Variations]
 OutputJobsCount=0
 ContentTypeGUID=CB6F2064-E317-11DF-B822-12313F0024A2
 ConfigurationType=Source
+
+[Configuration2]
+Name=Fabrication
+ParameterCount=0
+ConstraintFileCount=0
+ReleaseItemId=
+Variant=[No Variations]
+OutputJobsCount=0
+ContentTypeGUID=0C520D2A-E60C-11DF-B822-12313F0024A2
+ConfigurationType=Fabrication
+
+[Configuration3]
+Name=Assembly
+ParameterCount=0
+ConstraintFileCount=0
+ReleaseItemId=
+Variant=[No Variations]
+OutputJobsCount=0
+ContentTypeGUID=0D12F8DC-E60C-11DF-B822-12313F0024A2
+ConfigurationType=Assembly
 
 [Generic_SmartPDF]
 AutoOpenFile=-1
@@ -635,71 +746,71 @@ Name=Fabrication Outputs
 Description=
 TargetPrinter=Microsoft Print to PDF
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
-OutputType1=NC Drill
-OutputName1=NC Drill Files
+OutputType1=CompositeDrill
+OutputName1=Composite Drill Drawing
 OutputDocumentPath1=
 OutputVariantName1=
 OutputDefault1=0
-Configuration1_Name1=ForceUpdateSettings
-Configuration1_Item1=False
-Configuration1_Name2=OutputConfigurationParameter1
-Configuration1_Item2=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|GenerateSeparateViaTypeFiles=False|NumberOfDecimals=5|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressLeadingZeroes|DocumentPath=C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\workerBoard\ADC_RS_MCU.PcbDoc
-OutputType2=Mask
-OutputName2=Solder/Paste Mask Prints
+PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType2=Drill
+OutputName2=Drill Drawing/Guides
 OutputDocumentPath2=
 OutputVariantName2=
 OutputDefault2=0
 PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType3=IPC2581
-OutputName3=IPC-2581 Files
+OutputType3=Board Stack Report
+OutputName3=Report Board Stack
 OutputDocumentPath3=
 OutputVariantName3=
 OutputDefault3=0
-OutputType4=Test Points
-OutputName4=Test Point Report
+PageOptions3=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType4=Final
+OutputName4=Final Artwork Prints
 OutputDocumentPath4=
-OutputVariantName4=
+OutputVariantName4=[No Variations]
 OutputDefault4=0
-OutputType5=Plane
-OutputName5=Power-Plane Prints
+PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType5=Gerber X2
+OutputName5=Gerber X2 Files
 OutputDocumentPath5=
 OutputVariantName5=
 OutputDefault5=0
-PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 OutputType6=ODB
 OutputName6=ODB++ Files
 OutputDocumentPath6=
 OutputVariantName6=[No Variations]
 OutputDefault6=0
-OutputType7=Drill
-OutputName7=Drill Drawing/Guides
+OutputType7=Mask
+OutputName7=Solder/Paste Mask Prints
 OutputDocumentPath7=
 OutputVariantName7=
 OutputDefault7=0
 PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType8=CompositeDrill
-OutputName8=Composite Drill Drawing
+OutputType8=NC Drill
+OutputName8=NC Drill Files
 OutputDocumentPath8=
 OutputVariantName8=
 OutputDefault8=0
-PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType9=Board Stack Report
-OutputName9=Report Board Stack
+Configuration8_Name1=ForceUpdateSettings
+Configuration8_Item1=False
+Configuration8_Name2=OutputConfigurationParameter1
+Configuration8_Item2=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|GenerateSeparateViaTypeFiles=False|NumberOfDecimals=5|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressLeadingZeroes|DocumentPath=C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\workerBoard\accel.PcbDoc
+OutputType9=IPC2581
+OutputName9=IPC-2581 Files
 OutputDocumentPath9=
 OutputVariantName9=
 OutputDefault9=0
-PageOptions9=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType10=Gerber X2
-OutputName10=Gerber X2 Files
+OutputType10=Plane
+OutputName10=Power-Plane Prints
 OutputDocumentPath10=
 OutputVariantName10=
 OutputDefault10=0
-OutputType11=Final
-OutputName11=Final Artwork Prints
+PageOptions10=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType11=Test Points
+OutputName11=Test Point Report
 OutputDocumentPath11=
-OutputVariantName11=[No Variations]
+OutputVariantName11=
 OutputDefault11=0
-PageOptions11=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 OutputType12=Gerber
 OutputName12=Gerber Files
 OutputDocumentPath12=
@@ -708,7 +819,7 @@ OutputDefault12=0
 Configuration12_Name1=ForceUpdateSettings
 Configuration12_Item1=False
 Configuration12_Name2=OutputConfigurationParameter1
-Configuration12_Item2=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GenerateReports=True|GerberUnit=Imperial|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=True|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=40|MinusApertureTolerance=40|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=5|NumberOfDecimals=5|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray,16973830~1,16973832~1,16973834~1,16777217~1,16842753~1,16842754~1,16842751~1,16973835~1,16973833~1,16973831~1,16908289~1,16908290~1,16908291~1,16908293~1,16908295~1,16908301~1,16908303~1,16908304~1,16973848~1,16973849~1|PlotDrillDrawingLayerPair0_Backdrill=False|PlotDrillDrawingLayerPair0_DrillType=Regular|PlotDrillDrawingLayerPair0_HighLayer=Bottom Layer|PlotDrillDrawingLayerPair0_LowLayer=Top Layer|PlotDrillGuideLayerPair0_Backdrill=False|PlotDrillGuideLayerPair0_DrillType=Regular|PlotDrillGuideLayerPair0_HighLayer=Bottom Layer|PlotDrillGuideLayerPair0_LowLayer=Top Layer|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=40|PlusApertureTolerance=40|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False|DocumentPath=C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\workerBoard\ADC_RS_MCU.PcbDoc
+Configuration12_Item2=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GenerateReports=True|GerberUnit=Imperial|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=True|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=40|MinusApertureTolerance=40|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=5|NumberOfDecimals=5|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TPlotLayerStateArray,16973830~1,16973832~1,16973834~1,16777217~1,16842751~1,16973835~1,16973833~1,16973831~1,16908289~1,16908301~1,16908303~1,16973848~1,16973849~1|PlotDrillDrawingLayerPair0_Backdrill=False|PlotDrillDrawingLayerPair0_DrillType=Regular|PlotDrillDrawingLayerPair0_HighLayer=Bottom Layer|PlotDrillDrawingLayerPair0_LowLayer=Top Layer|PlotDrillGuideLayerPair0_Backdrill=False|PlotDrillGuideLayerPair0_DrillType=Regular|PlotDrillGuideLayerPair0_HighLayer=Bottom Layer|PlotDrillGuideLayerPair0_LowLayer=Top Layer|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=40|PlusApertureTolerance=40|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False|DocumentPath=C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\workerBoard\accel.PcbDoc
 
 [OutputGroup6]
 Name=Report Outputs
