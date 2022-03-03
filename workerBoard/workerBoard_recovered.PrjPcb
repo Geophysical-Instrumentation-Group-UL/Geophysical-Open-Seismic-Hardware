@@ -25,6 +25,7 @@ NameNetsHierarchically=0
 PowerPortNamesTakePriority=0
 AutoSheetNumbering=1
 AutoCrossReferences=0
+NewIndexingOfSheetSymbols=0
 PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
@@ -121,6 +122,23 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document5]
+DocumentPath=masterUnit.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=UJEWFZKB
+
+[Document6]
 DocumentPath=thvd8000.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -137,7 +155,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=RZQNXKCK
 
-[Document6]
+[Document7]
 DocumentPath=accel.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -154,7 +172,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=LMEMMZLR
 
-[Document7]
+[Document8]
 DocumentPath=power_supply.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -171,7 +189,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=IHXIYWPB
 
-[Document8]
+[Document9]
 DocumentPath=ADC_RS_MCU.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -188,7 +206,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=PSJYQXAX
 
-[Document9]
+[Document10]
 DocumentPath=accel.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -205,7 +223,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=FKPJCXWM
 
-[Document10]
+[Document11]
 DocumentPath=fab_ouput\accel\CAMtastic1.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -222,7 +240,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document11]
+[Document12]
 DocumentPath=fab_ouput\accel\CAMtastic2.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -1425,6 +1443,7 @@ Type122=2
 Type123=1
 Type124=1
 Type125=1
+Type126=1
 
 [ERC Connection Matrix]
 L1=NNNNNNNNNNNWNNNWW
