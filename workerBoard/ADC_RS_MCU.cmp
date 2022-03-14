@@ -1,0 +1,651 @@
+Cmp-Mod V01 Created by PcbNew   date = 2022-03-09 9:13:08 AM
+
+BeginCmp
+TimeStamp = c201e1b2-fc01-4110-bdaa-a33290468c83
+Path = 
+Reference = U11;
+ValeurCmp = THVD8000DDFR;
+IdModule  = lib_test:DDF0008A-IPC_A;
+EndCmp
+
+BeginCmp
+TimeStamp = 2f3deced-880d-4075-a81b-95c62da5b94d
+Path = 
+Reference = 12V;
+ValeurCmp = Plug;
+IdModule  = lib_test:PIN1;
+EndCmp
+
+BeginCmp
+TimeStamp = b60c50d1-225e-415c-8712-7acb5e3dc8ea
+Path = 
+Reference = U1;
+ValeurCmp = AD7768-4BSTZ;
+IdModule  = lib_test:QFP50P1200X1200X160-64N;
+EndCmp
+
+BeginCmp
+TimeStamp = c3c93de0-69b1-4a04-8e0b-d78caf487c63
+Path = 
+Reference = U2;
+ValeurCmp = DSC1001AI2-032.7680;
+IdModule  = lib_test:DFN4_7X5_MCH;
+EndCmp
+
+BeginCmp
+TimeStamp = ec9e24d8-d1c5-40e2-9812-dc315d05f470
+Path = 
+Reference = J1;
+ValeurCmp = 1053141216;
+IdModule  = lib_test:CON_1053141216;
+EndCmp
+
+BeginCmp
+TimeStamp = 4412226e-d975-40a2-921f-502ff4129a95
+Path = 
+Reference = U3;
+ValeurCmp = ADR435BRZ;
+IdModule  = lib_test:ADI-R-8_M;
+EndCmp
+
+BeginCmp
+TimeStamp = ef1b4b98-541b-4673-a04f-2043250fc40a
+Path = 
+Reference = [NoRef];
+ValeurCmp = DEV-15583;
+IdModule  = lib_test:MODULE_DEV-15583;
+EndCmp
+
+BeginCmp
+TimeStamp = 4831966c-bb32-4bc8-a400-0382a02ffa1c
+Path = 
+Reference = C3;
+ValeurCmp = 2.2uF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 587a157d-dedf-4558-a037-1a94bbba1848
+Path = 
+Reference = U5;
+ValeurCmp = ADP7118ARDZ-3.3-R7;
+IdModule  = lib_test:SOIC_08_EP_3P9X4P9_ADI;
+EndCmp
+
+BeginCmp
+TimeStamp = 0867287d-2e6a-4d69-a366-c29f88198f2b
+Path = 
+Reference = R20;
+ValeurCmp = 1M;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 632acde9-b7fd-4f04-8cb4-d2cbb06b3595
+Path = 
+Reference = C11;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = dabe541b-b164-4180-97a4-5ca761b86800
+Path = 
+Reference = C10;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 67621f9e-0a6a-4778-ad69-04dcf300659c
+Path = 
+Reference = U10;
+ValeurCmp = ADA4841-2YRMZ-RL;
+IdModule  = lib_test:ADI-RM-8_M;
+EndCmp
+
+BeginCmp
+TimeStamp = 712d6a7d-2b62-464f-b745-fd2a6b0187f6
+Path = 
+Reference = U9;
+ValeurCmp = ADA4841-2YRMZ-RL;
+IdModule  = lib_test:ADI-RM-8_M;
+EndCmp
+
+BeginCmp
+TimeStamp = 51c4dc0a-5b9f-4edf-a83f-4a12881e42ef
+Path = 
+Reference = U8;
+ValeurCmp = ADA4841-2YRMZ-RL;
+IdModule  = lib_test:ADI-RM-8_M;
+EndCmp
+
+BeginCmp
+TimeStamp = dde3dba8-1b81-466c-93a3-c284ff4da1ef
+Path = 
+Reference = U7;
+ValeurCmp = ADA4841-2YRMZ-RL;
+IdModule  = lib_test:ADI-RM-8_M;
+EndCmp
+
+BeginCmp
+TimeStamp = 13475e15-f37c-4de8-857e-1722b0c39513
+Path = 
+Reference = U6;
+ValeurCmp = ADR4540BRZ;
+IdModule  = lib_test:ADI-R-8_M;
+EndCmp
+
+BeginCmp
+TimeStamp = 8d55e186-3e11-40e8-a65e-b36a8a00069e
+Path = 
+Reference = U4;
+ValeurCmp = REG103UA-5;
+IdModule  = lib_test:D0008A_M;
+EndCmp
+
+BeginCmp
+TimeStamp = 9c8ccb2a-b1e9-4f2c-94fe-301b5975277e
+Path = 
+Reference = 1;
+ValeurCmp = 0.47uF-250V;
+IdModule  = lib_test:CAPC3326X280N;
+EndCmp
+
+BeginCmp
+TimeStamp = 4e3d7c0d-12e3-42f2-b944-e4bcdbbcac2a
+Path = 
+Reference = R22;
+ValeurCmp = 1.5k;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = d1262c4d-2245-4c4f-8f35-7bb32cd9e21e
+Path = 
+Reference = R21;
+ValeurCmp = 120;
+IdModule  = lib_test:RES_ERA3AEB121V;
+EndCmp
+
+BeginCmp
+TimeStamp = 81bbc3ff-3938-49ac-8297-ce2bcc9a42bd
+Path = 
+Reference = R19;
+ValeurCmp = 1M;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 8322f275-268c-4e87-a69f-4cfbf05e747f
+Path = 
+Reference = R18;
+ValeurCmp = 33;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 3dcc657b-55a1-48e0-9667-e01e7b6b08b5
+Path = 
+Reference = R17;
+ValeurCmp = 33;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 13abf99d-5265-4779-8973-e94370fd18ff
+Path = 
+Reference = R16;
+ValeurCmp = 1M;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 9ccf03e8-755a-4cd9-96fc-30e1d08fa253
+Path = 
+Reference = R15;
+ValeurCmp = 33;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 6e105729-aba0-497c-a99e-c32d2b3ddb6d
+Path = 
+Reference = R14;
+ValeurCmp = 33;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 62c076a3-d618-44a2-9042-9a08b3576787
+Path = 
+Reference = R13;
+ValeurCmp = 1M;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 3f5fe6b7-98fc-4d3e-9567-f9f7202d1455
+Path = 
+Reference = R12;
+ValeurCmp = 1M;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = e8314017-7be6-4011-9179-37449a29b311
+Path = 
+Reference = R11;
+ValeurCmp = 1M;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 10109f84-4940-47f8-8640-91f185ac9bc1
+Path = 
+Reference = R10;
+ValeurCmp = 33;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 47baf4b1-0938-497d-88f9-671136aa8be7
+Path = 
+Reference = R9;
+ValeurCmp = 33;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = ef8fe2ac-6a7f-4682-9418-b801a1b10a3b
+Path = 
+Reference = R8;
+ValeurCmp = 1M;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 749dfe75-c0d6-4872-9330-29c5bbcb8ff8
+Path = 
+Reference = R7;
+ValeurCmp = 1M;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = d8603679-3e7b-4337-8dbc-1827f5f54d8a
+Path = 
+Reference = R6;
+ValeurCmp = 33;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 5038e144-5119-49db-b6cf-f7c345f1cf03
+Path = 
+Reference = R5;
+ValeurCmp = 33;
+IdModule  = lib_test:RESC1608X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = a690fc6c-55d9-47e6-b533-faa4b67e20f3
+Path = 
+Reference = R1;
+ValeurCmp = 100;
+IdModule  = lib_test:RESC1508X55N;
+EndCmp
+
+BeginCmp
+TimeStamp = 6c9b793c-e74d-4754-a2c0-901e73b26f1c
+Path = 
+Reference = 5Vref;
+ValeurCmp = Plug;
+IdModule  = lib_test:PIN1;
+EndCmp
+
+BeginCmp
+TimeStamp = 127679a9-3981-4934-815e-896a4e3ff56e
+Path = 
+Reference = GND;
+ValeurCmp = Plug;
+IdModule  = lib_test:PIN1;
+EndCmp
+
+BeginCmp
+TimeStamp = 8174b4de-74b1-48db-ab8e-c8432251095b
+Path = 
+Reference = P4;
+ValeurCmp = Plug;
+IdModule  = lib_test:PIN1;
+EndCmp
+
+BeginCmp
+TimeStamp = ce83728b-bebd-48c2-8734-b6a50d837931
+Path = 
+Reference = P3;
+ValeurCmp = Plug;
+IdModule  = lib_test:PIN1;
+EndCmp
+
+BeginCmp
+TimeStamp = 0f22151c-f260-4674-b486-4710a2c42a55
+Path = 
+Reference = P2;
+ValeurCmp = Plug;
+IdModule  = lib_test:PIN1;
+EndCmp
+
+BeginCmp
+TimeStamp = d57dcfee-5058-4fc2-a68b-05f9a48f685b
+Path = 
+Reference = 5V;
+ValeurCmp = Plug;
+IdModule  = lib_test:PIN1;
+EndCmp
+
+BeginCmp
+TimeStamp = 94a873dc-af67-4ef9-8159-1f7c93eeb3d7
+Path = 
+Reference = [NoRef];
+ValeurCmp = 100nF;
+IdModule  = lib_test:CAPC3216X94X50ML20T25;
+EndCmp
+
+BeginCmp
+TimeStamp = 2d210a96-f81f-42a9-8bf4-1b43c11086f3
+Path = 
+Reference = C46;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 7dc880bc-e7eb-4cce-8d8c-0b65a9dd788e
+Path = 
+Reference = C45;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 42713045-fffd-4b2d-ae1e-7232d705fb12
+Path = 
+Reference = C44;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = bdc7face-9f7c-4701-80bb-4cc144448db1
+Path = 
+Reference = C43;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 80094b70-85ab-4ff6-934b-60d5ee65023a
+Path = 
+Reference = C42;
+ValeurCmp = 120pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 31e08896-1992-4725-96d9-9d2728bca7a3
+Path = 
+Reference = C41;
+ValeurCmp = 120pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 2d6db888-4e40-41c8-b701-07170fc894bc
+Path = 
+Reference = C40;
+ValeurCmp = 330pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 08a7c925-7fae-4530-b0c9-120e185cb318
+Path = 
+Reference = C39;
+ValeurCmp = 330pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 240e07e1-770b-4b27-894f-29fd601c924d
+Path = 
+Reference = C38;
+ValeurCmp = 120pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = c01d25cd-f4bb-4ef3-b5ea-533a2a4ddb2b
+Path = 
+Reference = C37;
+ValeurCmp = 120pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 61fe293f-6808-4b7f-9340-9aaac7054a97
+Path = 
+Reference = C36;
+ValeurCmp = 120pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 0217dfc4-fc13-4699-99ad-d9948522648e
+Path = 
+Reference = C35;
+ValeurCmp = 120pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 3a7648d8-121a-4921-9b92-9b35b76ce39b
+Path = 
+Reference = C34;
+ValeurCmp = 330pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 6475547d-3216-45a4-a15c-48314f1dd0f9
+Path = 
+Reference = C33;
+ValeurCmp = 330pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 1a6d2848-e78e-49fe-8978-e1890f07836f
+Path = 
+Reference = C32;
+ValeurCmp = 120pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = 40165eda-4ba6-4565-9bb4-b9df6dbb08da
+Path = 
+Reference = C31;
+ValeurCmp = 120pF;
+IdModule  = lib_test:CAPC1608X90;
+EndCmp
+
+BeginCmp
+TimeStamp = babeabf2-f3b0-4ed5-8d9e-0215947e6cf3
+Path = 
+Reference = C30;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = c43663ee-9a0d-4f27-a292-89ba89964065
+Path = 
+Reference = C29;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = d5641ac9-9be7-46bf-90b3-6c83d852b5ba
+Path = 
+Reference = C28;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = e21aa84b-970e-47cf-b64f-3b55ee0e1b51
+Path = 
+Reference = C27;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 639c0e59-e95c-4114-bccd-2e7277505454
+Path = 
+Reference = C26;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 0ff508fd-18da-4ab7-9844-3c8a28c2587e
+Path = 
+Reference = C25;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = ffd175d1-912a-4224-be1e-a8198680f46b
+Path = 
+Reference = C24;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 68877d35-b796-44db-9124-b8e744e7412e
+Path = 
+Reference = C23;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 6d26d68f-1ca7-4ff3-b058-272f1c399047
+Path = 
+Reference = C18;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 7599133e-c681-4202-85d9-c20dac196c64
+Path = 
+Reference = C17;
+ValeurCmp = 10uF;
+IdModule  = lib_test:CAPC1608X9N;
+EndCmp
+
+BeginCmp
+TimeStamp = ec31c074-17b2-48e1-ab01-071acad3fa04
+Path = 
+Reference = C16;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 16bd6381-8ac0-4bf2-9dce-ecc20c724b8d
+Path = 
+Reference = C15;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = ca87f11b-5f48-4b57-8535-68d3ec2fe5a9
+Path = 
+Reference = C14;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = abe07c9a-17c3-43b5-b7a6-ae867ac27ea7
+Path = 
+Reference = C13;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = f3628265-0155-43e2-a467-c40ff783e265
+Path = 
+Reference = C7;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 16a9ae8c-3ad2-439b-8efe-377c994670c7
+Path = 
+Reference = C6;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = e6b860cc-cb76-4220-acfb-68f1eb348bfa
+Path = 
+Reference = C5;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = 182b2d54-931d-49d6-9f39-60a752623e36
+Path = 
+Reference = C4;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = cb24efdd-07c6-4317-9277-131625b065ac
+Path = 
+Reference = C2;
+ValeurCmp = 0.1uF;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = e43dbe34-ed17-4e35-a5c7-2f1679b3c415
+Path = 
+Reference = C1;
+ValeurCmp = 1u;
+IdModule  = lib_test:CAPC1608X90N;
+EndCmp
+
+BeginCmp
+TimeStamp = c7e7067c-5f5e-48d8-ab59-df26f9b35863
+Path = 
+Reference = 3;
+ValeurCmp = 0.47uF-250V;
+IdModule  = lib_test:CAPC3326X280N;
+EndCmp
+
+EndListe
