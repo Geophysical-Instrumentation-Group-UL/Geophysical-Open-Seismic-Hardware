@@ -1,9 +1,0 @@
-(sym_lib_table
-  (lib (name "ad7768-altium-import")(type "KiCad")(uri "${KIPRJMOD}/ad7768-altium-import.kicad_sym")(options "")(descr ""))
-  (lib (name "driver0-3-altium-import")(type "KiCad")(uri "${KIPRJMOD}/driver0-3-altium-import.kicad_sym")(options "")(descr ""))
-  (lib (name "thvd8000-altium-import")(type "KiCad")(uri "${KIPRJMOD}/thvd8000-altium-import.kicad_sym")(options "")(descr ""))
-  (lib (name "voltage_regulator-altium-import")(type "KiCad")(uri "${KIPRJMOD}/voltage_regulator-altium-import.kicad_sym")(options "")(descr ""))
-  (lib (name "Vref-altium-import")(type "KiCad")(uri "${KIPRJMOD}/Vref-altium-import.kicad_sym")(options "")(descr ""))
-  (lib (name "1_0603yc105mat4a")(type "KiCad")(uri "C:/Users/armer12/OneDrive/OneDrive - Université Laval/design/circuit_imprime/test_altium2KiCad/import_9_march/1_0603yc105mat4a.kicad_sym")(options "")(descr ""))
-  (lib (name "0_dev-15583")(type "KiCad")(uri "C:/Users/armer12/OneDrive/OneDrive - Université Laval/design/circuit_imprime/test_altium2KiCad/import_9_march/0_dev-15583.kicad_sym")(options "")(descr ""))
-)
