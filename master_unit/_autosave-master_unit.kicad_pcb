@@ -953,6 +953,11 @@
       (net 31 "unconnected-(U1-PadVBAT)") (pinfunction "VBAT") (pintype "power_in") (tstamp c9ad0256-e795-473a-9d31-5442242d3188))
     (pad "VIN" thru_hole circle (at 7.62 -16.51) (size 1.53 1.53) (drill 1.02) (layers *.Cu *.Mask)
       (net 32 "unconnected-(U1-PadVIN)") (pinfunction "VIN") (pintype "power_in") (tstamp 41d14a77-a1a1-4f82-be40-67934bda1603))
+    (model "C:/Users/armer12/Downloads/DEV-15583/DEV-15583.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 90 180 180))
+    )
   )
 
   (footprint "Capacitor_SMD:C_1210_3225Metric" (layer "F.Cu")

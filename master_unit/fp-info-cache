@@ -1,4 +1,4 @@
-20115995219097296
+20119291135948022
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -57574,6 +57574,13 @@ Yellow 5381 Series LED
 0
 2
 2
+MSS1278-124KLD
+INDPM120120X805N
+MSS1278-124KLD
+Inductor
+0
+2
+2
 Module
 A20_OLINUXINO_LIME2
 A20 Olinuxino LIME2, 1.2GHz, 512-1024MB RAM, Micro-SD, NAND or eMMC, 1000Mbit Ethernet
@@ -80065,6 +80072,13 @@ Logo WEEE
 0
 0
 0
+THVD8000
+SOT65P280X110-8N
+DDF0008A
+Integrated Circuit
+0
+8
+8
 TerminalBlock
 TerminalBlock_Altech_AK300-2_P5.00mm
 Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
