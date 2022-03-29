@@ -221,7 +221,7 @@
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/003b23e1-9f8f-44e1-8bbd-edccb11ef6b9"
       (reference "#PWR0152") (unit 1) (value "GND") (footprint "")
     )
-    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/4f243379-26da-41ad-955e-b1ef1495f186"
+    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/a6bd56a6-2781-4a69-91bb-2c1492084c6c"
       (reference "#PWR0153") (unit 1) (value "GND") (footprint "")
     )
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/ebadc82c-41f0-420d-8df8-9d16a4db976d"
@@ -522,7 +522,7 @@
       (reference "R22") (unit 1) (value "1.5k") (footprint "lib:RESC1608X55N")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/21492bcd-343a-4b2b-b55a-b4586c11bdeb"
-      (reference "Teensy1") (unit 1) (value "DEV-15583") (footprint "lib:MODULE_DEV-15583")
+      (reference "Teensy1") (unit 1) (value "DEV-15583") (footprint "teensy4.0:teensy4.0")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/7afa54c4-2181-41d3-81f7-39efc497ecae"
       (reference "U1") (unit 1) (value "AD7768-4BSTZ") (footprint "lib:QFP50P1200X1200X160-64N")
