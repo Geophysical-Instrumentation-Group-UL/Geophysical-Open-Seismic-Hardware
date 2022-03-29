@@ -188,9 +188,6 @@
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/98861672-254d-432b-8e5a-10d885a5ffdc"
       (reference "#PWR0141") (unit 1) (value "GND") (footprint "")
     )
-    (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/372be9fa-3196-443d-8429-c32c89d60c0b"
-      (reference "#PWR0142") (unit 1) (value "5V") (footprint "")
-    )
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/993fb5c8-773b-49bf-a903-7401e8aa299c"
       (reference "#PWR0143") (unit 1) (value "GND") (footprint "")
     )
@@ -316,6 +313,9 @@
     )
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/cecaec75-1893-43f6-ba5d-41e63abbec51"
       (reference "#PWR0191") (unit 1) (value "5V") (footprint "")
+    )
+    (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/19d10c03-6034-4510-84a6-4149b936f794"
+      (reference "#PWR?") (unit 1) (value "5V") (footprint "")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/e2fac877-439c-4da0-af2e-5fdc70f85d42"
       (reference "5V1") (unit 1) (value "Plug") (footprint "lib:PIN1")
