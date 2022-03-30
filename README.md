@@ -1,4 +1,3 @@
-View this project on [CADLAB.io](https://cadlab.io/project/25363). 
 
 # Open-seismic-electrical-design
 
