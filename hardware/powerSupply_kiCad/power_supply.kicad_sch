@@ -1502,6 +1502,20 @@
     (pin "1" (uuid 30ceeeb0-1f36-486a-8d81-f2ec3ac32345))
   )
 
+  (symbol (lib_id "Connector_Generic:Conn_01x01") (at 140.97 101.6 180) (unit 1)
+    (in_bom yes) (on_board yes)
+    (uuid 52b4048a-2ed2-456e-bb7d-9dac3c1fa093)
+    (property "Reference" "J5" (id 0) (at 140.97 95.25 0))
+    (property "Value" "GND" (id 1) (at 140.97 104.14 0))
+    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" (id 2) (at 140.97 101.6 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (id 3) (at 140.97 101.6 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 402445d7-64ca-4f9e-92a7-c35433519b0a))
+  )
+
   (symbol (lib_id "power:GND") (at 250.19 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 59e62339-fee2-47ec-a01a-70a5a8b2babb)
@@ -1890,6 +1904,22 @@
     (pin "2" (uuid be541613-ffb8-4f18-8687-9133486bb256))
   )
 
+  (symbol (lib_id "power:GND") (at 146.05 101.6 0) (unit 1)
+    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (uuid ebb79beb-057b-491f-b139-bfb12998428a)
+    (property "Reference" "#PWR09" (id 0) (at 146.05 107.95 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (id 1) (at 146.05 106.68 0))
+    (property "Footprint" "" (id 2) (at 146.05 101.6 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (id 3) (at 146.05 101.6 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid b7a33c57-fff1-4ace-9328-610598d7ba0c))
+  )
+
   (sheet_instances
     (path "/" (page "1"))
   )
@@ -1918,6 +1948,9 @@
     )
     (path "/59e62339-fee2-47ec-a01a-70a5a8b2babb"
       (reference "#PWR08") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/ebb79beb-057b-491f-b139-bfb12998428a"
+      (reference "#PWR09") (unit 1) (value "GND") (footprint "")
     )
     (path "/b68af152-3497-40fe-8dd2-bb24ba4a19ed"
       (reference "C4") (unit 1) (value "4.7 uF - 100V") (footprint "Capacitor_SMD:C_1210_3225Metric")
@@ -1963,6 +1996,9 @@
     )
     (path "/dfac78a8-38b3-490a-af40-e3cc2ae7e57e"
       (reference "J4") (unit 1) (value "436500201") (footprint "bib:436500201")
+    )
+    (path "/52b4048a-2ed2-456e-bb7d-9dac3c1fa093"
+      (reference "J5") (unit 1) (value "GND") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical")
     )
     (path "/cd38f80d-e974-4c5b-bf19-e95abde91961"
       (reference "L1") (unit 1) (value "120 uH - 1.9A") (footprint "Library:INDPM120120X805N")
