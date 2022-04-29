@@ -402,8 +402,8 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
-      "vrml": ""
+      "step": "../../../../../Desktop/ADC_RS_MCU.step",
+      "vrml": "ADC_RS_MCU.wrl"
     },
     "page_layout_descr_file": ""
   },

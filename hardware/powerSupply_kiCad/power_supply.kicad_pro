@@ -367,8 +367,8 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
-      "vrml": ""
+      "step": "../../../../../Desktop/power_supply.step",
+      "vrml": "../../../../../Desktop/power_supply.wrl"
     },
     "page_layout_descr_file": ""
   },

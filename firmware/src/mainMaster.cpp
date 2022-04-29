@@ -2,7 +2,7 @@
 #include <ad7768.h>
 #include <command.h>
 
-#define RS485Serial Serial2
+#define RS485Serial Serial3
 
 //TODO: Print instructions
 

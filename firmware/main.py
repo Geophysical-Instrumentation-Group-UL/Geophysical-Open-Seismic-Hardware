@@ -8,7 +8,7 @@ import matplotlib.pyplot as pl
 
 
 
-serial_port = 'COM9'
+serial_port = 'COM12'
 baud_rate = 115200  # In arduino, Serial.begin(baud_rate)
 
 ser = serial.Serial(serial_port, baud_rate)
