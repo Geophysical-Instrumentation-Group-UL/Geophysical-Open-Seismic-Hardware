@@ -106,8 +106,8 @@ Vector<int> data2(storage_arrayD2);
 
 void setup() {
 
-  RS485Serial.begin(115200);
-  Serial.begin(115200);   
+  RS485Serial.begin(19200);
+  Serial.begin(19200);   
   pinMode(Mode,OUTPUT);
   digitalWrite(Mode,LOW);
   SPI.begin();

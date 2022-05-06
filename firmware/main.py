@@ -9,7 +9,7 @@ import matplotlib.pyplot as pl
 
 
 serial_port = 'COM12'
-baud_rate = 115200  # In arduino, Serial.begin(baud_rate)
+baud_rate = 19200  # In arduino, Serial.begin(baud_rate)
 
 ser = serial.Serial(serial_port, baud_rate)
 
@@ -77,9 +77,9 @@ while ON:
             else:
                 seis3_mod[i] = val 
 
-        plt.plot(temps1, seis1_mod, label="W1 Accel 1")
-        plt.plot(temps1, seis2_mod, label="W1 Accel 2")
-        plt.plot(temps1, seis3_mod, label="W1 Accel 3")  
+        plt.plot(temps1[2:], seis1_mod[2:], label="W1 Accel 1")
+        plt.plot(temps1[2:], seis2_mod[2:], label="W1 Accel 2")
+        plt.plot(temps1[2:], seis3_mod[2:], label="W1 Accel 3")  
         plt.xlabel("Time [s]")
         plt.ylabel("Amplitude [V]")
         plt.legend()
