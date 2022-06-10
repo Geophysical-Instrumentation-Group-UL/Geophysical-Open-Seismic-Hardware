@@ -18,7 +18,7 @@ bool mustSendStatus = false;
 bool mustSendData = false;
 bool readyToTrig = false;
 int workerStatus = IDLE;
-int workerID = 1;
+int workerID = 3;
 int chipSelectPin = 10;
 ad7768_chip _default = {
 		/* Configuration */
@@ -106,8 +106,8 @@ Vector<int> data2(storage_arrayD2);
 
 void setup() {
 
-  RS485Serial.begin(19200);
-  Serial.begin(19200);   
+  RS485Serial.begin(115200);
+  Serial.begin(115200);   
   pinMode(Mode,OUTPUT);
   digitalWrite(Mode,LOW);
   SPI.begin();

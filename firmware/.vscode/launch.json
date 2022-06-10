@@ -12,21 +12,21 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/build/teensy40slave1/firmware.elf",
-            "projectEnvName": "teensy40slave1",
+            "executable": "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/build/teensy40slave3/firmware.elf",
+            "projectEnvName": "teensy40slave3",
             "toolchainBinDir": "C:/Users/armer12/.platformio/packages/toolchain-gccarmnoneeabi/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
-                "task": "Pre-Debug (teensy40slave1)"
+                "task": "Pre-Debug (teensy40slave3)"
             }
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/build/teensy40slave1/firmware.elf",
-            "projectEnvName": "teensy40slave1",
+            "executable": "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/build/teensy40slave3/firmware.elf",
+            "projectEnvName": "teensy40slave3",
             "toolchainBinDir": "C:/Users/armer12/.platformio/packages/toolchain-gccarmnoneeabi/bin",
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -34,8 +34,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/build/teensy40slave1/firmware.elf",
-            "projectEnvName": "teensy40slave1",
+            "executable": "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/build/teensy40slave3/firmware.elf",
+            "projectEnvName": "teensy40slave3",
             "toolchainBinDir": "C:/Users/armer12/.platformio/packages/toolchain-gccarmnoneeabi/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "loadMode": "manual"

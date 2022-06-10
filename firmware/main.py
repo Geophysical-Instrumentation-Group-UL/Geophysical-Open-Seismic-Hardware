@@ -8,8 +8,8 @@ import matplotlib.pyplot as pl
 
 
 
-serial_port = 'COM12'
-baud_rate = 19200  # In arduino, Serial.begin(baud_rate)
+serial_port = 'COM7'
+baud_rate = 115200  # In arduino, Serial.begin(baud_rate)
 
 ser = serial.Serial(serial_port, baud_rate)
 
@@ -145,9 +145,63 @@ while ON:
         plt.show()
 
 
+    elif command == 'harvest3':
+        ser.write("{} 2".format(command).encode())
+        line = ser.read_until('packets : '.encode())
+        numberOfSample = int(ser.read_until().decode("utf-8"))
+        numberOfSample=1600
+        temps2 = np.zeros((numberOfSample-5))
+        seis12 = np.zeros((numberOfSample-5))
+        seis22 = np.zeros((numberOfSample-5))
+        seis32 = np.zeros((numberOfSample-5))
+        for i in range(numberOfSample-5):
+            line = ser.readline()
+            line = line.decode("utf-8")
+            temp = line.split(',')
+            if line.count(',') == 3:
+                # print(temp)
+                temps2[i] = int(temp[0])
+                seis12[i] = int(temp[1])
+                seis22[i] = int(temp[2])
+                seis32[i] = int(temp[3])
 
+        temps2 = (temps2 - temps2[0]) / 1E6
+        range_accel = (4.1 - 0.0021) * 2
+        seis12 = (seis12 * range_accel) / (2 ** 24)
+        seis12_mod = np.zeros((len(seis12)))
 
+        seis22 = (seis22 * range_accel) / (2 ** 24)
+        seis22_mod = np.zeros((len(seis22)))
 
+        seis32 = (seis32 * range_accel) / (2 ** 24)
+        seis32_mod = np.zeros((len(seis32)))
+
+        for i, val in enumerate(seis12):
+            if val > 4.096:
+                seis12_mod[i] = val - range_accel
+            else:
+                seis12_mod[i] = val
+
+        for i, val in enumerate(seis22):
+            if val > 4.096:
+                seis22_mod[i] = val - range_accel
+            else:
+                seis22_mod[i] = val
+
+        for i, val in enumerate(seis32):
+            if val > 4.096:
+                seis32_mod[i] = val - range_accel
+            else:
+                seis32_mod[i] = val   
+
+        plt.plot(temps2, seis12_mod, label="W2 Accel 1")
+        plt.plot(temps2, seis22_mod, label="W2 Accel 2")
+        plt.plot(temps2, seis32_mod, label="W2 Accel 3")
+
+        plt.xlabel("Time [s]")
+        plt.ylabel("Amplitude [V]")
+        plt.legend()
+        plt.show()
     
 
     elif command == 'save':

@@ -20,8 +20,8 @@ volatile bool init_trig_detected = false;
 volatile bool triggered_state = false;
 
 void setup() {
-  RS485Serial.begin(19200);
-  Serial.begin(19200);
+  RS485Serial.begin(115200);
+  Serial.begin(115200);
   pinMode(Mode,OUTPUT);
   digitalWrite(Mode,LOW);
 }

@@ -13,7 +13,7 @@
                 "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/lib/command",
                 "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/lib/ad7768",
                 "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/SPI",
-                "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/libdeps/teensy40slave1/Vector/src",
+                "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/libdeps/teensy40slave3/Vector/src",
                 "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/cores/teensy4",
                 "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/ADC",
                 "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/AccelStepper/src",
@@ -113,7 +113,6 @@
                 "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/ks0108",
                 "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/ssd1351",
                 "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/x10",
-                "C:/Users/armer12/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
@@ -124,7 +123,7 @@
                     "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/lib/command",
                     "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/lib/ad7768",
                     "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/SPI",
-                    "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/libdeps/teensy40slave1/Vector/src",
+                    "c:/Users/armer12/Documents/Github/Open-seismic-electrical-design/firmware/.pio/libdeps/teensy40slave3/Vector/src",
                     "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/cores/teensy4",
                     "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/ADC",
                     "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/AccelStepper/src",
@@ -224,12 +223,11 @@
                     "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/ks0108",
                     "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/ssd1351",
                     "C:/Users/armer12/.platformio/packages/framework-arduinoteensy/libraries/x10",
-                    "C:/Users/armer12/.platformio/packages/tool-unity",
                     ""
                 ]
             },
             "defines": [
-                "PLATFORMIO=50205",
+                "PLATFORMIO=60002",
                 "__IMXRT1062__",
                 "ARDUINO_TEENSY40",
                 "USB_SERIAL",
