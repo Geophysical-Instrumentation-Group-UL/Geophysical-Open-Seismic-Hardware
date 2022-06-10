@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: Open-seismic-electrical-design
+version: 2.0
+message: >-
+  If you use this open-hardware project, please cite
+  it as below.
+type: hardware
+authors:
+  - given-names: Arnaud
+    family-names: Mercier
+    email: arnaud.mercier.1@ulaval.ca
+    affiliation: Université Laval
+    orcid: 'https://orcid.org/0000-0002-9077-8371'
+  - given-names: J. Christian
+    family-names: Dupuis
+    email: christian.dupuis@ggl.ulaval.ca
+    affiliation: Université Laval
+    orcid: 'https://orcid.org/0000-0001-8280-7550'
+  - given-names: Bernard
+    family-names: Giroux
+    orcid: 'https://orcid.org/0000-0002-2042-2759'
+    email: bernard.giroux@inrs.ca
+    affiliation: Institut national de la recherche scientifique
