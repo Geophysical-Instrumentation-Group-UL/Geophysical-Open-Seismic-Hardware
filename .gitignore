@@ -84,3 +84,5 @@ hardware/powerSupply_kiCad/#auto_saved_files#
 hardware/workerBoard_altium/ADC_RS_MCU.PcbLib
 
 firmware/.vscode/launch.json
+
+*.pyc
