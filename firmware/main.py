@@ -1,3 +1,4 @@
+from socket import timeout
 import numpy as np
 import serial
 import fnmatch
@@ -9,7 +10,7 @@ from tools import *
 serial_port = 'COM7'
 baud_rate = 115200  # In arduino, Serial.begin(baud_rate)
 
-ser = serial.Serial(serial_port, baud_rate)
+ser = serial.Serial(serial_port, baud_rate,timeout=2)
 
 ON = True
 
@@ -18,13 +19,24 @@ while ON:
     if command == 'exit':
         ON = False
         break
+
+    elif command == 'config':
+        print("workerID ? ")
+        workerId = input()
+        print("samplingRate ? ")
+        samplingRate = input()
+        print("duration ? ")
+        duration = input()
+        configAcquisition(workerId,ser, samplingRate, duration)
+
+
+
     elif command == 'arm':
         ser.write("{}".format(command).encode())
-        line = ser.readline()
+        line = ser.read_until("ed".encode())
         line = line.decode("utf-8")
         print(line)
-        line = ser.read_until()
-        print(line.decode("utf-8"))
+  
 
     elif command.startswith('harvest'):
         workerId = command[-1]

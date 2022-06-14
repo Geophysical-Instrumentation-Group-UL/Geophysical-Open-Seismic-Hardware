@@ -13,6 +13,7 @@ bool waitingForSlaveResponse = false;
 bool waitForData = false;
 int number_of_data_packet;
 String duration = "50";
+String sampling_rate = "32";
 
 void trig_ISR();
 
@@ -44,6 +45,7 @@ if (Serial.available() )
     delay(5);
     digitalWrite(Mode,LOW);
     Serial.println("arming...");
+    Serial.flush();
     attachInterrupt(digitalPinToInterrupt(trig),trig_ISR,RISING);
     // waitingForSlaveResponse = true;
 
@@ -54,6 +56,25 @@ if (Serial.available() )
     getWorkerStatus(&RS485Serial,workerid);
     delay(5);
     digitalWrite(Mode,LOW);
+  }
+  if (instruction.startsWith("config acq")) {
+    Serial.print("Configuration in process to : ");Serial.println(workerid);
+    sampling_rate = Serial.readStringUntil('\n');
+    duration = Serial.readStringUntil('\n');
+    Serial.println(sampling_rate);
+    Serial.println(duration);
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    sendConfigToADC(&RS485Serial,DEFAULT, sampling_rate + "T" + duration,workerid);
+    delay(5);
+    digitalWrite(Mode,LOW);
+    delay(5);
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    getWorkerStatus(&RS485Serial,workerid);
+    delay(5);
+    digitalWrite(Mode,LOW);
+    waitingForSlaveResponse = true;
   }
   if (instruction.startsWith("config default")) {
     Serial.print("Configuration in process to : ");Serial.println(workerid);
@@ -137,9 +158,7 @@ if (waitForData == true)
     Serial.print("Slave # "),Serial.println(workeridData);
 
     Serial.println("-----------------");
-    delay(2);
-    
-    delay(2);
+
     number_of_data_packet = RS485Serial.readStringUntil(':').toInt();
     Serial.print("Number of data packets : "),Serial.println(number_of_data_packet);
     delay(2);
@@ -159,8 +178,9 @@ if (triggered_state == true)
   digitalWrite(Mode,HIGH);
   sendTrigger(&RS485Serial);
   digitalWrite(Mode,LOW);
-  Serial.println("trigged");
   detachInterrupt(digitalPinToInterrupt(trig));
+  Serial.println("trigged");
+  
   // send trigger command to slave
   triggered_state = false;
   // waitingForSlaveResponse = true;
