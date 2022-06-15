@@ -14,11 +14,12 @@ command receivedCommand;
 int ODR;
 int numberOfByte = 32;
 int duration;
+int samplingRate;
 bool mustSendStatus = false;
 bool mustSendData = false;
 bool readyToTrig = false;
 int workerStatus = IDLE;
-int workerID = 3;
+int workerID = 2;
 int chipSelectPin = 10;
 ad7768_chip _default = {
 		/* Configuration */
@@ -163,8 +164,35 @@ if(RS485Serial.available () >0 and readyToTrig == false)
      if (receivedCommand.adcConfig == DEFAULT)
      {configType = _default;}
      else if (receivedCommand.adcConfig == SEISMIC)
-     {configType = _seismic;}     
-     duration = receivedCommand.data.toInt();
+     {configType = _seismic;} 
+     int index = receivedCommand.data.indexOf("T");   
+     samplingRate = receivedCommand.data.substring(0,index).toInt();
+     duration = receivedCommand.data.substring(index+1).toInt();
+    if (samplingRate == 32)
+     {
+      configType.dec_rate = AD7768_DEC_X32;
+      }
+    else if (samplingRate == 16)
+      {
+      configType.dec_rate = AD7768_DEC_X64;
+      }
+    else if (samplingRate == 8)
+      {
+      configType.dec_rate = AD7768_DEC_X128;
+      }
+    else if (samplingRate == 4)
+      {
+      configType.dec_rate = AD7768_DEC_X256;
+      }
+    else if (samplingRate == 2)
+      {
+      configType.dec_rate = AD7768_DEC_X512;
+      }
+    else if (samplingRate == 1)
+      {
+      configType.dec_rate = AD7768_DEC_X1024;
+      }
+
      ad7768_setup(configType);
      workerStatus = CONFIGURED;
 
@@ -175,16 +203,32 @@ if(RS485Serial.available () >0 and readyToTrig == false)
     delay(5);
     digitalWrite(Mode,LOW);
 
+
+    number_of_data_packet =  int(((duration/1000.0) * (samplingRate*1000.0)));
     delay(5);
     digitalWrite(Mode,HIGH);
     delay(5);
-    ODR = print_config(configType, &RS485Serial);
+
+
+
+    // RS485Serial.println(number_of_data_packet);
+
+    // RS485Serial.println(receivedCommand.data);
+    // RS485Serial.println(receivedCommand.data.substring(index+1).toInt());
+    // ODR = print_config(configType, &RS485Serial);
+    // RS485Serial.flush();
     delay(5);
+    RS485Serial.println('e');
+        delay(5);
+
+    RS485Serial.println('s');
     digitalWrite(Mode,LOW);
 
-    number_of_data_packet =  round(duration * ODR);
-    Serial.println(number_of_data_packet);
+ 
+    // Serial.println(number_of_data_packet);
     workerStatus = IDLE;
+    
+
    }
   else if (receivedCommand.def == HARVEST)
   {
@@ -199,7 +243,7 @@ if(RS485Serial.available () >0 and readyToTrig == false)
   {
     digitalWrite(Mode,HIGH);
      delay(5);
-    RS485Serial.print(workerID);RS485Serial.println("w");
+    RS485Serial.print(workerID);RS485Serial.println('w');
     delay(5);
     RS485Serial.print(number_of_data_packet);RS485Serial.println(':');
     delay(5);
@@ -212,7 +256,7 @@ if(RS485Serial.available () >0 and readyToTrig == false)
         RS485Serial.print(':');
         delay(1);
       }
-      
+    RS485Serial.flush();
     digitalWrite(Mode,LOW);
     mustSendData = false;
     workerStatus = IDLE;
