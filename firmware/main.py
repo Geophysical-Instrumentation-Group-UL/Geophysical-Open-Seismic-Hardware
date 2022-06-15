@@ -1,10 +1,10 @@
 from socket import timeout
 import numpy as np
 import serial
-import fnmatch
-import os
-import re
+import matplotlib.pyplot as plt
 from tools import *
+
+
 
 
 serial_port = 'COM7'
@@ -13,12 +13,25 @@ baud_rate = 115200  # In arduino, Serial.begin(baud_rate)
 ser = serial.Serial(serial_port, baud_rate,timeout=2)
 
 ON = True
+print("please configure your acquisition")
+print("samplingRate [kHz] ? ")
+samplingRate = input()
+print("duration [ms] ? ")
+duration = input()
+configAcquisition('1',ser, samplingRate, duration)
+configAcquisition('2',ser, samplingRate, duration)
+configAcquisition('3',ser, samplingRate, duration)
+
 
 while ON:
     command = input()
     if command == 'exit':
         ON = False
         break
+    elif command == 'new stack':
+        print("Name of the stack ? ")
+        stackName = input()
+        shot_count = 0
 
     elif command == 'config':
         print("samplingRate ? ")
@@ -36,39 +49,33 @@ while ON:
         line = ser.read_until("ed".encode())
         line = line.decode("utf-8")
         print(line)
+        shot_count += 1
   
 
     elif command.startswith('harvest'):
         workerId = command[-1]
-        harvest(workerId, ser)
+        harvest(workerId, ser, show=True)
 
     elif command == 'collect':
-        harvest('1', ser)
-        harvest('2', ser)
-        harvest('3', ser)
+        out1 = harvest('1', ser)
+        out2 = harvest('2', ser)
+        out3 = harvest('3', ser)
+        list_out = [out1, out2, out3]
+        fig, ax = plt.subplots(3, 1)
+        for i in range(3):
+            ax[i].plot(list_out[i][0], list_out[i][1], label="X")
+            ax[i].plot(list_out[i][0], list_out[i][2], label="Y")
+            ax[i].plot(list_out[i][0], list_out[i][3], label="Z")
 
-    elif command == 'save':
-        name = 'hop'
-        ROOT = './'
+        ax[1].legend()
+        ax[2].set_xlabel('time [s]')
+        ax[1].set_ylabel("Amplitude [V]")
+        plt.show()
+        save2file(list_out, stackName, shot_count)
 
-        # I'm supposing that each item in ROOT folder that matches
-        # 'somefile*.txt' is a file which we are looking for
-        files = fnmatch.filter((f for f in os.listdir(ROOT)), '{}*.txt'.format(name))
 
-        if not files:  # is empty
-            num = ''
-        elif len(files) == 1:
-            num = '(1)'
-        else:
-            # files is supposed to contain 'somefile.txt'
-            files.remove('{}.txt'.format(name))
-            num = '(%i)' % (int(re.search(r'\(([0-9]+)\)', max(files)).group(1)) + 1)
-        output_file = open('{}{}.txt'.format(name, num), 'w')
-        for i, sample in enumerate(temps1):
-            output_file.write("{},{},{},{} \n".format(sample, seis1_mod[i],temps2[i],seis2_mod[i]))
 
-        output_file.close()
-        print('file close')
+        
 
 
 
