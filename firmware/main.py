@@ -21,13 +21,13 @@ while ON:
         break
 
     elif command == 'config':
-        print("workerID ? ")
-        workerId = input()
         print("samplingRate ? ")
         samplingRate = input()
         print("duration ? ")
         duration = input()
-        configAcquisition(workerId,ser, samplingRate, duration)
+        configAcquisition('1',ser, samplingRate, duration)
+        configAcquisition('2',ser, samplingRate, duration)
+        configAcquisition('3',ser, samplingRate, duration)
 
 
 

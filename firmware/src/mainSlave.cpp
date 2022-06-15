@@ -19,7 +19,7 @@ bool mustSendStatus = false;
 bool mustSendData = false;
 bool readyToTrig = false;
 int workerStatus = IDLE;
-int workerID = 1;
+int workerID = 2;
 int chipSelectPin = 10;
 ad7768_chip _default = {
 		/* Configuration */
