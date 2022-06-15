@@ -61,8 +61,8 @@ if (Serial.available() )
     Serial.print("Configuration in process to : ");Serial.println(workerid);
     sampling_rate = Serial.readStringUntil('\n');
     duration = Serial.readStringUntil('\n');
-    Serial.println(sampling_rate);
-    Serial.println(duration);
+    // Serial.println(sampling_rate);
+    // Serial.println(duration);
     digitalWrite(Mode,HIGH);
     delay(5);
     sendConfigToADC(&RS485Serial,DEFAULT, sampling_rate + "T" + duration,workerid);
@@ -138,13 +138,14 @@ if (waitingForSlaveResponse == true)
       else if (receivedStatus.status == CONFIGURED)
       {
         String conf;
-        conf = RS485Serial.readStringUntil('d');
+        conf = RS485Serial.readStringUntil('s');
         delay(5);
-        Serial.println("ADC parameters : ");
-        Serial.println("-----------------");
-        Serial.print(conf);
-        Serial.println("-----------------");
+        // Serial.println("ADC parameters : ");
+        // Serial.println("-----------------");
+        // Serial.print(conf);
+        // Serial.println("-----------------");
         Serial.print("Status : ");Serial.println("CONFIGURED");
+        Serial.flush();
       }
 
     waitingForSlaveResponse = false;
@@ -154,6 +155,7 @@ if (waitForData == true)
     String data;
     int workeridData;
     
+    
     workeridData = RS485Serial.readStringUntil('w').toInt();
     Serial.print("Slave # "),Serial.println(workeridData);
 
@@ -161,6 +163,7 @@ if (waitForData == true)
 
     number_of_data_packet = RS485Serial.readStringUntil(':').toInt();
     Serial.print("Number of data packets : "),Serial.println(number_of_data_packet);
+    // number_of_data_packet = 1600;
     delay(2);
     for (int i = 0; i < number_of_data_packet; i++)
     {

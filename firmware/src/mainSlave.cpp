@@ -203,17 +203,31 @@ if(RS485Serial.available () >0 and readyToTrig == false)
     delay(5);
     digitalWrite(Mode,LOW);
 
+
+    number_of_data_packet =  int(((duration/1000.0) * (samplingRate*1000.0)));
     delay(5);
     digitalWrite(Mode,HIGH);
     delay(5);
-    ODR = print_config(configType, &RS485Serial);
+
+
+
+    // RS485Serial.println(number_of_data_packet);
+
+    // RS485Serial.println(receivedCommand.data);
+    // RS485Serial.println(receivedCommand.data.substring(index+1).toInt());
+    // ODR = print_config(configType, &RS485Serial);
+    // RS485Serial.flush();
     delay(5);
+    RS485Serial.println('e');
+        delay(5);
+
+    RS485Serial.println('s');
     digitalWrite(Mode,LOW);
 
-    number_of_data_packet =  round(duration * ODR);
+ 
     // Serial.println(number_of_data_packet);
     workerStatus = IDLE;
-    RS485Serial.flush();
+    
 
    }
   else if (receivedCommand.def == HARVEST)
@@ -229,7 +243,7 @@ if(RS485Serial.available () >0 and readyToTrig == false)
   {
     digitalWrite(Mode,HIGH);
      delay(5);
-    RS485Serial.print(workerID);RS485Serial.println("w");
+    RS485Serial.print(workerID);RS485Serial.println('w');
     delay(5);
     RS485Serial.print(number_of_data_packet);RS485Serial.println(':');
     delay(5);
