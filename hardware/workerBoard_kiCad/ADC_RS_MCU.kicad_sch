@@ -173,9 +173,6 @@
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/4aa97874-2fd2-414c-b381-9420384c2fd8"
       (reference "#PWR0136") (unit 1) (value "GND") (footprint "")
     )
-    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/dd334895-c8ff-4719-bac4-c0b289bb5899"
-      (reference "#PWR0137") (unit 1) (value "GND") (footprint "")
-    )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/92761c09-a591-4c8e-af4d-e0e2262cb01d"
       (reference "#PWR0138") (unit 1) (value "5V") (footprint "")
     )
@@ -187,6 +184,9 @@
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/98861672-254d-432b-8e5a-10d885a5ffdc"
       (reference "#PWR0141") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/19d10c03-6034-4510-84a6-4149b936f794"
+      (reference "#PWR0142") (unit 1) (value "5V") (footprint "")
     )
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/993fb5c8-773b-49bf-a903-7401e8aa299c"
       (reference "#PWR0143") (unit 1) (value "GND") (footprint "")
@@ -314,14 +314,11 @@
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/cecaec75-1893-43f6-ba5d-41e63abbec51"
       (reference "#PWR0191") (unit 1) (value "5V") (footprint "")
     )
-    (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/19d10c03-6034-4510-84a6-4149b936f794"
-      (reference "#PWR?") (unit 1) (value "5V") (footprint "")
-    )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/e2fac877-439c-4da0-af2e-5fdc70f85d42"
-      (reference "5V1") (unit 1) (value "Plug") (footprint "lib:PIN1")
+      (reference "5V1") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/bf4036b4-c410-489a-b46c-abee2c31db09"
-      (reference "5Vref1") (unit 1) (value "Plug") (footprint "lib:PIN1")
+      (reference "5Vref1") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
     )
     (path "/88a081c8-84cc-4057-8a06-f0b6a8705176/17351e56-0567-400c-b857-33ebfb1e9b1b"
       (reference "11") (unit 1) (value "0.47uF-250V") (footprint "lib:CAPC3326X280N")
@@ -450,19 +447,19 @@
       (reference "J1") (unit 1) (value "1053141216") (footprint "lib:CON_1053141216")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/aa1c6f47-cbd4-4cbd-8265-e5ac08b7ffc8"
-      (reference "P2") (unit 1) (value "Plug") (footprint "lib:PIN1")
+      (reference "P2") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/80f8c1b4-10dd-40fe-b7f7-67988bc3ad81"
-      (reference "P3") (unit 1) (value "Plug") (footprint "lib:PIN1")
+      (reference "P3") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/1427bb3f-0689-4b41-a816-cd79a5202fd0"
-      (reference "P4") (unit 1) (value "Plug") (footprint "lib:PIN1")
+      (reference "P4") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/34c0bee6-7425-4435-8857-d1fe8dfb6d89"
-      (reference "P6") (unit 1) (value "Plug") (footprint "PIN1")
+      (reference "P6") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/3249bd81-9fd4-4194-9b4f-2e333b2195b8"
-      (reference "P7") (unit 1) (value "Plug") (footprint "PIN1")
+      (reference "P7") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/199124ca-dd64-45cf-a063-97cc545cbea7"
       (reference "R1") (unit 1) (value "100") (footprint "lib:RESC1508X55N")

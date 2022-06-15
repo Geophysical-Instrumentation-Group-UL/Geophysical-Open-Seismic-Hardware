@@ -2133,7 +2133,7 @@
   (symbol (lib_id "driver0-3-altium-import:5V") (at 39.37 158.75 180) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 19d10c03-6034-4510-84a6-4149b936f794)
-    (property "Reference" "#PWR?" (id 0) (at 39.37 158.75 0)
+    (property "Reference" "#PWR0142" (id 0) (at 39.37 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "5V" (id 1) (at 39.37 154.94 90)
