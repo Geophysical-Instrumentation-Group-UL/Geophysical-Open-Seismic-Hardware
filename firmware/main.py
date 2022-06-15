@@ -21,6 +21,7 @@ duration = input()
 configAcquisition('1',ser, samplingRate, duration)
 configAcquisition('2',ser, samplingRate, duration)
 configAcquisition('3',ser, samplingRate, duration)
+out_len = 0
 
 
 while ON:
@@ -70,18 +71,9 @@ while ON:
         ax[1].legend()
         ax[2].set_xlabel('time [s]')
         ax[1].set_ylabel("Amplitude [V]")
-        plt.show()
-        save2file(list_out, stackName, shot_count)
-
-
-
         
+        save2file(list_out, stackName, shot_count)
+        out_len = out1.shape[-1]
 
-
-
-
-
-    # print(command)
-
-    # rep = ser.read()
-    # print(rep)
+    elif command == 'show stack':
+        showStack(stackName,numberOfSample=out_len)

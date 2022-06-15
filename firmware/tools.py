@@ -3,9 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import fnmatch
 import os
-import re
-from pycrewes.seismic import fftrl, ifftrl
 import math as m
+import pandas as pd
 
 
 
@@ -86,7 +85,7 @@ def configAcquisition(workerId, serialPort, samplingRate, duration):
 
 def save2file(data,stackName,shotNumber):
     
-    ROOT = './'
+    # ROOT = './'
 
     # I'm supposing that each item in ROOT folder that matches
     # 'somefile*.txt' is a file which we are looking for
@@ -102,56 +101,50 @@ def save2file(data,stackName,shotNumber):
     #     num = '(%i)' % (int(re.search(r'\(([0-9]+)\)', max(files)).group(1)) + 1)
     
     for i in range(len(data)):
-        output_file = open('{}_{}_{}.txt'.format(stackName, shotNumber,i+1), 'w')
+        output_file = open('data\{}_{}_{}.txt'.format(stackName, shotNumber,i+1), 'w')
         for j, sample in enumerate(data[i].T):
             output_file.write("{},{},{},{} \n".format(sample[0], sample[1],sample[2],sample[3]))
 
         output_file.close()
-    print('files closed')
+    print('files saved')
 
+def showStack(stackName,numberOfSample):
+    sensor1 = pd.DataFrame(np.zeros((numberOfSample,4)), columns=["time", "X", "Y", "Z"])
+    sensor2 = pd.DataFrame(np.zeros((numberOfSample,4)), columns=["time", "X", "Y", "Z"])
+    sensor3 = pd.DataFrame(np.zeros((numberOfSample,4)), columns=["time", "X", "Y", "Z"])
+    counter = 0
+    files = fnmatch.filter((f for f in os.listdir('./data')), '{}*.txt'.format(stackName))
 
-
-def acorf(x, n=None):
-    ''' calcule l'autocorrelation du vecteur x pour n éléments
-    Nous utilisons la fonction convolve pour effectuer le calcul
-    '''
-    if n == None:
-        n = x.size
-
-    # if x.size <= n:
-    #     print(u'ERREUR : Le nombre d\'éléments %i dans le vecteur est inférieur au nombre de lag à calculer %i' % (
-    #     x.size, n))
-    acf = np.convolve(np.flipud(x[0:n]), x[0:n], mode='full')
-
-    return acf[np.int((acf.size - 1) / 2):np.int(acf.size)] / acf[int((acf.size - 1) / 2)]
-
-
-def geophone2accel(geotrace, t, resonance, damping):
-    adc_resolution = 2**10
-    dt = (t[-1] - t[-2]) * 10**-3
-    fnyq = 0.5 / dt
-    fmin = fnyq / (adc_resolution/2)
-    df = fnyq / (adc_resolution/2)
-    nsamples = np.arange(fmin,fnyq,df) # all possible frequency of the recorded signal
-    transfer = np.zeros(nsamples.size, dtype=complex)
-
-    for k in range(len(nsamples)):
-        if k == 0:
-            transfer[k] = 1
-        else:
-
-            f = k * df
-            w = 2 * m.pi * f
-            w0 = 2 * m.pi * resonance
-            com = complex(0, 1)
-            a = -(com * w)
-            b = (w0**2 + (2 * com * w0 * w * damping) - w**2)
-            transfer[k] = a * b
-
-    tranSW, nsw = fftrl(geotrace, t, 0, adc_resolution)
-
-    transDP = np.divide(tranSW[:-2], transfer)
-    outputTrace, tout = ifftrl(transDP, nsw)
-
-    return outputTrace, tout * 10**3
+    for file in files:
+        if file[-5] == '1':
+            temp = pd.read_csv('data/' + file,delimiter=',', header=None)
+            temp.columns = ["time", "X", "Y", "Z"]
+            sensor1 = sensor1 + temp
+            counter += 1
+        elif file[-5] == '2':
+            temp = pd.read_csv('data/' +file,delimiter=',', header=None)
+            temp.columns = ["time", "X", "Y", "Z"]
+            sensor2 = sensor2 + temp
+            counter += 1
+        elif file[-5] == '3':
+            temp = pd.read_csv('data/' +file, delimiter=',',header=None)
+            temp.columns = ["time", "X", "Y", "Z"]
+            sensor3 = sensor3 + temp
+            counter += 1
+    counter = counter / 3
+    sensor1 = sensor1 / counter
+    sensor2 = sensor2 / counter
+    sensor3 = sensor3 / counter
+    list_out = [sensor1, sensor2, sensor3]
+    fig, ax = plt.subplots(3, 1)
+    for i in range(3):
+        ax[i].plot(list_out[i]['time'], list_out[i]['X'], label="X")
+        ax[i].plot(list_out[i]['time'], list_out[i]['Y'], label="Y")
+        ax[i].plot(list_out[i]['time'], list_out[i]['Z'], label="Z")
+        ax[i].set_title("Worker {}".format(i+1))
+    ax[1].legend()
+    ax[2].set_xlabel('time [s]')
+    ax[1].set_ylabel("Amplitude [V]")
+    plt.tight_layout()
+    plt.show()
 
