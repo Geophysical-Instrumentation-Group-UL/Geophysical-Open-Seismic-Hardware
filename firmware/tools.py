@@ -76,7 +76,7 @@ def configAcquisition(workerId, serialPort, samplingRate, duration):
     serialPort.write("config acq{}\n".format(workerId).encode())
     serialPort.write("{}\n".format(samplingRate).encode())
     serialPort.write("{}\n".format(duration).encode())
-    for i in range(3):
+    for i in range(2):
         line = serialPort.readline()
         line = line.decode("utf-8")
         print(line)
@@ -145,6 +145,7 @@ def showStack(stackName,numberOfSample):
     ax[1].legend()
     ax[2].set_xlabel('time [s]')
     ax[1].set_ylabel("Amplitude [V]")
+    fig.suptitle("Stack {}".format(stackName))
     plt.tight_layout()
     plt.show()
 

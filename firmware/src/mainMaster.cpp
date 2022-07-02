@@ -7,7 +7,7 @@
 //TODO: Print instructions
 
 int Mode = 9; // high = send = D2 led off, low = listen = D2 led high
-int trig = 6;
+int trig = 22;
 String instruction;
 bool waitingForSlaveResponse = false;
 bool waitForData = false;
@@ -25,6 +25,7 @@ void setup() {
   Serial.begin(115200);
   pinMode(Mode,OUTPUT);
   digitalWrite(Mode,LOW);
+  pinMode(trig,INPUT_PULLDOWN);
 }
 
 void loop() {
@@ -129,7 +130,7 @@ if (waitingForSlaveResponse == true)
       else if (receivedStatus.status == ARMED)
       {
        Serial.print("Status : ");Serial.println("ARMED");
-       attachInterrupt(digitalPinToInterrupt(trig),trig_ISR,RISING);
+       attachInterrupt(digitalPinToInterrupt(trig), trig_ISR,RISING);
       }
       else if (receivedStatus.status == DATAREADY)
       {
@@ -178,12 +179,17 @@ if (waitForData == true)
 noInterrupts();
 if (triggered_state == true)
 {
+ 
   digitalWrite(Mode,HIGH);
   sendTrigger(&RS485Serial);
   digitalWrite(Mode,LOW);
   detachInterrupt(digitalPinToInterrupt(trig));
+  delay(5);
   Serial.println("trigged");
+  delay(5); 
   
+
+
   // send trigger command to slave
   triggered_state = false;
   // waitingForSlaveResponse = true;

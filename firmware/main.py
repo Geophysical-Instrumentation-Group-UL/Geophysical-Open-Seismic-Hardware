@@ -10,7 +10,7 @@ from tools import *
 serial_port = 'COM7'
 baud_rate = 115200  # In arduino, Serial.begin(baud_rate)
 
-ser = serial.Serial(serial_port, baud_rate,timeout=2)
+ser = serial.Serial(serial_port, baud_rate)
 
 ON = True
 print("please configure your acquisition")
@@ -47,10 +47,14 @@ while ON:
 
     elif command == 'arm':
         ser.write("{}".format(command).encode())
+        line = ser.read_until("...".encode())
+        print(line.decode("utf-8"))
+
         line = ser.read_until("ed".encode())
         line = line.decode("utf-8")
         print(line)
         shot_count += 1
+        print("shot count : {}".format(shot_count))
   
 
     elif command.startswith('harvest'):
@@ -71,6 +75,8 @@ while ON:
         ax[1].legend()
         ax[2].set_xlabel('time [s]')
         ax[1].set_ylabel("Amplitude [V]")
+        fig.suptitle("Shot {}".format(shot_count))
+   
         
         save2file(list_out, stackName, shot_count)
         out_len = out1.shape[-1]
