@@ -83,3 +83,9 @@ while ON:
 
     elif command == 'show stack':
         showStack(stackName,numberOfSample=out_len)
+
+    elif command == 'show saved stack':
+        print("Name of the stack ? ")
+        stackName = input()
+        showStack(stackName,numberOfSample=1993)
+
