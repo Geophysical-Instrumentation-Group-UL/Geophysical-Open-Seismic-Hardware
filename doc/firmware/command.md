@@ -21,4 +21,4 @@ This allows to have different _command_ object depending on the communication ne
 
 The buildAndSendCommand function send all the parameters in the command struct object with a letters before each parameter. This makes it easy to decode the information in the readCommand function.
 
-When the master wants to harvest the data from a slave the it send a command asking for data. The slaves writes the data directly into the serial port while the master is ready to listen.
+When the leader wants to harvest the data from a worker the it send a command asking for data. The workers writes the data directly into the serial port while the leader is ready to listen.
