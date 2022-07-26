@@ -9,7 +9,7 @@ This basic software is the first prototype of the control software. Only the ess
 - Ease of use and high-level function to operate the system [main.py and mainLeader].
 - High-speed acquisition of seismic signal from the ADC (32 kHz) [mainWorker].
 
-![Software](https://github.com/armercier/Open-seismic-electrical-design/blob/main/media/software.png)
+![Software](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/software.png)
 
 # Principal elements in main scripts:
 
