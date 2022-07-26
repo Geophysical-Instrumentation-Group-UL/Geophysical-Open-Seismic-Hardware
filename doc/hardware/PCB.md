@@ -6,7 +6,7 @@
 
 The components have been divided on 3 different printed circuit boards (PCB). The main board contains the ADC, the MCU and the communication module. This board has 4 layers in order to reduce its size as much as possible and to ensure a decoupling between the digital signals, the analog signals and the power 7 supply. Its dimensions of 40 by 160 mm respects the objective of a diameter less than 46 mm. 
 
-![]([C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\media\mainBoard.png](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/mainBoard.png))
+![](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/mainBoard.png)
 
 ### ADC drivers (pink)
 
@@ -28,7 +28,7 @@ A Teensy 4.0 is directly soldered into the board. The SPI pins are used to commu
 
 The power supply and its component are built into a separate 40 by 85 mm PCB. This way, switching noise cannot affect the precision components of the main board. The design is based on the [DC2895A](https://www.analog.com/en/design-center/evaluation-hardware-and-software/evaluation-boards-kits/dc2895a.html#eb-overview) demo board. On one side the A and B line enters and goes thru the inductor to filter out the high frequency.  Since the cable is expected to have a high capacitance (140 microF), turning on the power supply can create a  current surge. The added 100 Ohms resistor (R5) allows to reduce the current spike when turning on the power supply. The mode header is used to set the operating mode for the output of the power supply. Burst mode is the default since it draws less current.
 
-![]([C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\media\power_supply.png](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/power_supply.png))
+![](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/power_supply.png)
 
 
 
@@ -40,4 +40,4 @@ The sensors are assembled on miniature PCBs in order to facilitate the assembly 
 
 
 
-![]([C:\Users\armer12\Documents\Github\Open-seismic-electrical-design\media\sensor.png](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/sensor.png))
+![](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/sensor.png)
