@@ -119,11 +119,11 @@
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/d69a5fdf-de15-4ec9-94f6-f9ee2f4b69fa"
       (reference "#PWR0118") (unit 1) (value "GND") (footprint "")
     )
-    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/91fc5800-6029-46b1-848d-ca0091f97267"
-      (reference "#PWR0119") (unit 1) (value "GND") (footprint "")
+    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/d50e44a9-55c1-4569-8f0d-13832ba63ca8"
+      (reference "#PWR0119") (unit 1) (value "5V") (footprint "")
     )
-    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/d1c19c11-0a13-4237-b6b4-fb2ef1db7c6d"
-      (reference "#PWR0120") (unit 1) (value "5V") (footprint "")
+    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/f13aa407-6e31-4cbc-aef9-76f37eaf82f4"
+      (reference "#PWR0120") (unit 1) (value "GND") (footprint "")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/262f1ea9-0133-4b43-be36-456207ea857c"
       (reference "#PWR0121") (unit 1) (value "GND") (footprint "")
@@ -217,9 +217,6 @@
     )
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/003b23e1-9f8f-44e1-8bbd-edccb11ef6b9"
       (reference "#PWR0152") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/a6bd56a6-2781-4a69-91bb-2c1492084c6c"
-      (reference "#PWR0153") (unit 1) (value "GND") (footprint "")
     )
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/ebadc82c-41f0-420d-8df8-9d16a4db976d"
       (reference "#PWR0155") (unit 1) (value "GND") (footprint "")
@@ -321,10 +318,10 @@
       (reference "5Vref1") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
     )
     (path "/88a081c8-84cc-4057-8a06-f0b6a8705176/17351e56-0567-400c-b857-33ebfb1e9b1b"
-      (reference "11") (unit 1) (value "0.47uF-250V") (footprint "lib:CAPC3326X280N")
+      (reference "111111111") (unit 1) (value "0.47uF-250V") (footprint "lib:CAPC3326X280N")
     )
     (path "/88a081c8-84cc-4057-8a06-f0b6a8705176/90468d0c-3aa7-4c21-90d1-fe4e5e330f04"
-      (reference "31") (unit 1) (value "0.47uF-250V") (footprint "lib:CAPC3326X280N")
+      (reference "311111111") (unit 1) (value "0.47uF-250V") (footprint "lib:CAPC3326X280N")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/ceb12634-32ca-4cbf-9ff5-5e8b53ab18ad"
       (reference "C1") (unit 1) (value "1u") (footprint "lib:CAPC1608X90N")
@@ -443,11 +440,17 @@
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/8d8da327-4d6d-4753-917c-b1e70e7ab3bc"
       (reference "C46") (unit 1) (value "0.1uF") (footprint "lib:CAPC1608X90N")
     )
-    (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/03ef7221-9fdd-4d00-b6be-e31f84ede9bb"
-      (reference "J1") (unit 1) (value "1053141216") (footprint "lib:CON_1053141216")
+    (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/1485741b-624a-4335-a6eb-8c3d3746d48b"
+      (reference "J1") (unit 1) (value "Conn_01x15") (footprint "Connector_Molex:Molex_Pico-Clasp_202396-1507_1x15-1MP_P1.00mm_Horizontal")
     )
-    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/aa1c6f47-cbd4-4cbd-8265-e5ac08b7ffc8"
-      (reference "P2") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
+    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/2076a0c2-45ca-43d5-8612-297b7ae0ef16"
+      (reference "J3") (unit 1) (value "Conn_01x10_Male") (footprint "Connector_Molex:Molex_Pico-Clasp_202396-1007_1x10-1MP_P1.00mm_Horizontal")
+    )
+    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/7b16a58c-3722-48f0-af3a-e4fd4d3be861"
+      (reference "J4") (unit 1) (value "Conn_01x04_Male") (footprint "Connector_Molex:Molex_Pico-Clasp_202396-0407_1x04-1MP_P1.00mm_Horizontal")
+    )
+    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/f73e71fd-fc59-43ea-9369-6f43f4b7ea90"
+      (reference "J5") (unit 1) (value "Conn_01x05") (footprint "Connector_Molex:Molex_Nano-Fit_105313-xx05_1x05_P2.50mm_Horizontal")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/80f8c1b4-10dd-40fe-b7f7-67988bc3ad81"
       (reference "P3") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
@@ -517,9 +520,6 @@
     )
     (path "/88a081c8-84cc-4057-8a06-f0b6a8705176/326ddd33-f728-4a12-8512-e44add3d6d0e"
       (reference "R22") (unit 1) (value "1.5k") (footprint "lib:RESC1608X55N")
-    )
-    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/21492bcd-343a-4b2b-b55a-b4586c11bdeb"
-      (reference "Teensy1") (unit 1) (value "DEV-15583") (footprint "teensy4.0:teensy4.0")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/7afa54c4-2181-41d3-81f7-39efc497ecae"
       (reference "U1") (unit 1) (value "AD7768-4BSTZ") (footprint "lib:QFP50P1200X1200X160-64N")
