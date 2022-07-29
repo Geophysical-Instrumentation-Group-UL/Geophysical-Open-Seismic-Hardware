@@ -446,11 +446,11 @@
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/2076a0c2-45ca-43d5-8612-297b7ae0ef16"
       (reference "J2") (unit 1) (value "Conn_01x10_Male") (footprint "Connector_Molex:Molex_Pico-Clasp_202396-1007_1x10-1MP_P1.00mm_Horizontal")
     )
-    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/f73e71fd-fc59-43ea-9369-6f43f4b7ea90"
-      (reference "J3") (unit 1) (value "Conn_01x05") (footprint "Connector_Molex:Molex_Nano-Fit_105313-xx05_1x05_P2.50mm_Horizontal")
-    )
     (path "/5cd8fe45-fa49-4729-81c8-b7c257fc3660/1485741b-624a-4335-a6eb-8c3d3746d48b"
       (reference "J4") (unit 1) (value "Conn_01x15") (footprint "Connector_Molex:Molex_Pico-Clasp_202396-1507_1x15-1MP_P1.00mm_Horizontal")
+    )
+    (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/aebcfe9d-91fd-44ce-b655-bcb1c83e593b"
+      (reference "J?") (unit 1) (value "Conn_01x07_Male") (footprint "Connector_Molex:Molex_Nano-Fit_105313-xx07_1x07_P2.50mm_Horizontal")
     )
     (path "/8e295ed4-82cb-4d9f-8888-7ad2dd4d5129/1427bb3f-0689-4b41-a816-cd79a5202fd0"
       (reference "P1") (unit 1) (value "Plug") (footprint "Connector_PinHeader_2.00mm:PinHeader_1x01_P2.00mm_Vertical")
@@ -540,7 +540,7 @@
       (reference "U6") (unit 1) (value "ADA4841-2YRMZ") (footprint "bib:ADI-RM-8_M")
     )
     (path "/88a081c8-84cc-4057-8a06-f0b6a8705176/c792d8d9-4817-4d6f-a57e-3c117c43a497"
-      (reference "U7") (unit 1) (value "THVD8000DDFR") (footprint "Package_TO_SOT_SMD:SOT-23-8")
+      (reference "U7") (unit 1) (value "THVD8000DDFR") (footprint "Package_TO_SOT_SMD:SOT-23-8_Handsoldering")
     )
     (path "/d8fbfc94-1654-403c-a92f-f39f91b311ce/7a21cf52-bc7e-4c89-94eb-b71c65517b55"
       (reference "U10") (unit 1) (value "ADP7118ARDZ-3.3-R7") (footprint "lib:SOIC_08_EP_3P9X4P9_ADI")

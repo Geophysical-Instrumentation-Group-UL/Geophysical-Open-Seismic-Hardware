@@ -632,7 +632,7 @@
     (property "Value" "THVD8000DDFR" (id 1) (at 71.12 90.17 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-8" (id 2) (at 87.63 73.66 0)
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-8_Handsoldering" (id 2) (at 87.63 73.66 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Datasheet" "https://www.ti.com/lit/ds/symlink/thvd8000.pdf" (id 3) (at 87.63 76.2 0)
