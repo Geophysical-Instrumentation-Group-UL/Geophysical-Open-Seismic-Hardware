@@ -4,7 +4,7 @@
 
 ## Main board (ADC_RS_MCU)
 
-The components have been divided on 3 different printed circuit boards (PCB). The main board contains the ADC, the MCU and the communication module. This board has 4 layers in order to reduce its size as much as possible and to ensure a decoupling between the digital signals, the analog signals and the power 7 supply. Its dimensions of 40 by 160 mm respects the objective of a diameter less than 46 mm. 
+The components have been divided on 3 different printed circuit boards (PCB). The main board contains the ADC, the MCU and the communication module. This board has 4 layers in order to reduce its size as much as possible and to ensure a decoupling between the digital signals, the analog signals and the power supply. Its dimensions of 40 by 160 mm respects the objective of a diameter less than 46 mm. 
 
 ![](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/mainBoard.png)
 
