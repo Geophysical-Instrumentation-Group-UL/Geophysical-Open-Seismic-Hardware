@@ -6,7 +6,7 @@ The Open-seismic initiative is brought to you by the Geophysical Instrumentation
 
 This repository contains all the design files for the different printed circuit boards that are integrated in this modular design(PCB). The first module includes a 3 channel 24 bit ADC that can sample signals up to 32 kHz. The second module is a power supply module that is configured to condition the power used by downhole shuttle. We have provided a KiCad and an Altium version of these design files. In early 2022, we migrated the project from Altium to KiCad in order to meet the ethos of our project and allow more users to benefit from our developments. Here are images of the prototype WorkerBoard as assembled in early 2022. 
 
- Details about specific aspects of the project can be found on in the Wiki section of this repository. For more information and questions please contact arnaud.mercier.1@ulaval.ca or christian.dupuis@ggl.ulaval.ca.
+ Details about specific aspects of the project can be found on in the doc repository. For more information and questions please contact arnaud.mercier.1@ulaval.ca or christian.dupuis@ggl.ulaval.ca.
  
  The hardware development is under the TAPR Open Hardware License, while the firmware is under the GNU General Public License V3. License files are within respective directory.
 
