@@ -2,7 +2,7 @@
 
 ---
 
-Here is the details about the refraction survey from the article.
+Here is the details about the refraction survey from the article. All the 3D files have been developed in CREO and are available in the 3D_files directory.
 
 
 
