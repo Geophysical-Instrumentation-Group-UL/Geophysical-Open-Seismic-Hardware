@@ -1,6 +1,6 @@
 # Firmware
 
-In this page you will find details about the Open-seismic firmware, design guidelines and current stage of development. The details about the librairy used in the projects can be found in the command and ad7768 files.
+In this page you will find details about the Geophysical Open Seismic Hardware firmware, design guidelines and current stage of development. The details about the librairy used in the projects can be found in the command and ad7768 files.
 
 # Design guidelines
 
