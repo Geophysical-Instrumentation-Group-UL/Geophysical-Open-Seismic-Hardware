@@ -24,13 +24,13 @@ it is recommended to check every connection with a multimeter to ensure no short
 
 
 
-![](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/oven.png)
+![](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/oven.png)
 
 
 
 ### Reflow profile used
 
-![](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/reflow_profile.png)
+![](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/reflow_profile.png)
 
 
 
@@ -38,5 +38,5 @@ it is recommended to check every connection with a multimeter to ensure no short
 
 ### Stencil used to apply the solder paste
 
-![](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/stencil.png)
+![](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/stencil.png)
 

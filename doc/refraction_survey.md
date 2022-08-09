@@ -17,7 +17,7 @@ Here is the details about the refraction survey from the article. All the 3D fil
 
 The SI 1521L are soldered on the sensor board and jumper wires are soldered to the PCB. A 3D printed box with tapered insert allow to fix the PCB in an orthogonal arrangement. Every board are connected to a wall mount DB15 connector.
 
-![sensors](https://github.com/armercier/Open-seismic-electrical-design/blob/main/media/sensor_package.jpg)
+![sensors](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/sensor_package.jpg)
 
 ### Main board and power supply
 
@@ -30,14 +30,14 @@ The main board and the power supply board were integrated onto an 3D printed fra
 
 A custom end cap is designed and 3D printed. This cap has some threaded insert so it can be fix by a screw through the tube wall. These cap have a cavity for a cable gland for the DB15 cable and for the coax wall mount connector.
 
-![gland](https://github.com/armercier/Open-seismic-electrical-design/blob/main/media/cable_gland.png)
-![coax](https://github.com/armercier/Open-seismic-electrical-design/blob/main/media/cable_gland_coax.png)
+![gland](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/cable_gland.png)
+![coax](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/cable_gland_coax.png)
 
 ### Master box
 
 The master unit is bolted into a simple 3D printed box with a removable cover. The box has a wall mount coax connector and a slid to allow the passage of the USB cable. Banana jack are included to connect the external power supply. Wires for the trigger are accessed from a hole in the box cover.
 
-![box](https://github.com/armercier/Open-seismic-electrical-design/blob/main/media/master_box.png)
+![box](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/master_box.png)
 
 ### Custom trigger
 
@@ -47,7 +47,7 @@ A custom trigger system composed of a piezo-electric ([Sparkfun](https://www.spa
 - 2 half-circle TPU ring that provides damping and reduce stress on the CPE plastic
 - 1 TPU top cap to keep the piezo in place
 
-![trigger](https://github.com/armercier/Open-seismic-electrical-design/blob/main/media/trigger.jpg)
+![trigger](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/trigger.jpg)
 
 ## Material used
 

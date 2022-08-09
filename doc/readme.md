@@ -1,4 +1,4 @@
-![GiGUL](https://github.com/armercier/Open-seismic-electrical-design/blob/main/media/GIGul.png)
+![GiGUL](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/GIGul.png)
 
 # Welcome to the Geophysical Open Seismic Hardware documentation!
 In this directory you will find details about the Geophysical Open Seismic Hardware project goals, design guidelines, assembly instruction and current stage of development. This repo is hosting the modifiable hardware files, assembly instruction and software required to operate the tools.
@@ -18,4 +18,4 @@ In this directory you will find details about the Geophysical Open Seismic Hardw
 
 The system is based on a leader/worker arrangement. The leader (master) unit uphole is connected directly via USB to the PC. This leader unit is the same as the worker unit without the power supply and sensor modules. There are multiple Workers (shuttles) but only one leader uphole. DC voltage is applied on the A and B line which is used to power up the worker units. Each worker is in a pressure housing to be able to sustain borehole conditions. At the time being, the pressure housing is still in development.
 
-![Scheme](https://github.com/armercier/Open-seismic-electrical-design/blob/main/media/schema_avec_communication_github%20(1).png)
+![Scheme](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/schema_avec_communication_github%20(1).png)
