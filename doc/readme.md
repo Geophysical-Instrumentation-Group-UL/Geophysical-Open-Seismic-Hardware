@@ -1,4 +1,4 @@
-![GiGUL](https://raw.githubusercontent.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/main/media/GIGul.png)
+![GiGUL](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/GIGul.png?raw=true)
 
 # Welcome to the Geophysical Open Seismic Hardware documentation!
 In this directory you will find details about the Geophysical Open Seismic Hardware project goals, design guidelines, assembly instruction and current stage of development. This repo is hosting the modifiable hardware files, assembly instruction and software required to operate the tools.
