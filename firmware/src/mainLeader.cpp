@@ -34,7 +34,7 @@ if (Serial.available() )
   {
     instruction = Serial.readStringUntil('\n');
     instruction.trim();
-     // I always want the status of the salve after a command
+     // I always want the status of the worker after a command
     String temp;
     temp = instruction.substring(instruction.length() - 1);
     int workerid = temp.toInt();
