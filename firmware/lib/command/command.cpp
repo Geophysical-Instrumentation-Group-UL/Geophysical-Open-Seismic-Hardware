@@ -165,7 +165,7 @@ return commandRead;
  }
 
     /**	
- * send trigger notif to slave
+ * send trigger notif to worker
  * @param serial_port - Serial port to send the data
  */
  uint16_t sendTrigger(Stream  *serial_port)

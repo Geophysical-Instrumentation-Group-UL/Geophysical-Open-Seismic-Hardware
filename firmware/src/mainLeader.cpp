@@ -9,7 +9,7 @@
 int Mode = 9; // high = send = D2 led off, low = listen = D2 led high
 int trig = 22;
 String instruction;
-bool waitingForSlaveResponse = false;
+bool waitingForworkerResponse = false;
 bool waitForData = false;
 int number_of_data_packet;
 String duration = "50";
@@ -48,7 +48,7 @@ if (Serial.available() )
     Serial.println("arming...");
     Serial.flush();
     attachInterrupt(digitalPinToInterrupt(trig),trig_ISR,RISING);
-    // waitingForSlaveResponse = true;
+    // waitingForworkerResponse = true;
 
   }
   if (instruction.startsWith("get status")) {
@@ -75,7 +75,7 @@ if (Serial.available() )
     getWorkerStatus(&RS485Serial,workerid);
     delay(5);
     digitalWrite(Mode,LOW);
-    waitingForSlaveResponse = true;
+    waitingForworkerResponse = true;
   }
   if (instruction.startsWith("config default")) {
     Serial.print("Configuration in process to : ");Serial.println(workerid);
@@ -90,7 +90,7 @@ if (Serial.available() )
     // getWorkerStatus(&RS485Serial,workerid);
     // delay(5);
     // digitalWrite(Mode,LOW);
-    waitingForSlaveResponse = true;
+    waitingForworkerResponse = true;
   }
   if (instruction.startsWith("config seismic")) {
     Serial.print("Configuration in process to : ");Serial.println(workerid);
@@ -105,7 +105,7 @@ if (Serial.available() )
     // getWorkerStatus(&RS485Serial,workerid);
     // delay(5);
     // digitalWrite(Mode,LOW);
-    waitingForSlaveResponse = true;
+    waitingForworkerResponse = true;
   }
   if (instruction.startsWith("harvest")) {
     digitalWrite(Mode,HIGH);
@@ -115,11 +115,11 @@ if (Serial.available() )
     digitalWrite(Mode,LOW);
     Serial.println("harvesting");
     waitForData = true;
-    waitingForSlaveResponse = false; //I dont want the status, i want the data, the status is allready asked at 
+    waitingForworkerResponse = false; //I dont want the status, i want the data, the status is allready asked at 
     // the end of the triggered state
   }
   }
-if (waitingForSlaveResponse == true) 
+if (waitingForworkerResponse == true) 
 { 
   command receivedStatus; 
   receivedStatus = readCommand(&RS485Serial);
@@ -149,7 +149,7 @@ if (waitingForSlaveResponse == true)
         Serial.flush();
       }
 
-    waitingForSlaveResponse = false;
+    waitingForworkerResponse = false;
 }
 if (waitForData == true)
 {
@@ -158,7 +158,7 @@ if (waitForData == true)
     
     
     workeridData = RS485Serial.readStringUntil('w').toInt();
-    Serial.print("Slave # "),Serial.println(workeridData);
+    Serial.print("worker # "),Serial.println(workeridData);
 
     Serial.println("-----------------");
 
@@ -190,9 +190,9 @@ if (triggered_state == true)
   
 
 
-  // send trigger command to slave
+  // send trigger command to worker
   triggered_state = false;
-  // waitingForSlaveResponse = true;
+  // waitingForworkerResponse = true;
 }
 interrupts();
 
