@@ -1,5 +1,3 @@
-from socket import timeout
-import numpy as np
 import serial
 import matplotlib.pyplot as plt
 from tools import *
