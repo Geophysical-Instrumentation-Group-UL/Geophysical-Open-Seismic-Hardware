@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>287</width>
-    <height>69</height>
+    <width>433</width>
+    <height>99</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,7 +23,7 @@
    <item row="0" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Software Version: 0.2</string>
+      <string>Software Version: 0.1</string>
      </property>
     </widget>
    </item>
@@ -36,14 +36,14 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Contact Developper: marc-andre.vigneault.2@ulaval.ca</string>
+      <string>Contact Developper: arnaud.mercier05@gmail.com</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>Last Update: 21/03/2020</string>
+      <string>Last Update: continuous</string>
      </property>
     </widget>
    </item>

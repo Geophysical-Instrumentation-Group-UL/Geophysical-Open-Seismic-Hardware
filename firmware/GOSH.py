@@ -45,7 +45,7 @@ class App(QApplication):
 
         self.mainModel = MainModel()
         self.mainWindow = MainWindow(model=self.mainModel)
-        self.mainWindow.setWindowTitle("opt-id")
+        self.mainWindow.setWindowTitle("GOSH")
         self.mainWindow.show()
 
     @staticmethod
@@ -63,7 +63,7 @@ class App(QApplication):
 
         # Log Error File Handler
         os.makedirs(application_path + "{0}log".format(os.sep), exist_ok=True)
-        handler = RotatingFileHandler(application_path + "{0}log{0}opt-id.log".format(os.sep), maxBytes=2.3 * 1024 * 1024, backupCount=5)
+        handler = RotatingFileHandler(application_path + "{0}log{0}GOSH.log".format(os.sep), maxBytes=2.3 * 1024 * 1024, backupCount=5)
         handler.setLevel(logging.ERROR)
         formatter = logging.Formatter("%(asctime)s\t (%(name)-30.30s) (thread:%(thread)d) (line:%(lineno)5d)\t[%(levelname)-5.5s] %(message)s")
         handler.setFormatter(formatter)
@@ -80,7 +80,7 @@ class App(QApplication):
 
 def main():
     # Makes the icon in the taskbar as well.
-    appID = "opt-id"  # arbitrary string
+    appID = "GOSH"  # arbitrary string
     if os.name == 'nt':
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appID)
     elif os.name == 'posix':

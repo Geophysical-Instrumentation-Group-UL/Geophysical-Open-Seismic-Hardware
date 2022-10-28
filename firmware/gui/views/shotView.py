@@ -16,18 +16,18 @@ import logging
 
 log = logging.getLogger(__name__)
 
-spectraViewUiPath = os.path.dirname(os.path.realpath(__file__)) + "{0}spectraViewUi.ui".format(os.sep)
-Ui_spectraView, QtBaseClass = uic.loadUiType(spectraViewUiPath)
+shotViewUiPath = os.path.dirname(os.path.realpath(__file__)) + "{0}shotViewUi.ui".format(os.sep)
+Ui_shotView, QtBaseClass = uic.loadUiType(shotViewUiPath)
 
 
-class SpectraView(QWidget, Ui_spectraView):
+class ShotView(QWidget, Ui_shotView):
     s_data_changed = pyqtSignal(dict)
     s_data_acquisition_done = pyqtSignal()
 
     # Initializing Functions
 
     def __init__(self, model=None):
-        super(SpectraView, self).__init__()
+        super(ShotView, self).__init__()
         self.model = model
         self.setupUi(self)
 
@@ -62,7 +62,7 @@ class SpectraView(QWidget, Ui_spectraView):
         self.errorPen = mkPen((255, 0, 0, 180))
         self.dataSep = 0
 
-        self.exposureTime = 50
+        self.durationTime = 50
         self.expositionCounter = 0
         self.changeLastExposition = 0
 
@@ -123,7 +123,7 @@ class SpectraView(QWidget, Ui_spectraView):
             self.spec = mock.MockSpectrometer()
             log.info("No device found; Mocking Spectrometer Enabled.")
 
-        self.set_exposure_time()
+        self.set_duration_time()
 
     def connect_buttons(self):
         self.pb_liveView.clicked.connect(self.toggle_live_view)
@@ -137,8 +137,8 @@ class SpectraView(QWidget, Ui_spectraView):
         self.pb_normalize.clicked.connect(lambda: setattr(self, 'isAcquiringNormalization', True))
         self.pb_normalize.clicked.connect(lambda: self.update_indicators())
 
-        self.sb_exposure.valueChanged.connect(lambda: setattr(self, 'exposureTime', self.sb_exposure.value()))
-        self.sb_exposure.valueChanged.connect(self.set_exposure_time)
+        self.sb_duration.valueChanged.connect(lambda: setattr(self, 'durationTime', self.sb_duration.value()))
+        self.sb_duration.valueChanged.connect(self.set_duration_time)
 
         self.sb_acqTime.valueChanged.connect(lambda: setattr(self, 'movingIntegrationData', None))
         self.sb_acqTime.valueChanged.connect(lambda: setattr(self, 'integrationTimeAcq', self.sb_acqTime.value()))
@@ -149,8 +149,8 @@ class SpectraView(QWidget, Ui_spectraView):
         self.sb_absError.valueChanged.connect(lambda: setattr(self, 'maxAcceptedAbsErrorValue', self.sb_absError.value()/100))
         self.sb_absError.valueChanged.connect(self.draw_error_regions)
 
-        self.tb_folderPath.clicked.connect(self.select_save_folder)
-        self.pb_saveData.clicked.connect(self.save_capture_csv)
+        # self.tb_folderPath.clicked.connect(self.select_save_folder)
+        # self.pb_saveData.clicked.connect(self.save_capture_csv)
 
         log.debug("Connecting GUI buttons...")
 
@@ -354,21 +354,23 @@ class SpectraView(QWidget, Ui_spectraView):
     def read_data_live(self, *args, **kwargs):
         return self.spec.intensities()[2:]
 
-    def set_exposure_time(self, time_in_ms=None, update=True):
+    def set_duration_time(self, time_in_ms=None, update=True):
         if time_in_ms is not None:
             expositionTime = time_in_ms
+            print("Exposition time set to {} ms".format(expositionTime))
         else:
-            expositionTime = self.exposureTime
+            expositionTime = self.durationTime
         self.spec.integration_time_micros(expositionTime * 1000)
 
         if update:
             self.set_integration_time()
+            
 
     def set_integration_time(self, time_in_ms_view=None, time_in_ms_acq=None):
         try:
-            if self.integrationTimeAcq >= self.exposureTime:
-                self.integrationCountAcq = self.integrationTimeAcq // self.exposureTime
-                self.integrationTimeAcqRemainder_ms = self.integrationTimeAcq - (self.integrationCountAcq * self.exposureTime)
+            if self.integrationTimeAcq >= self.durationTime:
+                self.integrationCountAcq = self.integrationTimeAcq // self.durationTime
+                self.integrationTimeAcqRemainder_ms = self.integrationTimeAcq - (self.integrationCountAcq * self.durationTime)
                 self.sb_acqTime.setStyleSheet('color: black')
             else:
                 self.integrationCountAcq = 1
@@ -395,9 +397,9 @@ class SpectraView(QWidget, Ui_spectraView):
             self.movingIntegrationData.append(self.liveAcquisitionData)
             self.expositionCounter += 1
             if self.changeLastExposition:
-                self.set_exposure_time(self.integrationTimeAcqRemainder_ms, update=False)
+                self.set_duration_time(self.integrationTimeAcqRemainder_ms, update=False)
         else:
-            self.set_exposure_time(update=False)
+            self.set_duration_time(update=False)
             self.movingIntegrationData.append(self.liveAcquisitionData)
             self.isAcquisitionDone = True
             self.expositionCounter = 0
