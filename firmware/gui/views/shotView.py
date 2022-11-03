@@ -75,8 +75,6 @@ class ShotView(QWidget, Ui_shotView):
         self.changeLastExposition = 0
 
         self.acquisitionFrequency = 4000
-        self.integrationTimeAcqRemainder_ms = 0
-        self.integrationCountAcq = 0
 
         self.stackName = None
         self.nextStackName = None
@@ -135,7 +133,6 @@ class ShotView(QWidget, Ui_shotView):
             self.spec = mock.MockSpectrometer()
             log.info("No device found; Mocking Spectrometer Enabled.")
 
-        # self.set_duration_time()
 
     def connect_buttons(self):
         self.pb_liveView.clicked.connect(self.toggle_live_view)
@@ -260,6 +257,7 @@ class ShotView(QWidget, Ui_shotView):
     def set_stack_name(self):
         self.stackName = self.le_newStack.text()
         self.tb_status.append("Current stack name: " + self.stackName)
+    
     # General Cursor-Graph Interaction Functions
 
     def set_cursor_mode(self):
@@ -407,75 +405,6 @@ class ShotView(QWidget, Ui_shotView):
     def read_data_live(self, *args, **kwargs):
         return self.spec.intensities()[2:]
 
-    def set_duration_time(self, time_in_ms=None, update=True):
-        if time_in_ms is not None:
-            expositionTime = time_in_ms
-            print("Exposition time set to {} ms".format(expositionTime))
-        else:
-            expositionTime = self.durationTime
-        self.spec.integration_time_micros(expositionTime * 1000)
-
-        if update:
-            self.set_integration_time()
-            
-
-    # def set_integration_time(self, time_in_ms_view=None, time_in_ms_acq=None):
-        try:
-            if self.integrationTimeAcq >= self.durationTime:
-                self.integrationCountAcq = self.integrationTimeAcq // self.durationTime
-                self.integrationTimeAcqRemainder_ms = self.integrationTimeAcq - (self.integrationCountAcq * self.durationTime)
-                self.sb_acqTime.setStyleSheet('color: black')
-            else:
-                self.integrationCountAcq = 1
-                self.sb_acqTime.setStyleSheet('color: red')
-
-        except ValueError as e:
-            log.error(e)
-            self.sb_acqTime.setStyleSheet('color: red')
-
-        if self.integrationTimeAcqRemainder_ms > 3:
-            self.movingIntegrationData = RingBuffer(size_max=self.integrationCountAcq+1)
-            self.changeLastExposition = 1
-        else:
-            self.movingIntegrationData = RingBuffer(size_max=self.integrationCountAcq)
-            self.changeLastExposition = 0
-
-    def integrate_data(self):
-        self.isAcquisitionDone = False
-        if self.expositionCounter < self.integrationCountAcq - 2:
-            self.movingIntegrationData.append(self.liveAcquisitionData)
-            self.expositionCounter += 1
-
-        elif self.expositionCounter == self.integrationCountAcq - 2:
-            self.movingIntegrationData.append(self.liveAcquisitionData)
-            self.expositionCounter += 1
-            if self.changeLastExposition:
-                self.set_duration_time(self.integrationTimeAcqRemainder_ms, update=False)
-        else:
-            self.set_duration_time(update=False)
-            self.movingIntegrationData.append(self.liveAcquisitionData)
-            self.isAcquisitionDone = True
-            self.expositionCounter = 0
-
-    def launch_integration_acquisition(self):
-        if self.launchIntegrationAcquisition and not self.isAcquiringIntegration:
-            self.expositionCounter = 0
-            self.isAcquiringIntegration = True
-            self.launchIntegrationAcquisition = False
-            log.info("Integration Acquiring...")
-
-        elif self.isAcquiringIntegration:
-            if not self.isAcquisitionDone:
-                percent = int(self.expositionCounter * 100 / self.integrationCountAcq)
-                if percent in [25, 50, 75, 100]:
-                    log.debug(
-                    "Acquisition frame: {} over {} : {}%".format(self.expositionCounter, self.integrationCountAcq,
-                                                                int(self.expositionCounter * 100 / self.integrationCountAcq)))
-            elif self.isAcquisitionDone:
-                self.temporaryIntegrationData = np.mean(np.array(self.movingIntegrationData()), 0)
-                self.isAcquiringIntegration = False
-                log.debug("Integration acquired.")
-
     def acquire_background(self):
         if self.isAcquiringBackground:
             self.launchIntegrationAcquisition = True
@@ -513,35 +442,6 @@ class ShotView(QWidget, Ui_shotView):
 
         if self.isSpectrumNormalized:
             self.displayData = [a * b for a, b in zip(self.displayData, self.normalizationMultiplierList)]
-
-    def hide_high_error_values(self):
-        if self.isSpectrumNormalized:
-            #log.debug(self.errorRegionIndexesLimits)
-            for region in self.errorRegionIndexesLimits:
-                for i in range(region[0], region[1]):
-                    self.displayData[i] = self.displayData[i] * 0
-
-    def draw_error_regions(self):
-        self.verify_absolute_error()
-        self.remove_old_error_regions()
-        self.find_error_regions()
-        self.add_error_regions()
-
-    def verify_absolute_error(self):
-        if self.isSpectrumNormalized:
-            brute = np.array(self.movingIntegrationData()) * np.array(self.normalizationMultiplierList)
-            sd = np.std(brute, axis=0)
-            # log.debug("Standard Deviation of points:{}".format(sd))
-            self.errorRejectedList = []
-            counter = 0
-            for i, error in enumerate(sd):
-                if error >= self.maxAcceptedAbsErrorValue:
-                    self.errorRejectedList.append(True)
-                else:
-                    self.errorRejectedList.append(False)
-                    counter += 1
-            self.rejectedXValues = self.waves[self.errorRejectedList]
-            log.debug("Amount of accepted values:{}".format(counter))
 
     def find_error_regions(self):
         regionsLimits, regionPoints, regionIndexes, regionIndexesLimits = self.segregate_same_regions(
