@@ -17,19 +17,6 @@
    <string notr="true">font: 10pt;</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="2">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>1300</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="1" column="2" colspan="2">
     <widget class="GraphicsLayoutWidget" name="pyqtgraphWidget">
      <property name="sizePolicy">
@@ -112,10 +99,34 @@
             <item row="0" column="1">
              <widget class="QComboBox" name="cb_comPort"/>
             </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="cb_DCvoltageUphole"/>
+            </item>
             <item row="0" column="0">
              <widget class="QLabel" name="la_comPort">
               <property name="text">
                <string>COM port</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="la_DCvoltageUphole">
+              <property name="text">
+               <string>DC Voltage [V]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="cb_numberOfShuttle">
+              <property name="currentText">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="la_numberOfShuttle">
+              <property name="text">
+               <string>Number of shuttle</string>
               </property>
              </widget>
             </item>
@@ -612,6 +623,19 @@
          <string extracomment="Double-click to set a marker">Free</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>1300</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>

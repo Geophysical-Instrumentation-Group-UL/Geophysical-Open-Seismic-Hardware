@@ -42,6 +42,11 @@ class ShotView(QWidget, Ui_shotView):
         self.deviceConnected = False
         self.comPortAvailable = []
         self.comPort = None
+        self.DCvoltageUpholeList = ['40','60','80','100']
+        self.DCvoltageUphole = None
+        self.numberOfShuttleList = ['1','2','3']
+        self.numberOfShuttle = None
+
 
         self.plotItem = None
         self.xPlotRange = [350, 1000]
@@ -164,6 +169,10 @@ class ShotView(QWidget, Ui_shotView):
         self.cb_cursor.toggled.connect(lambda: self.toggle_cursor(not self.cursorActivated))
         self.show_comPort_available()
         self.cb_comPort.currentIndexChanged.connect(self.set_comPort)
+        self.cb_DCvoltageUphole.addItems(self.DCvoltageUpholeList)
+        self.cb_DCvoltageUphole.currentIndexChanged.connect(self.set_DCvoltageUphole)
+        self.cb_numberOfShuttle.addItems(self.numberOfShuttleList)
+        self.cb_numberOfShuttle.currentIndexChanged.connect(self.set_numberOfShuttle)
         self.rb_free.toggled.connect(lambda: self.set_cursor_mode())
         self.rb_delta.toggled.connect(lambda: self.set_cursor_mode())
 
@@ -221,9 +230,18 @@ class ShotView(QWidget, Ui_shotView):
         self.cb_comPort.addItems(self.comPortAvailable) # add the actual content of self.comboData
         self.cb_comPort.update()
 
+
     def set_comPort(self):
         self.comPort = self.cb_comPort.currentText()
         print(self.comPort)
+
+    def set_DCvoltageUphole(self):
+        self.DCvoltageUphole = int(self.cb_DCvoltageUphole.currentText())
+        print(self.DCvoltageUphole)
+
+    def set_numberOfShuttle(self):
+        self.numberOfShuttle = int(self.cb_numberOfShuttle.currentText())
+        print(self.numberOfShuttle)
 
     # General Cursor-Graph Interaction Functions
 
