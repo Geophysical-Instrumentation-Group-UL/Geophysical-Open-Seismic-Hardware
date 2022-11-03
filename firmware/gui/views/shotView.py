@@ -9,6 +9,7 @@ from gui.modules import mockSpectrometer as mock
 from tools.threadWorker import Worker
 from tools.CircularList import RingBuffer
 import numpy as np
+import serial
 
 
 import logging
@@ -39,6 +40,8 @@ class ShotView(QWidget, Ui_shotView):
         self.y = None
         self.dataLen = None
         self.deviceConnected = False
+        self.comPortAvailable = []
+        self.comPort = None
 
         self.plotItem = None
         self.xPlotRange = [350, 1000]
@@ -159,6 +162,8 @@ class ShotView(QWidget, Ui_shotView):
         self.ind_normalize.clicked.connect(lambda: print("show normalisation if available"))
         self.ind_analyse.clicked.connect(lambda: print("show acquisition if available"))
         self.cb_cursor.toggled.connect(lambda: self.toggle_cursor(not self.cursorActivated))
+        self.show_comPort_available()
+        self.cb_comPort.currentIndexChanged.connect(self.set_comPort)
         self.rb_free.toggled.connect(lambda: self.set_cursor_mode())
         self.rb_delta.toggled.connect(lambda: self.set_cursor_mode())
 
@@ -206,6 +211,19 @@ class ShotView(QWidget, Ui_shotView):
 
     def define_colors(self):
         pass
+
+    def show_comPort_available(self):
+        comPortList = serial.tools.list_ports.comports()
+        self.comPortAvailable = comPortList
+        self.comPortAvailable.append('test1')
+        self.comPortAvailable.append('test2')
+        self.cb_comPort.clear()       # delete all items from comboBox
+        self.cb_comPort.addItems(self.comPortAvailable) # add the actual content of self.comboData
+        self.cb_comPort.update()
+
+    def set_comPort(self):
+        self.comPort = self.cb_comPort.currentText()
+        print(self.comPort)
 
     # General Cursor-Graph Interaction Functions
 
