@@ -115,6 +115,7 @@ class ShotView(QWidget, Ui_shotView):
         self.connect_buttons()
         self.connect_signals()
         self.connect_checkbox()
+        self.connect_lineEdit()
         self.create_threads()
         self.create_plots()
         self.initialize_device()
@@ -165,7 +166,8 @@ class ShotView(QWidget, Ui_shotView):
         log.debug("Connecting GUI buttons...")
 
     def connect_lineEdit(self):
-        self.le_newStack.textChanged.connect(lambda: setattr(self, 'nextStackNAme', self.le_stackName.text()))
+        self.le_newStack.textChanged.connect(lambda: setattr(self, 'nextStackNAme', self.le_newStack.text()))
+        self.tb_status.setPlainText("")
 
     def connect_checkbox(self):
         self.ind_rmBackground.clicked.connect(lambda:print("showBackground if available"))
@@ -237,27 +239,27 @@ class ShotView(QWidget, Ui_shotView):
 
     def set_comPort(self):
         self.comPort = self.cb_comPort.currentText()
-        print(self.comPort)
+        self.tb_status.append("COM port set to: " + self.comPort)
 
     def set_DCvoltageUphole(self):
         self.DCvoltageUphole = int(self.cb_DCvoltageUphole.currentText())
-        print(self.DCvoltageUphole)
+        self.tb_status.append("Source voltage set to: " + str(self.DCvoltageUphole) + " V")
 
     def set_numberOfShuttle(self):
         self.numberOfShuttle = int(self.cb_numberOfShuttle.currentText())
-        print(self.numberOfShuttle)
+        self.tb_status.append("Number of shuttle set to: " + str(self.numberOfShuttle))
 
     def set_acquisition_frequency(self):
-        self.integrationTimeAcq = self.sb_acqFreq.value()
-        print(self.integrationTimeAcq)
+        self.acquisitionFrequency = self.sb_acqFreq.value()
+        self.tb_status.append("Acquisition frequency set to: " + str(self.acquisitionFrequency) + ' Hz')
     
     def set_acquisition_duration(self):
         self.acquisitionDuration = self.sb_duration.value()
-        print(self.acquisitionDuration)
+        self.tb_status.append("Acquisition duration set to: " + str(self.acquisitionDuration) + ' ms')
 
     def set_stack_name(self):
         self.stackName = self.le_newStack.text()
-        print(self.stackName)
+        self.tb_status.append("Current stack name: " + self.stackName)
     # General Cursor-Graph Interaction Functions
 
     def set_cursor_mode(self):
