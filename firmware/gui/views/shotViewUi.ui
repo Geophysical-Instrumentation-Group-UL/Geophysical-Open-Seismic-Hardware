@@ -165,8 +165,22 @@
                  <property name="spacing">
                   <number>9</number>
                  </property>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="la_duration">
+                   <property name="text">
+                    <string>Shot duration:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="la_newStack">
+                   <property name="text">
+                    <string>New stack name</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="1" column="2">
-                  <widget class="QSpinBox" name="sb_acqTime">
+                  <widget class="QSpinBox" name="sb_acqFreq">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -186,90 +200,21 @@
                     <number>100</number>
                    </property>
                    <property name="value">
-                    <number>3000</number>
+                    <number>4000</number>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="3">
                   <widget class="QLabel" name="label_3">
                    <property name="text">
-                    <string>ms</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="la_acqTime">
-                   <property name="text">
-                    <string>Shot duration:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label">
-                   <property name="text">
-                    <string>Absolute Error:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="3">
-                  <widget class="QLabel" name="label_4">
-                   <property name="text">
-                    <string>% </string>
+                    <string>Hz</string>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QLabel" name="la_acqTime_3">
+                  <widget class="QLabel" name="la_acqFreq">
                    <property name="text">
-                    <string>Integration Time:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QDoubleSpinBox" name="sb_absError">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="statusTip">
-                    <string>If selected, Will exclude data which has a standard deviation higher than (value).</string>
-                   </property>
-                   <property name="minimum">
-                    <double>0.100000000000000</double>
-                   </property>
-                   <property name="maximum">
-                    <double>99.000000000000000</double>
-                   </property>
-                   <property name="singleStep">
-                    <double>0.100000000000000</double>
-                   </property>
-                   <property name="value">
-                    <double>5.000000000000000</double>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="4">
-                  <widget class="QCheckBox" name="cb_absError">
-                   <property name="statusTip">
-                    <string>Activates data exclusion. Requires Normalization.</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="3">
-                  <widget class="QLabel" name="label_2">
-                   <property name="text">
-                    <string>ms</string>
+                    <string>Acquisition frequency</string>
                    </property>
                   </widget>
                  </item>
@@ -301,6 +246,23 @@
                    </property>
                    <property name="value">
                     <number>50</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QLabel" name="label_2">
+                   <property name="text">
+                    <string>ms</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLineEdit" name="le_newStack"/>
+                 </item>
+                 <item row="2" column="3">
+                  <widget class="QPushButton" name="pb_newStack">
+                   <property name="text">
+                    <string>create</string>
                    </property>
                   </widget>
                  </item>

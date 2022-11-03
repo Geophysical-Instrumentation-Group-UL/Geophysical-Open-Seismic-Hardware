@@ -70,13 +70,16 @@ class ShotView(QWidget, Ui_shotView):
         self.errorPen = mkPen((255, 0, 0, 180))
         self.dataSep = 0
 
-        self.durationTime = 50
+        self.acquisitionDuration = 50
         self.expositionCounter = 0
         self.changeLastExposition = 0
 
-        self.integrationTimeAcq = 3000
+        self.acquisitionFrequency = 4000
         self.integrationTimeAcqRemainder_ms = 0
         self.integrationCountAcq = 0
+
+        self.stackName = None
+        self.nextStackName = None
 
         self.liveAcquisitionData = []
         self.temporaryIntegrationData = None
@@ -131,7 +134,7 @@ class ShotView(QWidget, Ui_shotView):
             self.spec = mock.MockSpectrometer()
             log.info("No device found; Mocking Spectrometer Enabled.")
 
-        self.set_duration_time()
+        # self.set_duration_time()
 
     def connect_buttons(self):
         self.pb_liveView.clicked.connect(self.toggle_live_view)
@@ -145,22 +148,24 @@ class ShotView(QWidget, Ui_shotView):
         self.pb_normalize.clicked.connect(lambda: setattr(self, 'isAcquiringNormalization', True))
         self.pb_normalize.clicked.connect(lambda: self.update_indicators())
 
-        self.sb_duration.valueChanged.connect(lambda: setattr(self, 'durationTime', self.sb_duration.value()))
-        self.sb_duration.valueChanged.connect(self.set_duration_time)
+        self.sb_duration.valueChanged.connect(self.set_acquisition_duration)
 
-        self.sb_acqTime.valueChanged.connect(lambda: setattr(self, 'movingIntegrationData', None))
-        self.sb_acqTime.valueChanged.connect(lambda: setattr(self, 'integrationTimeAcq', self.sb_acqTime.value()))
-        self.sb_acqTime.valueChanged.connect(self.set_integration_time)
+        self.sb_acqFreq.valueChanged.connect(self.set_acquisition_frequency)
+
+        self.pb_newStack.clicked.connect(self.set_stack_name)
 
         self.pb_reset.clicked.connect(self.reset)
 
-        self.sb_absError.valueChanged.connect(lambda: setattr(self, 'maxAcceptedAbsErrorValue', self.sb_absError.value()/100))
-        self.sb_absError.valueChanged.connect(self.draw_error_regions)
+        # self.sb_absError.valueChanged.connect(lambda: setattr(self, 'maxAcceptedAbsErrorValue', self.sb_absError.value()/100))
+        # self.sb_absError.valueChanged.connect(self.draw_error_regions)
 
         # self.tb_folderPath.clicked.connect(self.select_save_folder)
         # self.pb_saveData.clicked.connect(self.save_capture_csv)
 
         log.debug("Connecting GUI buttons...")
+
+    def connect_lineEdit(self):
+        self.le_newStack.textChanged.connect(lambda: setattr(self, 'nextStackNAme', self.le_stackName.text()))
 
     def connect_checkbox(self):
         self.ind_rmBackground.clicked.connect(lambda:print("showBackground if available"))
@@ -230,7 +235,6 @@ class ShotView(QWidget, Ui_shotView):
         self.cb_comPort.addItems(self.comPortAvailable) # add the actual content of self.comboData
         self.cb_comPort.update()
 
-
     def set_comPort(self):
         self.comPort = self.cb_comPort.currentText()
         print(self.comPort)
@@ -243,6 +247,17 @@ class ShotView(QWidget, Ui_shotView):
         self.numberOfShuttle = int(self.cb_numberOfShuttle.currentText())
         print(self.numberOfShuttle)
 
+    def set_acquisition_frequency(self):
+        self.integrationTimeAcq = self.sb_acqFreq.value()
+        print(self.integrationTimeAcq)
+    
+    def set_acquisition_duration(self):
+        self.acquisitionDuration = self.sb_duration.value()
+        print(self.acquisitionDuration)
+
+    def set_stack_name(self):
+        self.stackName = self.le_newStack.text()
+        print(self.stackName)
     # General Cursor-Graph Interaction Functions
 
     def set_cursor_mode(self):
@@ -402,7 +417,7 @@ class ShotView(QWidget, Ui_shotView):
             self.set_integration_time()
             
 
-    def set_integration_time(self, time_in_ms_view=None, time_in_ms_acq=None):
+    # def set_integration_time(self, time_in_ms_view=None, time_in_ms_acq=None):
         try:
             if self.integrationTimeAcq >= self.durationTime:
                 self.integrationCountAcq = self.integrationTimeAcq // self.durationTime
