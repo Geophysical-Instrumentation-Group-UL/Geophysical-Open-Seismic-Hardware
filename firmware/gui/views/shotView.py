@@ -259,7 +259,6 @@ class ShotView(QWidget, Ui_shotView):
 
     def set_stack_name(self):
         self.stackName = self.le_newStack.text()
-        # self.tb_status.append("Current stack name: " + self.stackName)
 
     def configure_create_new_stack(self):
         self.set_stack_name()
@@ -267,6 +266,7 @@ class ShotView(QWidget, Ui_shotView):
         self.shotCounter = 0
         self.disable_configuration_buttons()
         self.enable_control_buttons()
+        self.tb_status.clear()
         self.tb_status.append("New stack created : {}.".format(self.stackName))
         self.tb_status.append("Acquisition frequency: {} Hz.".format(self.acquisitionFrequency))
         self.tb_status.append("Acquisition duration: {} ms.".format(self.acquisitionDuration))
@@ -310,7 +310,7 @@ class ShotView(QWidget, Ui_shotView):
     def finish_stack(self):
         self.enable_configuration_buttons()
         self.disable_control_buttons()
-        self.tb_status.append("Stack  " + self.stackName + " si finished, please configure a new one.")
+        self.tb_status.append("Stack  " + self.stackName + " is finished, please configure a new one.")
         self._shotCounter = 0
 
     # General Cursor-Graph Interaction Functions
