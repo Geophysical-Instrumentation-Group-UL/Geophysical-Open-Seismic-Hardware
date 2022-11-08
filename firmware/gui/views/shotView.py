@@ -8,6 +8,7 @@ import seabreeze.spectrometers as sb
 from gui.modules import mockSpectrometer as mock
 from tools.threadWorker import Worker
 from tools.CircularList import RingBuffer
+from tools.stackAction import Stack
 import numpy as np
 import serial
 
@@ -41,6 +42,7 @@ class ShotView(QWidget, Ui_shotView):
         self.dataLen = None
         self.deviceConnected = False
         self.comPortAvailable = []
+        self.comPortName = None
         self.comPort = None
         self.DCvoltageUpholeList = ['40','60','80','100']
         self.DCvoltageUphole = None
@@ -78,6 +80,7 @@ class ShotView(QWidget, Ui_shotView):
 
         self.stackName = None
         self.nextStackName = None
+        self.shotCounter = 0
 
         self.liveAcquisitionData = []
         self.temporaryIntegrationData = None
@@ -117,7 +120,7 @@ class ShotView(QWidget, Ui_shotView):
         self.create_threads()
         self.create_plots()
         self.initialize_device()
-        self.update_indicators()
+        # self.update_indicators()
         self.define_colors()
 
     def initialize_device(self):
@@ -137,22 +140,23 @@ class ShotView(QWidget, Ui_shotView):
     def connect_buttons(self):
         self.pb_liveView.clicked.connect(self.toggle_live_view)
 
-        self.pb_rmBackground.clicked.connect(self.save_background)
-        self.pb_rmBackground.clicked.connect(self.update_indicators)
-
-        self.pb_analyse.clicked.connect(lambda: setattr(self, "isAcquiringFilter", True))
-        self.pb_analyse.clicked.connect(self.update_indicators)
-
-        self.pb_normalize.clicked.connect(lambda: setattr(self, 'isAcquiringNormalization', True))
-        self.pb_normalize.clicked.connect(lambda: self.update_indicators())
-
         self.sb_duration.valueChanged.connect(self.set_acquisition_duration)
 
         self.sb_acqFreq.valueChanged.connect(self.set_acquisition_frequency)
 
-        self.pb_newStack.clicked.connect(self.set_stack_name)
+        self.pb_newStack.clicked.connect(self.configure_create_new_stack)
 
+        self.pb_arm.clicked.connect(self.arm)
+
+        self.pb_collect.clicked.connect(self.collect_data)
+
+        self.pb_finishStack.clicked.connect(self.finish_stack)
+        
         self.pb_reset.clicked.connect(self.reset)
+
+        self.disable_control_buttons()
+
+
 
         # self.sb_absError.valueChanged.connect(lambda: setattr(self, 'maxAcceptedAbsErrorValue', self.sb_absError.value()/100))
         # self.sb_absError.valueChanged.connect(self.draw_error_regions)
@@ -167,9 +171,6 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.setPlainText("")
 
     def connect_checkbox(self):
-        self.ind_rmBackground.clicked.connect(lambda:print("showBackground if available"))
-        self.ind_normalize.clicked.connect(lambda: print("show normalisation if available"))
-        self.ind_analyse.clicked.connect(lambda: print("show acquisition if available"))
         self.cb_cursor.toggled.connect(lambda: self.toggle_cursor(not self.cursorActivated))
         self.show_comPort_available()
         self.cb_comPort.currentIndexChanged.connect(self.set_comPort)
@@ -183,7 +184,7 @@ class ShotView(QWidget, Ui_shotView):
     def connect_signals(self):
         log.debug("Connecting GUI signals...")
         self.s_data_changed.connect(self.update_graph)
-        self.s_data_changed.connect(self.update_indicators)
+        # self.s_data_changed.connect(self.update_indicators)
         # self.s_data_acquisition_done.connect(self.update_indicators)
 
     def create_threads(self, *args):
@@ -206,6 +207,7 @@ class ShotView(QWidget, Ui_shotView):
         self.pyqtgraphWidget.clear()
         self.plotItem = self.pyqtgraphWidget.addPlot()
         self.dataPlotItem = self.plotItem.plot()
+        self.plotItem.showGrid(x=True, y=True)
         self.plotItem.enableAutoRange()
 
         # Create Cursor
@@ -235,8 +237,9 @@ class ShotView(QWidget, Ui_shotView):
         self.cb_comPort.update()
 
     def set_comPort(self):
-        self.comPort = self.cb_comPort.currentText()
-        self.tb_status.append("COM port set to: " + self.comPort)
+        self.comPortName = self.cb_comPort.currentText()
+        self.comPort = serial.Serial(self.comPortName, 115200)
+        self.tb_status.append("COM port set to: " + self.comPortName)
 
     def set_DCvoltageUphole(self):
         self.DCvoltageUphole = int(self.cb_DCvoltageUphole.currentText())
@@ -256,8 +259,60 @@ class ShotView(QWidget, Ui_shotView):
 
     def set_stack_name(self):
         self.stackName = self.le_newStack.text()
-        self.tb_status.append("Current stack name: " + self.stackName)
+        # self.tb_status.append("Current stack name: " + self.stackName)
+
+    def configure_create_new_stack(self):
+        self.set_stack_name()
+        self.stack = Stack(self.comPort, self.acquisitionFrequency, self.acquisitionDuration, self.stackName)
+        self.shotCounter = 0
+        self.disable_configuration_buttons()
+        self.enable_control_buttons()
+        self.tb_status.append("New stack created : {}.".format(self.stackName))
+        self.tb_status.append("Acquisition frequency: {} Hz.".format(self.acquisitionFrequency))
+        self.tb_status.append("Acquisition duration: {} ms.".format(self.acquisitionDuration))
+        self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle))        
+        
+
     
+    def arm(self):
+        command = 'arm'
+        self.comPort.write("{}".format(command).encode())
+        line = self.comPort.read_until("...".encode())
+        # print(line.decode("utf-8"))
+        self.tb_status.append(line.decode("utf-8"))
+
+        line = self.comPort.read_until("ed".encode())
+        line = line.decode("utf-8")
+        self.tb_status.append(line)
+        self.shotCounter += 1
+        self.tb_status.append("shot count : {}".format(self.shotCounter))
+
+    def collect_data(self):
+        out1 = self.stack.harvest('1',show=False)
+        out2 = self.stack.harvest('2',show=False)
+        out3 = self.stack.harvest('3',show=False)
+        list_out = [out1, out2, out3]
+        # fig, ax = plt.subplots(3, 1)
+        # for i in range(3):
+        #     ax[i].plot(list_out[i][0], list_out[i][1], label="X")
+        #     ax[i].plot(list_out[i][0], list_out[i][2], label="Y")
+        #     ax[i].plot(list_out[i][0], list_out[i][3], label="Z")
+
+        # ax[1].legend()
+        # ax[2].set_xlabel('time [s]')
+        # ax[1].set_ylabel("Amplitude [V]")
+        # fig.suptitle("Shot {}".format(self.shotCounter))
+   
+        
+        self.stack.save2file(list_out, self.shotCounter)
+        out_len = out1.shape[-1]
+
+    def finish_stack(self):
+        self.enable_configuration_buttons()
+        self.disable_control_buttons()
+        self.tb_status.append("Stack  " + self.stackName + " si finished, please configure a new one.")
+        self._shotCounter = 0
+
     # General Cursor-Graph Interaction Functions
 
     def set_cursor_mode(self):
@@ -481,7 +536,7 @@ class ShotView(QWidget, Ui_shotView):
         self.normalizationData = None
         self.normalizationMultiplierList = None
         self.isSpectrumNormalized = False
-        self.update_indicators()
+        # self.update_indicators()
         log.info("All parameters and acquisition reset.")
 
     # High-Level Front-End Functions
@@ -506,62 +561,89 @@ class ShotView(QWidget, Ui_shotView):
             if self.cb_cursor.isChecked():
                 self.cb_cursor.toggle()
 
-        self.update_indicators()
+        # self.update_indicators()
 
     def visualize_any_acquisition(self):
         pass
 
-    def update_indicators(self):
-        if self.isAcquisitionThreadAlive:
-            self.ind_rmBackground.setEnabled(True)
-            self.ind_normalize.setEnabled(True)
-            self.ind_analyse.setEnabled(True)
-            self.enable_all_buttons()
-            if self.backgroundData is None:
-                self.ind_rmBackground.setStyleSheet("QCheckBox::indicator{background-color: #db1a1a;}")
-                try:
-                    self.ind_rmBackground.clicked.disconnect()
-                except Exception:
-                    pass
-            else:
-                self.ind_rmBackground.setStyleSheet("QCheckBox::indicator{background-color: #55b350;}")
+    # def update_indicators(self):
+    #     if self.isAcquisitionThreadAlive:
+    #         self.ind_rmBackground.setEnabled(True)
+    #         self.ind_normalize.setEnabled(True)
+    #         self.ind_analyse.setEnabled(True)
+    #         self.enable_all_buttons()
+    #         if self.backgroundData is None:
+    #             self.ind_rmBackground.setStyleSheet("QCheckBox::indicator{background-color: #db1a1a;}")
+    #             try:
+    #                 self.ind_rmBackground.clicked.disconnect()
+    #             except Exception:
+    #                 pass
+    #         else:
+    #             self.ind_rmBackground.setStyleSheet("QCheckBox::indicator{background-color: #55b350;}")
 
-            if self.isAcquiringBackground:
-                self.ind_rmBackground.setStyleSheet("QCheckBox::indicator{background-color: #f79c34;}")
+    #         if self.isAcquiringBackground:
+    #             self.ind_rmBackground.setStyleSheet("QCheckBox::indicator{background-color: #f79c34;}")
 
-            if self.isAcquiringNormalization:
-                self.ind_normalize.setStyleSheet("QCheckBox::indicator{background-color: #f79c34;}")
+    #         if self.isAcquiringNormalization:
+    #             self.ind_normalize.setStyleSheet("QCheckBox::indicator{background-color: #f79c34;}")
 
-            if not self.isSpectrumNormalized:
-                self.ind_normalize.setStyleSheet("QCheckBox::indicator{background-color: #db1a1a;}")
-                try:
-                    self.ind_normalize.clicked.disconnect()
-                except Exception:
-                    pass
-            else:
-                self.ind_normalize.setStyleSheet("QCheckBox::indicator{background-color: #55b350;}")
+    #         if not self.isSpectrumNormalized:
+    #             self.ind_normalize.setStyleSheet("QCheckBox::indicator{background-color: #db1a1a;}")
+    #             try:
+    #                 self.ind_normalize.clicked.disconnect()
+    #             except Exception:
+    #                 pass
+    #         else:
+    #             self.ind_normalize.setStyleSheet("QCheckBox::indicator{background-color: #55b350;}")
 
-            if self.filterData is None:
-                self.ind_analyse.setStyleSheet("QCheckBox::indicator{background-color: #db1a1a;}")
-                try:
-                    self.ind_analyse.clicked.disconnect()
-                except Exception:
-                    pass
-            else:
-                self.ind_analyse.setStyleSheet("QCheckBox::indicator{background-color: #55b350;}")
-        else:
-            self.disable_all_buttons()
-            self.ind_rmBackground.setEnabled(False)
-            self.ind_normalize.setEnabled(False)
-            self.ind_analyse.setEnabled(False)
-            self.ind_rmBackground.setStyleSheet("QCheckBox::indicator{background-color: #9e9e9e;}")
-            self.ind_normalize.setStyleSheet("QCheckBox::indicator{background-color: #9e9e9e;}")
-            self.ind_analyse.setStyleSheet("QCheckBox::indicator{background-color: #9e9e9e;}")
+    #         if self.filterData is None:
+    #             self.ind_analyse.setStyleSheet("QCheckBox::indicator{background-color: #db1a1a;}")
+    #             try:
+    #                 self.ind_analyse.clicked.disconnect()
+    #             except Exception:
+    #                 pass
+    #         else:
+    #             self.ind_analyse.setStyleSheet("QCheckBox::indicator{background-color: #55b350;}")
+    #     else:
+    #         self.disable_all_buttons()
+    #         self.ind_rmBackground.setEnabled(False)
+    #         self.ind_normalize.setEnabled(False)
+    #         self.ind_analyse.setEnabled(False)
+    #         self.ind_rmBackground.setStyleSheet("QCheckBox::indicator{background-color: #9e9e9e;}")
+    #         self.ind_normalize.setStyleSheet("QCheckBox::indicator{background-color: #9e9e9e;}")
+    #         self.ind_analyse.setStyleSheet("QCheckBox::indicator{background-color: #9e9e9e;}")
 
     def disable_all_buttons(self):
-        self.pb_rmBackground.setEnabled(False)
-        self.pb_normalize.setEnabled(False)
-        self.pb_analyse.setEnabled(False)
+        # self.pb_rmBackground.setEnabled(False)
+        # self.pb_normalize.setEnabled(False)
+        # self.pb_analyse.setEnabled(False)
+        pass
+
+    def disable_configuration_buttons(self):
+        self.cb_comPort.setEnabled(False)
+        self.cb_numberOfShuttle.setEnabled(False)
+        self.sb_acqFreq.setEnabled(False)
+        self.sb_duration.setEnabled(False)
+        self.le_newStack.setEnabled(False)
+        self.pb_newStack.setEnabled(False)
+    
+    def disable_control_buttons(self):
+        self.pb_finishStack.setEnabled(False)
+        self.pb_collect.setEnabled(False)
+        self.pb_arm.setEnabled(False)
+
+    def enable_configuration_buttons(self):
+        self.cb_comPort.setEnabled(True)
+        self.cb_numberOfShuttle.setEnabled(True)
+        self.sb_acqFreq.setEnabled(True)
+        self.sb_duration.setEnabled(True)
+        self.le_newStack.setEnabled(True)
+        self.pb_newStack.setEnabled(True)
+    
+    def enable_control_buttons(self):
+        self.pb_finishStack.setEnabled(True)
+        self.pb_collect.setEnabled(True)
+        self.pb_arm.setEnabled(True)
 
     def enable_all_buttons(self):
         self.pb_rmBackground.setEnabled(True)
@@ -579,7 +661,7 @@ class ShotView(QWidget, Ui_shotView):
         else:
 
             self.isAcquiringBackground = 1
-            self.update_indicators()
+            # self.update_indicators()
             self.disable_all_buttons()
 
     @staticmethod

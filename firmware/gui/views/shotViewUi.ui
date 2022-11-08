@@ -34,6 +34,15 @@
      <property name="lineWidth">
       <number>1</number>
      </property>
+     <property name="backgroundBrush">
+      <brush brushstyle="NoBrush">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </property>
     </widget>
    </item>
    <item row="0" column="0" rowspan="2">
@@ -259,14 +268,14 @@
                  <item row="2" column="2">
                   <widget class="QLineEdit" name="le_newStack"/>
                  </item>
-                 <item row="2" column="3">
-                  <widget class="QPushButton" name="pb_newStack">
-                   <property name="text">
-                    <string>create</string>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pb_newStack">
+                 <property name="text">
+                  <string>Configure and create new stack</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -370,81 +379,8 @@
                   </property>
                   <item>
                    <layout class="QGridLayout" name="gridLayout_2">
-                    <item row="1" column="1">
-                     <widget class="QCheckBox" name="ind_normalize">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>16</width>
-                        <height>16</height>
-                       </size>
-                      </property>
-                      <property name="checkable">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <widget class="QCheckBox" name="ind_analyse">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="checkable">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QPushButton" name="pb_analyse">
-                      <property name="enabled">
-                       <bool>false</bool>
-                      </property>
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="statusTip">
-                       <string>Will print a report for the OpticalDevice analysed.</string>
-                      </property>
-                      <property name="text">
-                       <string>Analyse Filter</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QCheckBox" name="ind_rmBackground">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="checkable">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
                     <item row="0" column="0">
-                     <widget class="QPushButton" name="pb_rmBackground">
+                     <widget class="QPushButton" name="pb_arm">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                         <horstretch>0</horstretch>
@@ -455,12 +391,12 @@
                        <string>Acquires 1 data set. Will subtract to other data acquisition and readings.</string>
                       </property>
                       <property name="text">
-                       <string>Remove Background</string>
+                       <string>Arm</string>
                       </property>
                      </widget>
                     </item>
                     <item row="1" column="0">
-                     <widget class="QPushButton" name="pb_normalize">
+                     <widget class="QPushButton" name="pb_collect">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                         <horstretch>0</horstretch>
@@ -474,7 +410,14 @@
                        <string notr="true"/>
                       </property>
                       <property name="text">
-                       <string>Normalize Reference</string>
+                       <string>Collect</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QPushButton" name="pb_finishStack">
+                      <property name="text">
+                       <string>Finish stack</string>
                       </property>
                      </widget>
                     </item>
