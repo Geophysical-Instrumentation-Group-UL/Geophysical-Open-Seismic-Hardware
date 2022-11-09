@@ -47,7 +47,7 @@ if (Serial.available() )
     digitalWrite(Mode,LOW);
     Serial.println("arming...");
     Serial.flush();
-    attachInterrupt(digitalPinToInterrupt(trig),trig_ISR,RISING);
+    attachInterrupt(digitalPinToInterrupt(trig),trig_ISR,LOW);
     // waitingForworkerResponse = true;
 
   }
