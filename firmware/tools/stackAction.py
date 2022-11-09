@@ -82,12 +82,14 @@ class Stack:
         self.serialPort.write("config acq{}\n".format(workerID).encode())
         self.serialPort.write("{}\n".format(self.samplingRate).encode())
         self.serialPort.write("{}\n".format(self.duration).encode())
+        message = []
         for i in range(2):
             line = self.serialPort.readline()
             line = line.decode("utf-8")
-            print(line)
+            message.append(line)
         self.serialPort.reset_input_buffer()
         self.serialPort.reset_output_buffer()
+        return message
 
     def save2file(self,data,shotNumber):
         

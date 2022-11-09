@@ -35,6 +35,9 @@ class ShotView(QWidget, Ui_shotView):
         self.setupUi(self)
 
         self.acqThread = QThread()
+        self.serialSendThread = QThread()
+        self.serialReceiveThread = QThread()
+
         self.isAcquisitionThreadAlive = False
 
         self.spec = None
@@ -120,7 +123,7 @@ class ShotView(QWidget, Ui_shotView):
         self.connect_lineEdit()
         self.create_threads()
         self.create_plots()
-        self.initialize_device()
+        # self.initialize_device()
         # self.update_indicators()
         self.define_colors()
 
@@ -195,6 +198,8 @@ class ShotView(QWidget, Ui_shotView):
         self.acqWorker.moveToThread(self.acqThread)
         self.acqThread.started.connect(self.acqWorker.run)
 
+        # self.serialWorker = Worker(self.serialSend, *args)
+
     def create_dialogs(self):
         self.warningDialog = QMessageBox()
         self.warningDialog.setIcon(QMessageBox.Information)
@@ -264,28 +269,34 @@ class ShotView(QWidget, Ui_shotView):
 
     def configure_create_new_stack(self):
         self.set_stack_name()
+        self.set_comPort()
         self.stack = Stack(self.comPort, self.acquisitionFrequency, self.acquisitionDuration, self.stackName)
         self.shotCounter = 0
         self.disable_configuration_buttons()
         self.enable_control_buttons()
         self.tb_status.clear()
         self.tb_status.append("New stack created : {}.".format(self.stackName))
-        self.set_comPort()
         self.tb_status.append("Acquisition frequency: {} Hz.".format(self.acquisitionFrequency))
         self.tb_status.append("Acquisition duration: {} ms.".format(self.acquisitionDuration))
-        self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle))        
+        self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle)) 
+        self.tb_status.append("number of shuttle: {}.".format(self.numberOfShuttle))  
+        for shuttle in range(self.numberOfShuttle):
+            message = self.stack.configWorker(shuttle+1) 
+            [self.tb_status.append(i) for i in message]
         
 
     
     def arm(self):
         command = 'arm'
-        print(self.comPort)
-        self.comPort.write("{}".format(command).encode())
-        line = self.comPort.read_until("...".encode())
+        self.serialSend("{}".format(command).encode())
+        # self.comPort.write("{}".format(command).encode())
+        line = self.serialRead("...".encode())
+        # line = self.comPort.read_until("...".encode())
         # print(line.decode("utf-8"))
         self.tb_status.append(line.decode("utf-8")) 
 
-        line = self.comPort.read_until("ed".encode())
+        line = self.serialRead("ed".encode())
+        # line = self.comPort.read_until("ed".encode())
         line = line.decode("utf-8")
         self.tb_status.append(line)
         self.shotCounter += 1
@@ -434,6 +445,12 @@ class ShotView(QWidget, Ui_shotView):
             self.model.showDelta = False
             self.remove_graph_arrows()
             self.clickCounter = 0
+
+    def serialSend(self, data):
+        self.comPort.write(data)
+
+    def serialRead(self,until):
+        return self.comPort.read_until(until)
 
     # Low-Level Backend Graph Functions
 
