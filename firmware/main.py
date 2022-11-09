@@ -5,7 +5,7 @@ from tools_deprec import *
 
 
 
-serial_port = 'COM7'
+serial_port = 'COM4'
 baud_rate = 115200  # In arduino, Serial.begin(baud_rate)
 
 ser = serial.Serial(serial_port, baud_rate)

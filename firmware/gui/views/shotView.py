@@ -230,10 +230,9 @@ class ShotView(QWidget, Ui_shotView):
     def show_comPort_available(self):
         comPortList = serial.tools.list_ports.comports()
         self.comPortAvailable = comPortList
-        self.comPortAvailable.append('test1')
-        self.comPortAvailable.append('test2')
         self.cb_comPort.clear()       # delete all items from comboBox
-        self.cb_comPort.addItems(self.comPortAvailable) # add the actual content of self.comboData
+        for ports in self.comPortAvailable:
+            self.cb_comPort.addItems([str(ports.name)]) # add the actual content of self.comboData
         self.cb_comPort.update()
 
     def set_comPort(self):
@@ -268,6 +267,7 @@ class ShotView(QWidget, Ui_shotView):
         self.enable_control_buttons()
         self.tb_status.clear()
         self.tb_status.append("New stack created : {}.".format(self.stackName))
+        self.set_comPort()
         self.tb_status.append("Acquisition frequency: {} Hz.".format(self.acquisitionFrequency))
         self.tb_status.append("Acquisition duration: {} ms.".format(self.acquisitionDuration))
         self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle))        
@@ -276,6 +276,7 @@ class ShotView(QWidget, Ui_shotView):
     
     def arm(self):
         command = 'arm'
+        print(self.comPort)
         self.comPort.write("{}".format(command).encode())
         line = self.comPort.read_until("...".encode())
         # print(line.decode("utf-8"))
