@@ -114,7 +114,7 @@ class Stack:
                 output_file.write("{},{},{},{} \n".format(sample[0], sample[1],sample[2],sample[3]))
 
             output_file.close()
-        print('files saved')
+        
 
     def showStack(self):
         numberOfSample = int(self.samplingRate * self.duration) #TODO test this line

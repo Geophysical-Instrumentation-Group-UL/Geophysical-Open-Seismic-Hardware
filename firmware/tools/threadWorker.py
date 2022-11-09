@@ -6,9 +6,10 @@ import logging
 class WorkerSignals(QObject):
     status = pyqtSignal(str)
     finished = pyqtSignal()
+    result = pyqtSignal(object)
 
 
-class Worker(QObject):
+class Worker(QRunnable):
     def __init__(self, workerFunction, *args, **kwargs):
         super(Worker, self).__init__()
         self.function = workerFunction
@@ -21,9 +22,11 @@ class Worker(QObject):
     @pyqtSlot()
     def run(self):
         try:
-            self.function(*self.args, **self.kwargs)
+            result = self.function(*self.args, **self.kwargs)
         except Exception as e:
             print("ERROR: ", e)
             traceback.print_exc()
+        else:
+            self.signals.result.emit(result)
         finally:
             self.signals.finished.emit()

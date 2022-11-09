@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QMessageBox, QCheckBox, QFileDialog
-from PyQt5.QtCore import pyqtSlot, pyqtSignal, QThread
+from PyQt5.QtCore import pyqtSlot, pyqtSignal, QThread, QThreadPool
 import copy
 import os
 from pyqtgraph import LinearRegionItem, mkBrush, mkPen, SignalProxy, InfiniteLine, TextItem, ArrowItem
@@ -37,6 +37,8 @@ class ShotView(QWidget, Ui_shotView):
         self.acqThread = QThread()
         self.serialSendThread = QThread()
         self.serialReceiveThread = QThread()
+        self.threadpool = QThreadPool()
+        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
 
         self.isAcquisitionThreadAlive = False
 
@@ -123,8 +125,7 @@ class ShotView(QWidget, Ui_shotView):
         self.connect_lineEdit()
         self.create_threads()
         self.create_plots()
-        # self.initialize_device()
-        # self.update_indicators()
+
         self.define_colors()
 
     def initialize_device(self):
@@ -139,7 +140,6 @@ class ShotView(QWidget, Ui_shotView):
             self.deviceConnected = False
             self.spec = mock.MockSpectrometer()
             log.info("No device found; Mocking Spectrometer Enabled.")
-
 
     def connect_buttons(self):
         self.pb_liveView.clicked.connect(self.toggle_live_view)
@@ -194,11 +194,18 @@ class ShotView(QWidget, Ui_shotView):
         # self.s_data_acquisition_done.connect(self.update_indicators)
 
     def create_threads(self, *args):
-        self.acqWorker = Worker(self.manage_data_flow, *args)
-        self.acqWorker.moveToThread(self.acqThread)
-        self.acqThread.started.connect(self.acqWorker.run)
+        pass
+        # self.acqWorker = Worker(self.manage_data_flow, *args)
+        # self.acqWorker.moveToThread(self.acqThread)
+        # self.acqThread.started.connect(self.acqWorker.run)
 
-        # self.serialWorker = Worker(self.serialSend, *args)
+        # self.serialSendWorker = Worker(self.serialSend, *args)
+        # self.serialSendWorker.moveToThread(self.serialSendThread)
+        # self.serialSendThread.started.connect(self.serialSendWorker.run)
+
+        # self.serialReceiveWorker = Worker(self.serialRead)
+        # self.serialReceiveWorker.moveToThread(self.serialReceiveThread)
+        # self.serialReceiveThread.started.connect(self.serialReceiveWorker.run)
 
     def create_dialogs(self):
         self.warningDialog = QMessageBox()
@@ -284,13 +291,21 @@ class ShotView(QWidget, Ui_shotView):
             message = self.stack.configWorker(shuttle+1) 
             [self.tb_status.append(i) for i in message]
         
-
+    def thread_complete(self):
+        print("THREAD COMPLETE!")
     
     def arm(self):
         command = 'arm'
-        self.serialSend("{}".format(command).encode())
+        worker = Worker(self.serialSend("{}".format(command).encode()))
+        worker.signals.result.connect(self.print_message)
+        worker.signals.finished.connect(self.thread_complete)
+        self.threadpool.start(worker)
         # self.comPort.write("{}".format(command).encode())
-        line = self.serialRead("...".encode())
+        workerr = Worker(self.serialRead("...".encode()))
+        workerr.signals.result.connect(self.print_message)
+        workerr.signals.finished.connect(self.thread_complete)
+        self.threadpool.start(workerr)
+        # line = self.serialRead("...".encode())
         # line = self.comPort.read_until("...".encode())
         # print(line.decode("utf-8"))
         self.tb_status.append(line.decode("utf-8")) 
@@ -320,6 +335,7 @@ class ShotView(QWidget, Ui_shotView):
    
         
         self.stack.save2file(list_out, self.shotCounter)
+        self.tb_status.append("Data saved to file.")
         out_len = out1.shape[-1]
 
     def finish_stack(self):
@@ -327,6 +343,7 @@ class ShotView(QWidget, Ui_shotView):
         self.disable_control_buttons()
         self.tb_status.append("Stack  " + self.stackName + " is finished, please configure a new one.")
         self._shotCounter = 0
+        # self.comPort.close()
 
     # General Cursor-Graph Interaction Functions
 
@@ -452,6 +469,8 @@ class ShotView(QWidget, Ui_shotView):
     def serialRead(self,until):
         return self.comPort.read_until(until)
 
+    def print_message(self, message):
+        self.tb_status.append(message)
     # Low-Level Backend Graph Functions
 
     @pyqtSlot(dict)
