@@ -11,6 +11,7 @@ from tools.CircularList import RingBuffer
 from tools.stackAction import Stack
 import numpy as np
 import serial
+from serial.tools import list_ports
 
 
 import logging
@@ -154,6 +155,9 @@ class ShotView(QWidget, Ui_shotView):
         
         self.pb_reset.clicked.connect(self.reset)
 
+        self.show_comPort_available()
+
+
         self.disable_control_buttons()
 
 
@@ -172,7 +176,6 @@ class ShotView(QWidget, Ui_shotView):
 
     def connect_checkbox(self):
         self.cb_cursor.toggled.connect(lambda: self.toggle_cursor(not self.cursorActivated))
-        self.show_comPort_available()
         self.cb_comPort.currentIndexChanged.connect(self.set_comPort)
         self.cb_DCvoltageUphole.addItems(self.DCvoltageUpholeList)
         self.cb_DCvoltageUphole.currentIndexChanged.connect(self.set_DCvoltageUphole)
@@ -228,7 +231,7 @@ class ShotView(QWidget, Ui_shotView):
         pass
 
     def show_comPort_available(self):
-        comPortList = serial.tools.list_ports.comports()
+        comPortList = list_ports.comports()
         self.comPortAvailable = comPortList
         self.cb_comPort.clear()       # delete all items from comboBox
         for ports in self.comPortAvailable:
@@ -280,7 +283,7 @@ class ShotView(QWidget, Ui_shotView):
         self.comPort.write("{}".format(command).encode())
         line = self.comPort.read_until("...".encode())
         # print(line.decode("utf-8"))
-        self.tb_status.append(line.decode("utf-8"))
+        self.tb_status.append(line.decode("utf-8")) 
 
         line = self.comPort.read_until("ed".encode())
         line = line.decode("utf-8")

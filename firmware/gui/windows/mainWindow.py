@@ -1,6 +1,5 @@
 from gui.dialog.helpDialog import HelpDialog
 from gui.views.shotView import ShotView
-from gui.views.microRamanView import MicroRamanView
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QVBoxLayout, QTabWidget, QAction, QApplication
 from PyQt5.QtCore import Qt, pyqtSlot, QFile, QTextStream
 import logging
