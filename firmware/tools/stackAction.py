@@ -19,9 +19,15 @@ class Stack:
             self.serialPort.reset_output_buffer()
             self.serialPort.write("harvest {}".format(workerID).encode())
             line = self.serialPort.read_until("packets : ".encode())
+            print(line.decode("utf-8"))
+            nextLine = self.serialPort.readline().decode("utf-8")
+            print(nextLine)
+            nextLine = self.serialPort.readline().decode("utf-8")
+            print(nextLine)
 
             numberOfSample = int(self.serialPort.read_until().decode("utf-8"))
-            # print(numberOfSample)
+            print(numberOfSample)
+            numberOfSample = int(self.samplingRate * self.duration) #TODO test this line
 
             temps1 = np.zeros((numberOfSample-5))
             seis1 = np.zeros((numberOfSample-5))
@@ -115,7 +121,6 @@ class Stack:
 
             output_file.close()
         
-
     def showStack(self):
         numberOfSample = int(self.samplingRate * self.duration) #TODO test this line
         sensor1 = pd.DataFrame(np.zeros((numberOfSample,4)), columns=["time", "X", "Y", "Z"])

@@ -12,8 +12,7 @@ from tools.stackAction import Stack
 import numpy as np
 import serial
 from serial.tools import list_ports
-import time
-
+import tools_deprec
 
 import logging
 
@@ -26,6 +25,7 @@ Ui_shotView, QtBaseClass = uic.loadUiType(shotViewUiPath)
 
 class ShotView(QWidget, Ui_shotView):
     s_data_changed = pyqtSignal(dict)
+    s_is_trigged = pyqtSignal(bool)
     s_data_acquisition_done = pyqtSignal()
 
     # Initializing Functions
@@ -36,12 +36,11 @@ class ShotView(QWidget, Ui_shotView):
         self.setupUi(self)
 
         self.acqThread = QThread()
-        self.serialSendThread = QThread()
-        self.serialReceiveThread = QThread()
-        self.threadpool = QThreadPool()
-        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
 
+        self.threadpool = QThreadPool()
+ 
         self.isAcquisitionThreadAlive = False
+        self.warningDialog = None
 
         self.spec = None
         self.waves = None
@@ -88,6 +87,7 @@ class ShotView(QWidget, Ui_shotView):
         self.stackName = None
         self.nextStackName = None
         self.shotCounter = 0
+        self.isTrigged = False
 
         self.liveAcquisitionData = []
         self.temporaryIntegrationData = None
@@ -153,7 +153,7 @@ class ShotView(QWidget, Ui_shotView):
 
         self.pb_arm.clicked.connect(self.arm)
 
-        self.pb_collect.clicked.connect(self.collect_data)
+        self.pb_collect.clicked.connect(self.collect)
 
         self.pb_finishStack.clicked.connect(self.finish_stack)
         
@@ -191,6 +191,7 @@ class ShotView(QWidget, Ui_shotView):
     def connect_signals(self):
         log.debug("Connecting GUI signals...")
         self.s_data_changed.connect(self.update_graph)
+        # self.s_is_trigged.connect(self.update_trigger_status)
         # self.s_data_changed.connect(self.update_indicators)
         # self.s_data_acquisition_done.connect(self.update_indicators)
 
@@ -211,12 +212,12 @@ class ShotView(QWidget, Ui_shotView):
     def create_dialogs(self):
         self.warningDialog = QMessageBox()
         self.warningDialog.setIcon(QMessageBox.Information)
-        self.warningDialog.setText("Your light source should be 'OFF' before removing the background signal.")
-        self.warningDialog.setWindowTitle("Remove Background")
-        self.warningDialog.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        self.doNotShow = QCheckBox("Do not show again.")
-        self.warningDialog.setCheckBox(self.doNotShow)
-        self.doNotShow.clicked.connect(lambda: setattr(self, 'backgroundWarningDisplay', 0))
+        self.warningDialog.setText("System is armed, waiting for trigger")
+        # self.warningDialog.setWindowTitle("Remove Background")
+        # self.warningDialog.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        # self.doNotShow = QCheckBox("Do not show again.")
+        # self.warningDialog.setCheckBox(self.doNotShow)
+        # self.doNotShow.clicked.connect(lambda: setattr(self, 'backgroundWarningDisplay', 0))
 
     def create_plots(self):
         log.debug("Creating GUI plots...")
@@ -296,35 +297,58 @@ class ShotView(QWidget, Ui_shotView):
         print("THREAD COMPLETE!")
     
     def arm(self):
+        self.isTrigged = False
         command = 'arm'
-        # worker = Worker(self.armOnly)
-        # worker.signals.result.connect(self.print_message)
-        # worker.signals.finished.connect(self.thread_complete)
-        # self.threadpool.start(worker)
         self.comPort.write("{}".format(command).encode())
-        # workerr = Worker(self.serialRead("...".encode()))
-        # workerr.signals.result.connect(self.print_message)
-        # workerr.signals.finished.connect(self.thread_complete)
-        # self.threadpool.start(workerr)
-        # line = self.serialRead("...".encode())
-        line = self.comPort.read_until("...".encode())
-        print(line.decode("utf-8"))
-        self.tb_status.append(line.decode("utf-8")) 
-        self.tb_status.append("Armed.")
+        line = self.comPort.read_until("...".encode()) # waits for the ok of the leader (very fast, does not block he GUI long enough to be annoying)
 
-        # line = self.serialRead("ed".encode())
-        # line = self.comPort.read_until("ed".encode())
+        self.tb_status.append(line.decode("utf-8")) 
+        self.tb_status.append("Armed, waiting for trigger.")
+            
 
         workerr = Worker(self.waitForTrig)
         workerr.signals.result.connect(self.print_message)
         workerr.signals.finished.connect(self.thread_complete)
         self.threadpool.start(workerr)
         
+        
+    def collect(self):
+        out1 = tools_deprec.harvest('1',self.comPort)
+        # out1 = self.stack.harvest('1',show=False)
+        self.tb_status.append("shuttle 1 harvested")
+        out2 = self.stack.harvest('2',show=False)
+        self.tb_status.append("shuttle 1 harvested")
+        out3 = self.stack.harvest('3',show=False)
+        self.tb_status.append("shuttle 1 harvested")
+        # worker = Worker(self.collect_data)
+        # worker.signals.result.connect(self.print_message)
+        # worker.signals.finished.connect(self.thread_complete)
+        # self.threadpool.start(worker)
+        
+
+    def finish_stack(self):
+        self.enable_configuration_buttons()
+        self.disable_control_buttons()
+        self.tb_status.append("Stack  " + self.stackName + " is finished, please configure a new one.")
+        self._shotCounter = 0
+        self.comPort.close()
+
+    def waitForTrig(self,progress_callback):
+        line = self.serialRead("ed".encode())
+        line = line.decode("utf-8")
+        progress_callback.emit(line)
+        self.tb_status.append(line)
+        self.shotCounter += 1
+        self.tb_status.append("shot count : {}".format(self.shotCounter))
 
     def collect_data(self):
         out1 = self.stack.harvest('1',show=False)
+        self.tb_status.append("shuttle 1 harvested")
         out2 = self.stack.harvest('2',show=False)
+        self.tb_status.append("shuttle 1 harvested")
         out3 = self.stack.harvest('3',show=False)
+        self.tb_status.append("shuttle 1 harvested")
+
         list_out = [out1, out2, out3]
         # fig, ax = plt.subplots(3, 1)
         # for i in range(3):
@@ -341,23 +365,6 @@ class ShotView(QWidget, Ui_shotView):
         self.stack.save2file(list_out, self.shotCounter)
         self.tb_status.append("Data saved to file.")
         out_len = out1.shape[-1]
-
-    def finish_stack(self):
-        self.enable_configuration_buttons()
-        self.disable_control_buttons()
-        self.tb_status.append("Stack  " + self.stackName + " is finished, please configure a new one.")
-        self._shotCounter = 0
-        # self.comPort.close()
-    def waitForTrig(self,progress_callback):
-        line = self.serialRead("ed".encode())
-        line = line.decode("utf-8")
-        progress_callback.emit(line)
-        self.tb_status.append(line)
-        self.shotCounter += 1
-        self.tb_status.append("shot count : {}".format(self.shotCounter))
-
-
-
     # General Cursor-Graph Interaction Functions
 
     def set_cursor_mode(self):
