@@ -12,6 +12,7 @@ from tools.stackAction import Stack
 import numpy as np
 import serial
 from serial.tools import list_ports
+import time
 
 
 import logging
@@ -296,26 +297,29 @@ class ShotView(QWidget, Ui_shotView):
     
     def arm(self):
         command = 'arm'
-        worker = Worker(self.serialSend("{}".format(command).encode()))
-        worker.signals.result.connect(self.print_message)
-        worker.signals.finished.connect(self.thread_complete)
-        self.threadpool.start(worker)
-        # self.comPort.write("{}".format(command).encode())
-        workerr = Worker(self.serialRead("...".encode()))
+        # worker = Worker(self.armOnly)
+        # worker.signals.result.connect(self.print_message)
+        # worker.signals.finished.connect(self.thread_complete)
+        # self.threadpool.start(worker)
+        self.comPort.write("{}".format(command).encode())
+        # workerr = Worker(self.serialRead("...".encode()))
+        # workerr.signals.result.connect(self.print_message)
+        # workerr.signals.finished.connect(self.thread_complete)
+        # self.threadpool.start(workerr)
+        # line = self.serialRead("...".encode())
+        line = self.comPort.read_until("...".encode())
+        print(line.decode("utf-8"))
+        self.tb_status.append(line.decode("utf-8")) 
+        self.tb_status.append("Armed.")
+
+        # line = self.serialRead("ed".encode())
+        # line = self.comPort.read_until("ed".encode())
+
+        workerr = Worker(self.waitForTrig)
         workerr.signals.result.connect(self.print_message)
         workerr.signals.finished.connect(self.thread_complete)
         self.threadpool.start(workerr)
-        # line = self.serialRead("...".encode())
-        # line = self.comPort.read_until("...".encode())
-        # print(line.decode("utf-8"))
-        self.tb_status.append(line.decode("utf-8")) 
-
-        line = self.serialRead("ed".encode())
-        # line = self.comPort.read_until("ed".encode())
-        line = line.decode("utf-8")
-        self.tb_status.append(line)
-        self.shotCounter += 1
-        self.tb_status.append("shot count : {}".format(self.shotCounter))
+        
 
     def collect_data(self):
         out1 = self.stack.harvest('1',show=False)
@@ -344,6 +348,15 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("Stack  " + self.stackName + " is finished, please configure a new one.")
         self._shotCounter = 0
         # self.comPort.close()
+    def waitForTrig(self,progress_callback):
+        line = self.serialRead("ed".encode())
+        line = line.decode("utf-8")
+        progress_callback.emit(line)
+        self.tb_status.append(line)
+        self.shotCounter += 1
+        self.tb_status.append("shot count : {}".format(self.shotCounter))
+
+
 
     # General Cursor-Graph Interaction Functions
 
@@ -467,7 +480,8 @@ class ShotView(QWidget, Ui_shotView):
         self.comPort.write(data)
 
     def serialRead(self,until):
-        return self.comPort.read_until(until)
+        line = self.comPort.read_until(until)
+        return line
 
     def print_message(self, message):
         self.tb_status.append(message)

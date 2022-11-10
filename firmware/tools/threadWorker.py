@@ -7,6 +7,7 @@ class WorkerSignals(QObject):
     status = pyqtSignal(str)
     finished = pyqtSignal()
     result = pyqtSignal(object)
+    progress = pyqtSignal(str)
 
 
 class Worker(QRunnable):
@@ -17,7 +18,7 @@ class Worker(QRunnable):
         self.kwargs = kwargs
         self.signals = WorkerSignals()
 
-        self.kwargs["statusSignal"] = self.signals.status
+        self.kwargs['progress_callback'] = self.signals.progress
 
     @pyqtSlot()
     def run(self):
