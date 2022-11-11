@@ -268,7 +268,9 @@ class ShotView(QWidget, Ui_shotView):
     def configure_create_new_stack(self):
         self.set_stack_name()
         self.set_comPort()
-        self.numberOfShuttle = 1
+        self.set_numberOfShuttle()
+        self.set_acquisition_duration()
+        self.set_acquisition_frequency()
         self.stack = Stack(self.comPort, str(self.acquisitionFrequency), str(self.acquisitionDuration), self.stackName)
         self.shotCounter = 0
         self.disable_configuration_buttons()

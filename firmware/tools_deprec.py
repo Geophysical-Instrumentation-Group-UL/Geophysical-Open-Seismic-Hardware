@@ -15,15 +15,8 @@ def harvest(workerId,serialPort,show=False):
         print("harvesting worker {}".format(workerId))
         line = serialPort.read_until("packets : ".encode())
         print(line.decode("utf-8")) 
-        # line = serialPort.read_until().decode("utf-8")
-        # print(line)
-        # line = serialPort.read_until().decode("utf-8")
-        # print(line)
-        # line = serialPort.read_until().decode("utf-8")
-        # print(line)
         numberOfSample = int(serialPort.read_until().decode("utf-8"))
         print(numberOfSample)
-        # numberOfSample=193
 
         temps1 = np.zeros((numberOfSample-5))
         seis1 = np.zeros((numberOfSample-5))
