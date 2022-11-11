@@ -113,7 +113,7 @@ if (Serial.available() )
     HarvestData(&RS485Serial,workerid);
     delay(5);
     digitalWrite(Mode,LOW);
-    Serial.println("harvesting");
+    Serial.print(workerid);Serial.println("harvesting");
     waitForData = true;
     waitingForworkerResponse = false; //I dont want the status, i want the data, the status is allready asked at 
     // the end of the triggered state
@@ -126,6 +126,7 @@ if (waitingForworkerResponse == true)
       if (receivedStatus.status == IDLE)
       {
         Serial.print("Status : ");Serial.println("IDLE");
+        // Serial.print("Status : ");Serial.println("CONFIGURED");
       }
       else if (receivedStatus.status == ARMED)
       {
@@ -139,11 +140,11 @@ if (waitingForworkerResponse == true)
       else if (receivedStatus.status == CONFIGURED)
       {
         String conf;
-        conf = RS485Serial.readStringUntil('s');
+        conf = RS485Serial.readStringUntil('f');
         delay(5);
         // Serial.println("ADC parameters : ");
         // Serial.println("-----------------");
-        // Serial.print(conf);
+        // Serial.println(conf);
         // Serial.println("-----------------");
         Serial.print("Status : ");Serial.println("CONFIGURED");
         Serial.flush();

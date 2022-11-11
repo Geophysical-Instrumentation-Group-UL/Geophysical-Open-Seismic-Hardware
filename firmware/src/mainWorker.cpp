@@ -19,7 +19,7 @@ bool mustSendStatus = false;
 bool mustSendData = false;
 bool readyToTrig = false;
 int workerStatus = IDLE;
-int workerID = 2;
+int workerID = 1;
 int chipSelectPin = 10;
 ad7768_chip _default = {
 		/* Configuration */
@@ -196,18 +196,18 @@ if(RS485Serial.available () >0 and readyToTrig == false)
      ad7768_setup(configType);
      workerStatus = CONFIGURED;
 
-    delay(5);
-    digitalWrite(Mode,HIGH);
-    delay(5);
-    sendWorkerStatus(&RS485Serial,workerStatus,workerID);
-    delay(5);
-    digitalWrite(Mode,LOW);
+    // delay(5);
+    // digitalWrite(Mode,HIGH);
+    // delay(5);
+    // sendWorkerStatus(&RS485Serial,workerStatus,workerID);
+    // delay(5);
+    // digitalWrite(Mode,LOW);
 
 
     number_of_data_packet =  int(((duration/1000.0) * (samplingRate*1000.0)));
-    delay(5);
-    digitalWrite(Mode,HIGH);
-    delay(5);
+    // delay(5);
+    // digitalWrite(Mode,HIGH);
+    // delay(5);
 
 
 
@@ -217,16 +217,16 @@ if(RS485Serial.available () >0 and readyToTrig == false)
     // RS485Serial.println(receivedCommand.data.substring(index+1).toInt());
     // ODR = print_config(configType, &RS485Serial);
     // RS485Serial.flush();
-    delay(5);
-    RS485Serial.println('e');
-        delay(5);
+    // delay(5);
+    // RS485Serial.print(duration);RS485Serial.println(samplingRate);
+    //     delay(5);
 
-    RS485Serial.println('s');
-    digitalWrite(Mode,LOW);
+    // RS485Serial.println('s');
+    // digitalWrite(Mode,LOW);
 
  
     // Serial.println(number_of_data_packet);
-    workerStatus = IDLE;
+    // workerStatus = IDLE;
     
 
    }

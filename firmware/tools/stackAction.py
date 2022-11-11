@@ -91,7 +91,8 @@ class Stack:
         message = []
         for i in range(2):
             line = self.serialPort.readline()
-            line = line.decode("utf-8")
+            line = line.decode('utf-8')
+            print(line)
             message.append(line)
         self.serialPort.reset_input_buffer()
         self.serialPort.reset_output_buffer()

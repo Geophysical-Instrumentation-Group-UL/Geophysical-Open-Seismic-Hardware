@@ -17,8 +17,8 @@ samplingRate = input()
 print("duration [ms] ? ")
 duration = input()
 configAcquisition('1',ser, samplingRate, duration)
-configAcquisition('2',ser, samplingRate, duration)
-configAcquisition('3',ser, samplingRate, duration)
+# configAcquisition('2',ser, samplingRate, duration)
+# configAcquisition('3',ser, samplingRate, duration)
 out_len = 0
 
 
@@ -38,8 +38,8 @@ while ON:
         print("duration ? ")
         duration = input()
         configAcquisition('1',ser, samplingRate, duration)
-        configAcquisition('2',ser, samplingRate, duration)
-        configAcquisition('3',ser, samplingRate, duration)
+        # configAcquisition('2',ser, samplingRate, duration)
+        # configAcquisition('3',ser, samplingRate, duration)
 
 
 
@@ -61,11 +61,12 @@ while ON:
 
     elif command == 'collect':
         out1 = harvest('1', ser)
-        out2 = harvest('2', ser)
-        out3 = harvest('3', ser)
-        list_out = [out1, out2, out3]
+        # out2 = harvest('2', ser)
+        # out3 = harvest('3', ser)
+        # list_out = [out1, out2, out3]
+        list_out = [out1]
         fig, ax = plt.subplots(3, 1)
-        for i in range(3):
+        for i in range(1):
             ax[i].plot(list_out[i][0], list_out[i][1], label="X")
             ax[i].plot(list_out[i][0], list_out[i][2], label="Y")
             ax[i].plot(list_out[i][0], list_out[i][3], label="Z")

@@ -37,7 +37,7 @@ class ShotView(QWidget, Ui_shotView):
 
         self.acqThread = QThread()
 
-        self.threadpool = QThreadPool()
+        # self.threadpool = QThreadPool()
  
         self.isAcquisitionThreadAlive = False
         self.warningDialog = None
@@ -82,7 +82,7 @@ class ShotView(QWidget, Ui_shotView):
         self.expositionCounter = 0
         self.changeLastExposition = 0
 
-        self.acquisitionFrequency = 4000
+        self.acquisitionFrequency = 4
 
         self.stackName = None
         self.nextStackName = None
@@ -197,17 +197,6 @@ class ShotView(QWidget, Ui_shotView):
 
     def create_threads(self, *args):
         pass
-        # self.acqWorker = Worker(self.manage_data_flow, *args)
-        # self.acqWorker.moveToThread(self.acqThread)
-        # self.acqThread.started.connect(self.acqWorker.run)
-
-        # self.serialSendWorker = Worker(self.serialSend, *args)
-        # self.serialSendWorker.moveToThread(self.serialSendThread)
-        # self.serialSendThread.started.connect(self.serialSendWorker.run)
-
-        # self.serialReceiveWorker = Worker(self.serialRead)
-        # self.serialReceiveWorker.moveToThread(self.serialReceiveThread)
-        # self.serialReceiveThread.started.connect(self.serialReceiveWorker.run)
 
     def create_dialogs(self):
         self.warningDialog = QMessageBox()
@@ -279,7 +268,8 @@ class ShotView(QWidget, Ui_shotView):
     def configure_create_new_stack(self):
         self.set_stack_name()
         self.set_comPort()
-        self.stack = Stack(self.comPort, self.acquisitionFrequency, self.acquisitionDuration, self.stackName)
+        self.numberOfShuttle = 1
+        self.stack = Stack(self.comPort, str(self.acquisitionFrequency), str(self.acquisitionDuration), self.stackName)
         self.shotCounter = 0
         self.disable_configuration_buttons()
         self.enable_control_buttons()
@@ -288,9 +278,9 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("Acquisition frequency: {} Hz.".format(self.acquisitionFrequency))
         self.tb_status.append("Acquisition duration: {} ms.".format(self.acquisitionDuration))
         self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle)) 
-        self.tb_status.append("number of shuttle: {}.".format(self.numberOfShuttle))  
+        self.tb_status.append("COM port set to : {}.".format(self.comPortName))  
         for shuttle in range(self.numberOfShuttle):
-            message = self.stack.configWorker(shuttle+1) 
+            message = self.stack.configWorker(str(shuttle+1)) 
             [self.tb_status.append(i) for i in message]
         
     def thread_complete(self):
@@ -306,11 +296,16 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("Armed, waiting for trigger.")
             
 
-        workerr = Worker(self.waitForTrig)
-        workerr.signals.result.connect(self.print_message)
-        workerr.signals.finished.connect(self.thread_complete)
-        self.threadpool.start(workerr)
-        
+        # workerr = Worker(self.waitForTrig)
+        # workerr.signals.result.connect(self.print_message)
+        # workerr.signals.finished.connect(self.thread_complete)
+        # self.threadpool.start(workerr)
+        line = self.serialRead("ed".encode())
+        line = line.decode("utf-8")
+        # progress_callback.emit(line)
+        self.tb_status.append(line)
+        self.shotCounter += 1
+        self.tb_status.append("shot count : {}".format(self.shotCounter))
         
     def collect(self):
         out1 = tools_deprec.harvest('1',self.comPort)
