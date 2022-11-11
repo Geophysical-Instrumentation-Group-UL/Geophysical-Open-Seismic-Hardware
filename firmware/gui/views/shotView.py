@@ -37,7 +37,7 @@ class ShotView(QWidget, Ui_shotView):
 
         self.acqThread = QThread()
 
-        # self.threadpool = QThreadPool()
+        self.threadpool = QThreadPool()
  
         self.isAcquisitionThreadAlive = False
         self.warningDialog = None
@@ -296,25 +296,20 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("Armed, waiting for trigger.")
             
 
-        # workerr = Worker(self.waitForTrig)
-        # workerr.signals.result.connect(self.print_message)
-        # workerr.signals.finished.connect(self.thread_complete)
-        # self.threadpool.start(workerr)
-        line = self.serialRead("ed".encode())
-        line = line.decode("utf-8")
-        # progress_callback.emit(line)
-        self.tb_status.append(line)
-        self.shotCounter += 1
-        self.tb_status.append("shot count : {}".format(self.shotCounter))
+        workerr = Worker(self.waitForTrig)
+        workerr.signals.result.connect(self.print_message)
+        workerr.signals.finished.connect(self.thread_complete)
+        self.threadpool.start(workerr)
+        
         
     def collect(self):
         out1 = tools_deprec.harvest('1',self.comPort)
         # out1 = self.stack.harvest('1',show=False)
         self.tb_status.append("shuttle 1 harvested")
-        out2 = self.stack.harvest('2',show=False)
-        self.tb_status.append("shuttle 1 harvested")
-        out3 = self.stack.harvest('3',show=False)
-        self.tb_status.append("shuttle 1 harvested")
+        # out2 = self.stack.harvest('2',show=False)
+        # self.tb_status.append("shuttle 1 harvested")
+        # out3 = self.stack.harvest('3',show=False)
+        # self.tb_status.append("shuttle 1 harvested")
         # worker = Worker(self.collect_data)
         # worker.signals.result.connect(self.print_message)
         # worker.signals.finished.connect(self.thread_complete)
