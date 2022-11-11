@@ -155,6 +155,8 @@ class ShotView(QWidget, Ui_shotView):
 
         self.pb_collect.clicked.connect(self.collect)
 
+        self.pb_showStack.clicked.connect(self.show_stack)
+
         self.pb_finishStack.clicked.connect(self.finish_stack)
         
         self.pb_reset.clicked.connect(self.reset)
@@ -305,19 +307,11 @@ class ShotView(QWidget, Ui_shotView):
         
         
     def collect(self):
-        # out1 = tools_deprec.harvest('1',self.comPort)
-        # out1 = self.stack.harvest('1',show=False)
-        # self.tb_status.append("shuttle 1 harvested")
-        # out2 = self.stack.harvest('2',show=False)
-        # self.tb_status.append("shuttle 1 harvested")
-        # out3 = self.stack.harvest('3',show=False)
-        # self.tb_status.append("shuttle 1 harvested")
         worker = Worker(self.collect_data)
         worker.signals.result.connect(self.print_message)
         worker.signals.finished.connect(self.thread_complete)
         self.threadpool.start(worker)
         
-
     def finish_stack(self):
         self.enable_configuration_buttons()
         self.disable_control_buttons()
@@ -358,6 +352,9 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("Data saved to file.")
         out_len = out1.shape[-1]
     # General Cursor-Graph Interaction Functions
+
+    def show_stack(self):
+        self.stack.showStack()
 
     def set_cursor_mode(self):
         if self.rb_delta.isChecked():

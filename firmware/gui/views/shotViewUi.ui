@@ -376,6 +376,13 @@
                </property>
                <item>
                 <layout class="QGridLayout" name="gridLayout_2">
+                 <item row="3" column="0">
+                  <widget class="QPushButton" name="pb_finishStack">
+                   <property name="text">
+                    <string>Finish stack</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="0" column="0">
                   <widget class="QPushButton" name="pb_arm">
                    <property name="sizePolicy">
@@ -412,9 +419,9 @@
                   </widget>
                  </item>
                  <item row="2" column="0">
-                  <widget class="QPushButton" name="pb_finishStack">
+                  <widget class="QPushButton" name="pb_showStack">
                    <property name="text">
-                    <string>Finish stack</string>
+                    <string>Show stack</string>
                    </property>
                   </widget>
                  </item>

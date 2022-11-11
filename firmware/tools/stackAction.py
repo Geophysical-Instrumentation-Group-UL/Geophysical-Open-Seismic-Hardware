@@ -13,6 +13,7 @@ class Stack:
         self.stackName = stackName
         self.samplingRate = samplingRate
         self.duration = duration
+        self.numberOfSample = int(self.samplingRate) * int(self.duration)
 
     def harvest(self,workerID,show=False):
             self.serialPort.reset_input_buffer()
@@ -20,15 +21,15 @@ class Stack:
             self.serialPort.write("harvest {}".format(workerID).encode())
             line = self.serialPort.read_until("packets : ".encode())
 
-            numberOfSample = int(self.serialPort.read_until().decode("utf-8"))
-            print(numberOfSample)
+            self.numberOfSample = int(self.serialPort.read_until().decode("utf-8"))
+            print(self.numberOfSample)
 
-            temps1 = np.zeros((numberOfSample-5))
-            seis1 = np.zeros((numberOfSample-5))
-            seis2 = np.zeros((numberOfSample-5))
-            seis3 = np.zeros((numberOfSample-5))
+            temps1 = np.zeros((self.numberOfSample-5))
+            seis1 = np.zeros((self.numberOfSample-5))
+            seis2 = np.zeros((self.numberOfSample-5))
+            seis3 = np.zeros((self.numberOfSample-5))
 
-            for i in range(numberOfSample-5):
+            for i in range(self.numberOfSample-5):
                 line = self.serialPort.readline()
                 line = line.decode("utf-8")
                 temp = line.split(',')
@@ -117,10 +118,9 @@ class Stack:
             output_file.close()
         
     def showStack(self):
-        numberOfSample = int(self.samplingRate * self.duration) #TODO test this line
-        sensor1 = pd.DataFrame(np.zeros((numberOfSample,4)), columns=["time", "X", "Y", "Z"])
-        sensor2 = pd.DataFrame(np.zeros((numberOfSample,4)), columns=["time", "X", "Y", "Z"])
-        sensor3 = pd.DataFrame(np.zeros((numberOfSample,4)), columns=["time", "X", "Y", "Z"])
+        sensor1 = pd.DataFrame(np.zeros((self.numberOfSample,4)), columns=["time", "X", "Y", "Z"])
+        sensor2 = pd.DataFrame(np.zeros((self.numberOfSample,4)), columns=["time", "X", "Y", "Z"])
+        sensor3 = pd.DataFrame(np.zeros((self.numberOfSample,4)), columns=["time", "X", "Y", "Z"])
         counter = 0
         files = fnmatch.filter((f for f in os.listdir('./data')), '{}*.txt'.format(self.stackName))
 
