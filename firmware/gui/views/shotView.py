@@ -303,17 +303,17 @@ class ShotView(QWidget, Ui_shotView):
         
         
     def collect(self):
-        out1 = tools_deprec.harvest('1',self.comPort)
+        # out1 = tools_deprec.harvest('1',self.comPort)
         # out1 = self.stack.harvest('1',show=False)
-        self.tb_status.append("shuttle 1 harvested")
+        # self.tb_status.append("shuttle 1 harvested")
         # out2 = self.stack.harvest('2',show=False)
         # self.tb_status.append("shuttle 1 harvested")
         # out3 = self.stack.harvest('3',show=False)
         # self.tb_status.append("shuttle 1 harvested")
-        # worker = Worker(self.collect_data)
-        # worker.signals.result.connect(self.print_message)
-        # worker.signals.finished.connect(self.thread_complete)
-        # self.threadpool.start(worker)
+        worker = Worker(self.collect_data)
+        worker.signals.result.connect(self.print_message)
+        worker.signals.finished.connect(self.thread_complete)
+        self.threadpool.start(worker)
         
 
     def finish_stack(self):
@@ -331,15 +331,15 @@ class ShotView(QWidget, Ui_shotView):
         self.shotCounter += 1
         self.tb_status.append("shot count : {}".format(self.shotCounter))
 
-    def collect_data(self):
+    def collect_data(self,progress_callback):
         out1 = self.stack.harvest('1',show=False)
         self.tb_status.append("shuttle 1 harvested")
-        out2 = self.stack.harvest('2',show=False)
-        self.tb_status.append("shuttle 1 harvested")
-        out3 = self.stack.harvest('3',show=False)
-        self.tb_status.append("shuttle 1 harvested")
+        # out2 = self.stack.harvest('2',show=False)
+        # self.tb_status.append("shuttle 1 harvested")
+        # out3 = self.stack.harvest('3',show=False)
+        # self.tb_status.append("shuttle 1 harvested")
 
-        list_out = [out1, out2, out3]
+        list_out = [out1]
         # fig, ax = plt.subplots(3, 1)
         # for i in range(3):
         #     ax[i].plot(list_out[i][0], list_out[i][1], label="X")
