@@ -8,11 +8,10 @@ import seabreeze.spectrometers as sb
 from gui.modules import mockSpectrometer as mock
 from tools.threadWorker import Worker
 from tools.CircularList import RingBuffer
-from tools.stackAction import Stack
+from tools.stack import Stack
 import numpy as np
 import serial
 from serial.tools import list_ports
-import tools_deprec
 
 import logging
 
