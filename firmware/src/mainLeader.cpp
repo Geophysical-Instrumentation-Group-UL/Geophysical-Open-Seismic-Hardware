@@ -51,6 +51,9 @@ if (Serial.available() )
     // waitingForworkerResponse = true;
 
   }
+  if (instruction.equals("trig")){
+    triggered_state = true;
+  }
   if (instruction.startsWith("get status")) {
     digitalWrite(Mode,HIGH);
     delay(5);

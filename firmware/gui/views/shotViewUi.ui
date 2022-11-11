@@ -377,13 +377,20 @@
                <item>
                 <layout class="QGridLayout" name="gridLayout_2">
                  <item row="3" column="0">
+                  <widget class="QPushButton" name="pb_showStack">
+                   <property name="text">
+                    <string>Show stack</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
                   <widget class="QPushButton" name="pb_finishStack">
                    <property name="text">
                     <string>Finish stack</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="0">
+                 <item row="1" column="0">
                   <widget class="QPushButton" name="pb_arm">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -399,7 +406,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
+                 <item row="2" column="0">
                   <widget class="QPushButton" name="pb_collect">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -418,10 +425,10 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="0">
-                  <widget class="QPushButton" name="pb_showStack">
+                 <item row="0" column="0">
+                  <widget class="QPushButton" name="pb_acquireBackground">
                    <property name="text">
-                    <string>Show stack</string>
+                    <string>Acquire background</string>
                    </property>
                   </widget>
                  </item>

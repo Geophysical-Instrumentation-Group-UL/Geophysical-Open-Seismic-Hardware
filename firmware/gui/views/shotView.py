@@ -12,7 +12,7 @@ from tools.stack import Stack
 import numpy as np
 import serial
 from serial.tools import list_ports
-
+import time
 import logging
 
 
@@ -157,6 +157,8 @@ class ShotView(QWidget, Ui_shotView):
         self.pb_showStack.clicked.connect(self.show_stack)
 
         self.pb_finishStack.clicked.connect(self.finish_stack)
+
+        self.pb_acquireBackground.clicked.connect(self.acquire_background)
         
         self.pb_reset.clicked.connect(self.reset)
 
@@ -303,8 +305,7 @@ class ShotView(QWidget, Ui_shotView):
         workerr.signals.result.connect(self.print_message)
         workerr.signals.finished.connect(self.thread_complete)
         self.threadpool.start(workerr)
-        
-        
+              
     def collect(self):
         worker = Worker(self.collect_data)
         worker.signals.result.connect(self.print_message)
@@ -349,11 +350,32 @@ class ShotView(QWidget, Ui_shotView):
         
         self.stack.save2file(list_out, self.shotCounter)
         self.tb_status.append("Data saved to file.")
+        time.sleep(2) # to let the time to write the file
         out_len = out1.shape[-1]
-    # General Cursor-Graph Interaction Functions
 
     def show_stack(self):
         self.stack.showStack()
+
+    def acquire_background(self):
+        print("acquire background")
+        workerd = Worker(self.acquire_background_worker)
+        workerd.signals.result.connect(self.print_message)
+        workerd.signals.finished.connect(self.thread_complete)
+        self.threadpool.start(workerd)
+        time.sleep(10) #to let the time to do all the trigerring and collect
+        self.show_stack() # cannot start a plt plot outside the main thread
+
+    def acquire_background_worker(self,progress_callback):
+        self.arm()
+        print('armed')
+        self.autoTrigger()
+        self.collect()
+
+    def autoTrigger(self):
+        self.comPort.write("trig".encode())
+
+
+    # General Cursor-Graph Interaction Functions
 
     def set_cursor_mode(self):
         if self.rb_delta.isChecked():
@@ -509,19 +531,19 @@ class ShotView(QWidget, Ui_shotView):
     def read_data_live(self, *args, **kwargs):
         return self.spec.intensities()[2:]
 
-    def acquire_background(self):
-        if self.isAcquiringBackground:
-            self.launchIntegrationAcquisition = True
-            self.launch_integration_acquisition()
+    # def acquire_background(self):
+    #     if self.isAcquiringBackground:
+    #         self.launchIntegrationAcquisition = True
+    #         self.launch_integration_acquisition()
 
-            if self.isAcquisitionDone:
-                self.backgroundData = self.temporaryIntegrationData
-                self.isBackgroundRemoved = True
-                self.isAcquiringBackground = False
-                log.info("Background acquired.")
+    #         if self.isAcquisitionDone:
+    #             self.backgroundData = self.temporaryIntegrationData
+    #             self.isBackgroundRemoved = True
+    #             self.isAcquiringBackground = False
+    #             log.info("Background acquired.")
 
-        if self.isBackgroundRemoved:
-            self.displayData = self.displayData - self.backgroundData
+    #     if self.isBackgroundRemoved:
+            # self.displayData = self.displayData - self.backgroundData
 
     def normalize_data(self):
         if self.isAcquiringNormalization:
