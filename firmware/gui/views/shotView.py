@@ -41,6 +41,7 @@ class ShotView(QWidget, Ui_shotView):
         self.isAcquisitionThreadAlive = False
         self.warningDialog = None
 
+
         self.spec = None
         self.waves = None
         self.y = None
@@ -124,7 +125,7 @@ class ShotView(QWidget, Ui_shotView):
         self.connect_checkbox()
         self.connect_lineEdit()
         self.create_threads()
-        self.create_plots()
+        # self.create_plots()
 
         self.define_colors()
 
