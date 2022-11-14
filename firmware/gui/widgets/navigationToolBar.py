@@ -1,7 +1,6 @@
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
 from PyQt5.QtWidgets import QAction
-from PyQt5.QtGui import QIcon
-import os
+
 
 # imageFolder = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + "\\fig"
 

@@ -51,7 +51,14 @@ if (Serial.available() )
     // waitingForworkerResponse = true;
 
   }
-  if (instruction.equals("trig")){
+  if (instruction.equals("background")){
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    arm(&RS485Serial);
+    delay(5);
+    digitalWrite(Mode,LOW);
+    Serial.println("arming...");
+    Serial.flush();
     triggered_state = true;
   }
   if (instruction.startsWith("get status")) {

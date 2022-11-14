@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QMessageBox, QCheckBox, QFileDialog
+from PyQt5.QtWidgets import QWidget, QMessageBox, QCheckBox, QFileDialog, QSpacerItem, QSizePolicy
 from PyQt5.QtCore import pyqtSlot, pyqtSignal, QThread, QThreadPool
 import copy
 import os
@@ -6,6 +6,7 @@ from pyqtgraph import LinearRegionItem, mkBrush, mkPen, SignalProxy, InfiniteLin
 from PyQt5 import uic
 import seabreeze.spectrometers as sb
 from gui.modules import mockSpectrometer as mock
+from gui.widgets.navigationToolBar import NavigationToolbar
 from tools.threadWorker import Worker
 from tools.CircularList import RingBuffer
 from tools.stack import Stack
@@ -14,6 +15,7 @@ import serial
 from serial.tools import list_ports
 import time
 import logging
+
 
 
 log = logging.getLogger(__name__)
@@ -42,10 +44,6 @@ class ShotView(QWidget, Ui_shotView):
         self.warningDialog = None
 
 
-        self.spec = None
-        self.waves = None
-        self.y = None
-        self.dataLen = None
         self.deviceConnected = False
         self.comPortAvailable = []
         self.comPortName = None
@@ -55,28 +53,32 @@ class ShotView(QWidget, Ui_shotView):
         self.numberOfShuttleList = ['1','2','3']
         self.numberOfShuttle = None
 
+        self.time_data = []
+        self.x_data = []
+        self.y_data = []
+        self.z_data = []
 
-        self.plotItem = None
-        self.xPlotRange = [350, 1000]
-        self.yPlotRange = [0, 4120]
-        self.cursorActivated = False
-        self.clickCounter = 0
-        self.dataPlotItem = None
-        self.acqWorker = None
-        self.cursorCurvePosition = []
-        self.mode = "delta"
-        self.deltaValues = []
+        # self.plotItem = None
+        # self.xPlotRange = [350, 1000]
+        # self.yPlotRange = [0, 4120]
+        # self.cursorActivated = False
+        # self.clickCounter = 0
+        # self.dataPlotItem = None
+        # self.acqWorker = None
+        # self.cursorCurvePosition = []
+        # self.mode = "delta"
+        # self.deltaValues = []
 
-        self.errorRejectedList = None
-        self.maxAcceptedAbsErrorValue = 0.01
-        self.rejectedXValues = []
-        self.pyqtRegionList = []
-        self.errorRegionsPoints = []
-        self.errorRegionsIndexesLimits = []
-        self.errorRegionsLimits = []
-        self.errorBrush = mkBrush((255, 0, 0, 25))
-        self.errorPen = mkPen((255, 0, 0, 180))
-        self.dataSep = 0
+        # self.errorRejectedList = None
+        # self.maxAcceptedAbsErrorValue = 0.01
+        # self.rejectedXValues = []
+        # self.pyqtRegionList = []
+        # self.errorRegionsPoints = []
+        # self.errorRegionsIndexesLimits = []
+        # self.errorRegionsLimits = []
+        # self.errorBrush = mkBrush((255, 0, 0, 25))
+        # self.errorPen = mkPen((255, 0, 0, 180))
+        # self.dataSep = 0
 
         self.acquisitionDuration = 50
         self.expositionCounter = 0
@@ -125,6 +127,7 @@ class ShotView(QWidget, Ui_shotView):
         self.connect_checkbox()
         self.connect_lineEdit()
         self.create_threads()
+        self.initGraph()
         # self.create_plots()
 
         self.define_colors()
@@ -141,6 +144,21 @@ class ShotView(QWidget, Ui_shotView):
             self.deviceConnected = False
             self.spec = mock.MockSpectrometer()
             log.info("No device found; Mocking Spectrometer Enabled.")
+
+    def initGraph(self):
+        x = np.linspace(0, 1, 1000)
+        y = np.linspace(0, 0.1, 1000)
+        self.mpl_graph.canvas.axes.plot(x,y)
+        self.mpl_graph.canvas.draw()
+        self.initToolbar()
+
+    def initToolbar(self):
+        self.realToolbar = NavigationToolbar(self.mpl_graph.canvas, self.mpl_graph)
+        # spacer = QSpacerItem(10, 10, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.verticalLayoutNav.addWidget(self.realToolbar)
+        # self.verticalLayoutNav.addItem(spacer)
+        self.realToolbar.update()
+        self.realToolbar.push_current()
 
     def connect_buttons(self):
         self.pb_liveView.clicked.connect(self.toggle_live_view)
@@ -329,6 +347,7 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("shot count : {}".format(self.shotCounter))
 
     def collect_data(self,progress_callback):
+        print('start')
         out1 = self.stack.harvest('1',show=False)
         self.tb_status.append("shuttle 1 harvested")
         # out2 = self.stack.harvest('2',show=False)
@@ -337,6 +356,7 @@ class ShotView(QWidget, Ui_shotView):
         # self.tb_status.append("shuttle 1 harvested")
 
         list_out = [out1]
+        print('harvested_data')
         # fig, ax = plt.subplots(3, 1)
         # for i in range(3):
         #     ax[i].plot(list_out[i][0], list_out[i][1], label="X")
@@ -351,8 +371,15 @@ class ShotView(QWidget, Ui_shotView):
         
         self.stack.save2file(list_out, self.shotCounter)
         self.tb_status.append("Data saved to file.")
+        print('data saved to file')
         time.sleep(2) # to let the time to write the file
         out_len = out1.shape[-1]
+        self.time_data = out1[:,0]
+        self.x_data = out1[:,1]
+        self.y_data = out1[:,2]
+        self.z_data = out1[:,3]
+        print('ready to update plot')
+        self.update_graph()
 
     def show_stack(self):
         self.stack.showStack()
@@ -363,17 +390,16 @@ class ShotView(QWidget, Ui_shotView):
         workerd.signals.result.connect(self.print_message)
         workerd.signals.finished.connect(self.thread_complete)
         self.threadpool.start(workerd)
-        time.sleep(10) #to let the time to do all the trigerring and collect
-        self.show_stack() # cannot start a plt plot outside the main thread
 
     def acquire_background_worker(self,progress_callback):
-        self.arm()
-        print('armed')
         self.autoTrigger()
-        self.collect()
+        print('triiii')
+        time.sleep(1)
+        self.collect_data(progress_callback)
+        print('collected')
 
     def autoTrigger(self):
-        self.comPort.write("trig".encode())
+        self.comPort.write("background".encode())
 
 
     # General Cursor-Graph Interaction Functions
@@ -505,10 +531,15 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append(message)
     # Low-Level Backend Graph Functions
 
-    @pyqtSlot(dict)
-    def update_graph(self, plotData):
-        self.y = plotData["y"]
-        self.dataPlotItem.setData(self.waves, self.y)
+    def update_graph(self):
+        self.mpl_graph.canvas.axes.cla()
+        self.mpl_graph.canvas.axes.plot(self.time_data,self.x_data, label="X")
+        self.mpl_graph.canvas.axes.plot(self.time_data,self.y_data, label="Y")
+        self.mpl_graph.canvas.axes.plot(self.time_data,self.z_data, label="Z")
+        self.mpl_graph.canvas.axes.legend()
+        self.mpl_graph.canvas.axes.set_xlabel('time [s]')
+        self.mpl_graph.canvas.axes.set_ylabel("Amplitude [V]")
+        self.mpl_graph.canvas.draw()
 
     def manage_data_flow(self, *args, **kwargs):
         self.waves = self.spec.wavelengths()[2:]
