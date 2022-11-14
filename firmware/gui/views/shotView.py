@@ -347,7 +347,6 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("shot count : {}".format(self.shotCounter))
 
     def collect_data(self,progress_callback):
-        print('start')
         out1 = self.stack.harvest('1',show=False)
         self.tb_status.append("shuttle 1 harvested")
         # out2 = self.stack.harvest('2',show=False)
@@ -356,7 +355,6 @@ class ShotView(QWidget, Ui_shotView):
         # self.tb_status.append("shuttle 1 harvested")
 
         list_out = [out1]
-        print('harvested_data')
         # fig, ax = plt.subplots(3, 1)
         # for i in range(3):
         #     ax[i].plot(list_out[i][0], list_out[i][1], label="X")
@@ -371,21 +369,18 @@ class ShotView(QWidget, Ui_shotView):
         
         self.stack.save2file(list_out, self.shotCounter)
         self.tb_status.append("Data saved to file.")
-        print('data saved to file')
         time.sleep(2) # to let the time to write the file
         out_len = out1.shape[-1]
-        self.time_data = out1[:,0]
-        self.x_data = out1[:,1]
-        self.y_data = out1[:,2]
-        self.z_data = out1[:,3]
-        print('ready to update plot')
+        self.time_data = out1[0,:]
+        self.x_data = out1[1,:]
+        self.y_data = out1[2,:]
+        self.z_data = out1[3,:]
         self.update_graph()
 
     def show_stack(self):
         self.stack.showStack()
 
     def acquire_background(self):
-        print("acquire background")
         workerd = Worker(self.acquire_background_worker)
         workerd.signals.result.connect(self.print_message)
         workerd.signals.finished.connect(self.thread_complete)
@@ -393,10 +388,8 @@ class ShotView(QWidget, Ui_shotView):
 
     def acquire_background_worker(self,progress_callback):
         self.autoTrigger()
-        print('triiii')
         time.sleep(1)
         self.collect_data(progress_callback)
-        print('collected')
 
     def autoTrigger(self):
         self.comPort.write("background".encode())
