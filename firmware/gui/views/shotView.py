@@ -148,19 +148,22 @@ class ShotView(QWidget, Ui_shotView):
             log.info("No device found; Mocking Spectrometer Enabled.")
 
     def initGraph(self):
+        self.mpl_graph.canvas.fig.clear()
         x = np.linspace(0, 1, 1000)
         y = np.linspace(0, 0.1, 1000)
         # print(self.mpl_graph.canvas.fig)
 
-        # self.axes = [self.mpl_graph.canvas.fig.add_subplot(self.numberOfShuttle,1,i+1) for i in range(self.numberOfShuttle)]
-        # print(self.axes)
-        # for i in range(self.numberOfShuttle):
-        #     self.axes[i].plot(x, y)
-        #     self.axes[i].set_title('Shuttle {}'.format(i+1))
-        #     self.axes[i].set_xlabel('Time (s)')
-        #     self.axes[i].set_ylabel('Voltage (V)')
-        self.mpl_graph.canvas.axes.plot(x,y)
-        # self.ax[0].change_geometry(1, self.numberOfShuttle, 1)
+        self.axes = [self.mpl_graph.canvas.fig.add_subplot(self.numberOfShuttle,1,i+1) for i in range(self.numberOfShuttle)]
+
+        for i in range(self.numberOfShuttle):
+            if i > 0:
+                self.axes[i].get_shared_x_axes().join(self.axes[i], self.axes[i-1])
+            self.axes[i].plot(x, y)
+            self.axes[i].set_title('Shuttle {}'.format(i+1))
+            self.axes[i].set_ylabel('Voltage (V)')
+        
+        self.axes[-1].set_xlabel('Time (s)')
+
         self.mpl_graph.canvas.draw()
 
     def initToolbar(self):

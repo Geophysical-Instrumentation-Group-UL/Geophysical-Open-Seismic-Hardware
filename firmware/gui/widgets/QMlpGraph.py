@@ -10,7 +10,7 @@ class mplCanvas(FigureCanvas):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         self.fig = Figure(figsize=(width, height), dpi=dpi, facecolor=(1,1,1))
         # self.fig, self.ax
-        self.axes = self.fig.add_subplot(111)
+        # self.axes = self.fig.add_subplot(111)
 
 
         FigureCanvas.__init__(self, self.fig)
