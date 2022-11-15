@@ -7,10 +7,11 @@ import pandas as pd
 
 class Stack:
        
-    def __init__(self,serialPort,samplingRate,duration,stackName):
+    def __init__(self,serialPort,samplingRate,duration,stackName,numberOfShuttle):
         
         self.serialPort = serialPort
         self.stackName = stackName
+        self.numberOfShuttle = numberOfShuttle
         self.samplingRate = samplingRate
         self.duration = duration
         self.numberOfSample = int(self.samplingRate) * int(self.duration)
@@ -117,44 +118,26 @@ class Stack:
 
             output_file.close()
         
-    def showStack(self):
-        sensor1 = pd.DataFrame(np.zeros((self.numberOfSample,4)), columns=["time", "X", "Y", "Z"])
-        sensor2 = pd.DataFrame(np.zeros((self.numberOfSample,4)), columns=["time", "X", "Y", "Z"])
-        sensor3 = pd.DataFrame(np.zeros((self.numberOfSample,4)), columns=["time", "X", "Y", "Z"])
+    def loadStack(self):
+        list_out = []
+        for i in range(self.numberOfShuttle):
+            list_out.append(pd.DataFrame(np.zeros((self.numberOfSample,4)), columns=["time", "X", "Y", "Z"]))
+
         counter = 0
         files = fnmatch.filter((f for f in os.listdir('./data')), '{}*.txt'.format(self.stackName))
 
         for file in files:
-            if file[-5] == '1':
-                temp = pd.read_csv('data/' + file,delimiter=',', header=None)
-                temp.columns = ["time", "X", "Y", "Z"]
-                sensor1 = sensor1 + temp
-                counter += 1
-            elif file[-5] == '2':
-                temp = pd.read_csv('data/' +file,delimiter=',', header=None)
-                temp.columns = ["time", "X", "Y", "Z"]
-                sensor2 = sensor2 + temp
-                counter += 1
-            elif file[-5] == '3':
-                temp = pd.read_csv('data/' +file, delimiter=',',header=None)
-                temp.columns = ["time", "X", "Y", "Z"]
-                sensor3 = sensor3 + temp
-                counter += 1
-        counter = counter / 3
-        sensor1 = sensor1 / counter
-        sensor2 = sensor2 / counter
-        sensor3 = sensor3 / counter
-        list_out = [sensor1, sensor2, sensor3]
-        fig, ax = plt.subplots(3, 1)
-        for i in range(3):
-            ax[i].plot(list_out[i]['time'], list_out[i]['X'], label="X")
-            ax[i].plot(list_out[i]['time'], list_out[i]['Y'], label="Y")
-            ax[i].plot(list_out[i]['time'], list_out[i]['Z'], label="Z")
-            ax[i].set_title("Worker {}".format(i+1))
-        ax[1].legend()
-        ax[2].set_xlabel('time [s]')
-        ax[1].set_ylabel("Amplitude [V]")
-        fig.suptitle("Stack {}".format(self.stackName))
-        plt.tight_layout()
-        plt.show()
+            shuttleID = int(file[-5])
+            temp = pd.read_csv('data/' + file,delimiter=',', header=None)
+            temp.columns = ["time", "X", "Y", "Z"]
+            list_out[shuttleID-1] = list_out[shuttleID-1] + temp
+            counter += 1
+        
+        counter = counter / self.numberOfShuttle
+        for i in range(self.numberOfShuttle):
+            list_out[i] = list_out[i]/counter
+            list_out[i] = list_out[i].to_numpy().T
+
+        return list_out
+
 

@@ -56,6 +56,7 @@ class ShotView(QWidget, Ui_shotView):
 
         self.list_out = []
         self.axes = []
+        self.currentStack = None
 
         # self.plotItem = None
         # self.xPlotRange = [350, 1000]
@@ -306,7 +307,7 @@ class ShotView(QWidget, Ui_shotView):
         self.set_numberOfShuttle()
         self.set_acquisition_duration()
         self.set_acquisition_frequency()
-        self.stack = Stack(self.comPort, str(self.acquisitionFrequency), str(self.acquisitionDuration), self.stackName)
+        self.currentStack = Stack(self.comPort, str(self.acquisitionFrequency), str(self.acquisitionDuration), self.stackName,self.numberOfShuttle)
         self.shotCounter = 0
         self.disable_configuration_buttons()
         self.enable_control_buttons()
@@ -319,7 +320,7 @@ class ShotView(QWidget, Ui_shotView):
         self.initGraph()
 
         for shuttle in range(self.numberOfShuttle):
-            message = self.stack.configWorker(str(shuttle+1)) 
+            message = self.currentStack.configWorker(str(shuttle+1)) 
             [self.tb_status.append(i) for i in message]
         
     def thread_complete(self):
@@ -364,35 +365,20 @@ class ShotView(QWidget, Ui_shotView):
     def collect_data(self,progress_callback):
         self.list_out = []
         for i in range(self.numberOfShuttle):
-            out1 = self.stack.harvest('{}'.format(i+1),show=False)
+            out = self.currentStack.harvest('{}'.format(i+1),show=False)
             self.tb_status.append("shuttle {} harvested".format(i+1))
-            self.list_out.append(out1)
-
-
-        # fig, ax = plt.subplots(3, 1)
-        # for i in range(3):
-        #     ax[i].plot(list_out[i][0], list_out[i][1], label="X")
-        #     ax[i].plot(list_out[i][0], list_out[i][2], label="Y")
-        #     ax[i].plot(list_out[i][0], list_out[i][3], label="Z")
-
-        # ax[1].legend()
-        # ax[2].set_xlabel('time [s]')
-        # ax[1].set_ylabel("Amplitude [V]")
-        # fig.suptitle("Shot {}".format(self.shotCounter))
-   
+            self.list_out.append(out)
         
-        self.stack.save2file(self.list_out, self.shotCounter)
+        self.currentStack.save2file(self.list_out, self.shotCounter)
         self.tb_status.append("Data saved to file.")
         time.sleep(2) # to let the time to write the file
-        # out_len = out1.shape[-1]
-        # self.time_data = out1[0,:]
-        # self.x_data = out1[1,:]
-        # self.y_data = out1[2,:]
-        # self.z_data = out1[3,:]
         self.update_graph()
 
     def show_stack(self):
-        self.stack.showStack()
+        self.list_out = self.currentStack.loadStack()
+        for sensors in self.list_out:
+            sensors = sensors / self.shotCounter
+        self.update_graph()
 
     def acquire_background(self):
         workerd = Worker(self.acquire_background_worker)
