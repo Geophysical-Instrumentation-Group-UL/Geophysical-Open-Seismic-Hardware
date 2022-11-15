@@ -15,6 +15,7 @@ import serial
 from serial.tools import list_ports
 import time
 import logging
+import matplotlib.pyplot as plt
 
 
 
@@ -127,7 +128,8 @@ class ShotView(QWidget, Ui_shotView):
         self.connect_checkbox()
         self.connect_lineEdit()
         self.create_threads()
-        self.initGraph()
+        self.initToolbar()
+
         # self.create_plots()
 
         self.define_colors()
@@ -148,9 +150,18 @@ class ShotView(QWidget, Ui_shotView):
     def initGraph(self):
         x = np.linspace(0, 1, 1000)
         y = np.linspace(0, 0.1, 1000)
+        # print(self.mpl_graph.canvas.fig)
+
+        # self.axes = [self.mpl_graph.canvas.fig.add_subplot(self.numberOfShuttle,1,i+1) for i in range(self.numberOfShuttle)]
+        # print(self.axes)
+        # for i in range(self.numberOfShuttle):
+        #     self.axes[i].plot(x, y)
+        #     self.axes[i].set_title('Shuttle {}'.format(i+1))
+        #     self.axes[i].set_xlabel('Time (s)')
+        #     self.axes[i].set_ylabel('Voltage (V)')
         self.mpl_graph.canvas.axes.plot(x,y)
+        # self.ax[0].change_geometry(1, self.numberOfShuttle, 1)
         self.mpl_graph.canvas.draw()
-        self.initToolbar()
 
     def initToolbar(self):
         self.realToolbar = NavigationToolbar(self.mpl_graph.canvas, self.mpl_graph)
@@ -303,9 +314,11 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("Acquisition duration: {} ms.".format(self.acquisitionDuration))
         self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle)) 
         self.tb_status.append("COM port set to : {}.".format(self.comPortName))  
-        for shuttle in range(self.numberOfShuttle):
-            message = self.stack.configWorker(str(shuttle+1)) 
-            [self.tb_status.append(i) for i in message]
+        self.initGraph()
+
+        # for shuttle in range(self.numberOfShuttle):
+        #     message = self.stack.configWorker(str(shuttle+1)) 
+        #     [self.tb_status.append(i) for i in message]
         
     def thread_complete(self):
         print("THREAD COMPLETE!")
