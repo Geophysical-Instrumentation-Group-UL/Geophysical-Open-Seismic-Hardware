@@ -32,7 +32,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tabWidget = QTabWidget()
         self.setCentralWidget(self.tabWidget)
         self.tabWidget.addTab(self.shotView, "ShotView")
-        # self.tabWidget.addTab(self.microRamanView, "MicroRaman")
 
     def setup_menuBar(self):
         self.helpAction = QAction(self)
@@ -46,7 +45,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def create_views_and_dialogs(self):
         self.helpDialog = HelpDialog()
         self.shotView = ShotView(model=self.model)
-        # self.microRamanView = MicroRamanView(model=self.model)
 
     def connect_buttons(self):
         self.helpAction.triggered.connect(self.show_helpDialog)

@@ -1,10 +1,10 @@
-__author__ = "Marc-André Vigneault"
-__copyright__ = "Copyright 2021-2022, Marc-André Vigneault"
+__author__ = "Arnaud Mercier"
+__copyright__ = "Copyright 2022, Arnaud Mercier"
 __credits__ = ["Marc-André Vigneault"]
 __license__ = "GPL"
 __version__ = "0.1"
-__maintainer__ = "Marc-André Vigneault"
-__email__ = "marc-andre.vigneault@ulaval.ca"
+__maintainer__ = "Arnaud Mercier"
+__email__ = "arnaud.mercier05@gmail.com"
 __status__ = "Development"
 
 

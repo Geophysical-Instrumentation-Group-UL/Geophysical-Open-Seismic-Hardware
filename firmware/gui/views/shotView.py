@@ -1,21 +1,17 @@
-from PyQt5.QtWidgets import QWidget, QMessageBox, QCheckBox, QFileDialog, QSpacerItem, QSizePolicy
-from PyQt5.QtCore import pyqtSlot, pyqtSignal, QThread, QThreadPool
-import copy
+from PyQt5.QtWidgets import QWidget, QMessageBox
+from PyQt5.QtCore import pyqtSignal, QThread, QThreadPool
 import os
-from pyqtgraph import LinearRegionItem, mkBrush, mkPen, SignalProxy, InfiniteLine, TextItem, ArrowItem
 from PyQt5 import uic
 import seabreeze.spectrometers as sb
 from gui.modules import mockSpectrometer as mock
 from gui.widgets.navigationToolBar import NavigationToolbar
 from tools.threadWorker import Worker
-from tools.CircularList import RingBuffer
 from tools.stack import Stack
 import numpy as np
 import serial
 from serial.tools import list_ports
 import time
 import logging
-import matplotlib.pyplot as plt
 
 
 
@@ -290,6 +286,7 @@ class ShotView(QWidget, Ui_shotView):
         self.update_graph()
 
     def acquire_background(self):
+        self.disable_control_buttons()
         workerd = Worker(self.acquire_background_worker)
         workerd.signals.result.connect(self.print_message)
         workerd.signals.finished.connect(self.thread_complete)
@@ -299,6 +296,7 @@ class ShotView(QWidget, Ui_shotView):
         self.autoTrigger()
         time.sleep(1)
         self.collect_data(progress_callback)
+        self.enable_control_buttons()
 
     def autoTrigger(self):
         self.comPort.write("background".encode())
@@ -342,7 +340,6 @@ class ShotView(QWidget, Ui_shotView):
         self.pb_arm.setEnabled(False)
         self.pb_acquireBackground.setEnabled(False)
         self.pb_showStack.setEnabled(False)
-
 
     def enable_configuration_buttons(self):
         self.cb_comPort.setEnabled(True)
