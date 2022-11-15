@@ -274,70 +274,6 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <layout class="QHBoxLayout" name="lay_main">
-            <item>
-             <widget class="QFlashButton" name="pb_liveView">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="statusTip">
-               <string>Starts data reading from the SpectrumDevice</string>
-              </property>
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="text">
-               <string>Live View</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pb_reset">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="statusTip">
-               <string>Resets the data and the view to initial parameters.</string>
-              </property>
-              <property name="text">
-               <string>Reset All</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="Line" name="line">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QWidget" name="w_control" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <property name="leftMargin">
@@ -369,7 +305,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QPushButton" name="pb_arm">
+                <widget class="QFlashButton" name="pb_arm">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -460,82 +396,6 @@
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
-     <item>
-      <widget class="QWidget" name="w_graphControls" native="true">
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
-        <item>
-         <widget class="QCheckBox" name="cb_cursor">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="statusTip">
-           <string>Show a crosshair cursor.</string>
-          </property>
-          <property name="text">
-           <string>Cursor</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="rb_delta">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="toolTip">
-           <string>Double-click to set a marker</string>
-          </property>
-          <property name="statusTip">
-           <string>Double-click the Graph to set a marker</string>
-          </property>
-          <property name="whatsThis">
-           <string>Double-click to set a marker</string>
-          </property>
-          <property name="text">
-           <string extracomment="Double-click to set a marker">Delta</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="rb_free">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="toolTip">
-           <string>Double-click to set a marker</string>
-          </property>
-          <property name="statusTip">
-           <string>Double-click the Graph to set a marker</string>
-          </property>
-          <property name="whatsThis">
-           <string>Double-click to set a marker</string>
-          </property>
-          <property name="text">
-           <string extracomment="Double-click to set a marker">Free</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>1300</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-     </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayoutNav">
        <property name="spacing">
