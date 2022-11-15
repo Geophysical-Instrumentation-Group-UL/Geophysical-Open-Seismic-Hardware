@@ -54,10 +54,8 @@ class ShotView(QWidget, Ui_shotView):
         self.numberOfShuttleList = ['1','2','3']
         self.numberOfShuttle = None
 
-        self.time_data = []
-        self.x_data = []
-        self.y_data = []
-        self.z_data = []
+        self.list_out = []
+        self.axes = []
 
         # self.plotItem = None
         # self.xPlotRange = [350, 1000]
@@ -151,18 +149,19 @@ class ShotView(QWidget, Ui_shotView):
         self.mpl_graph.canvas.fig.clear()
         x = np.linspace(0, 1, 1000)
         y = np.linspace(0, 0.1, 1000)
-        # print(self.mpl_graph.canvas.fig)
 
         self.axes = [self.mpl_graph.canvas.fig.add_subplot(self.numberOfShuttle,1,i+1) for i in range(self.numberOfShuttle)]
 
         for i in range(self.numberOfShuttle):
             if i > 0:
                 self.axes[i].get_shared_x_axes().join(self.axes[i], self.axes[i-1])
+                self.axes[i].get_shared_y_axes().join(self.axes[i], self.axes[i-1])
             self.axes[i].plot(x, y)
             self.axes[i].set_title('Shuttle {}'.format(i+1))
-            self.axes[i].set_ylabel('Voltage (V)')
+            self.axes[i].set_ylabel('Accel (g)')
         
         self.axes[-1].set_xlabel('Time (s)')
+        self.mpl_graph.canvas.fig.tight_layout()
 
         self.mpl_graph.canvas.draw()
 
@@ -319,9 +318,9 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("COM port set to : {}.".format(self.comPortName))  
         self.initGraph()
 
-        # for shuttle in range(self.numberOfShuttle):
-        #     message = self.stack.configWorker(str(shuttle+1)) 
-        #     [self.tb_status.append(i) for i in message]
+        for shuttle in range(self.numberOfShuttle):
+            message = self.stack.configWorker(str(shuttle+1)) 
+            [self.tb_status.append(i) for i in message]
         
     def thread_complete(self):
         print("THREAD COMPLETE!")
@@ -363,14 +362,13 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("shot count : {}".format(self.shotCounter))
 
     def collect_data(self,progress_callback):
-        out1 = self.stack.harvest('1',show=False)
-        self.tb_status.append("shuttle 1 harvested")
-        # out2 = self.stack.harvest('2',show=False)
-        # self.tb_status.append("shuttle 1 harvested")
-        # out3 = self.stack.harvest('3',show=False)
-        # self.tb_status.append("shuttle 1 harvested")
+        self.list_out = []
+        for i in range(self.numberOfShuttle):
+            out1 = self.stack.harvest('{}'.format(i+1),show=False)
+            self.tb_status.append("shuttle {} harvested".format(i+1))
+            self.list_out.append(out1)
 
-        list_out = [out1]
+
         # fig, ax = plt.subplots(3, 1)
         # for i in range(3):
         #     ax[i].plot(list_out[i][0], list_out[i][1], label="X")
@@ -383,14 +381,14 @@ class ShotView(QWidget, Ui_shotView):
         # fig.suptitle("Shot {}".format(self.shotCounter))
    
         
-        self.stack.save2file(list_out, self.shotCounter)
+        self.stack.save2file(self.list_out, self.shotCounter)
         self.tb_status.append("Data saved to file.")
         time.sleep(2) # to let the time to write the file
-        out_len = out1.shape[-1]
-        self.time_data = out1[0,:]
-        self.x_data = out1[1,:]
-        self.y_data = out1[2,:]
-        self.z_data = out1[3,:]
+        # out_len = out1.shape[-1]
+        # self.time_data = out1[0,:]
+        # self.x_data = out1[1,:]
+        # self.y_data = out1[2,:]
+        # self.z_data = out1[3,:]
         self.update_graph()
 
     def show_stack(self):
@@ -541,13 +539,18 @@ class ShotView(QWidget, Ui_shotView):
     # Low-Level Backend Graph Functions
 
     def update_graph(self):
-        self.mpl_graph.canvas.axes.cla()
-        self.mpl_graph.canvas.axes.plot(self.time_data,self.x_data, label="X")
-        self.mpl_graph.canvas.axes.plot(self.time_data,self.y_data, label="Y")
-        self.mpl_graph.canvas.axes.plot(self.time_data,self.z_data, label="Z")
-        self.mpl_graph.canvas.axes.legend()
-        self.mpl_graph.canvas.axes.set_xlabel('time [s]')
-        self.mpl_graph.canvas.axes.set_ylabel("Amplitude [V]")
+        for i in range(self.numberOfShuttle):
+            self.axes[i].cla()
+            time_data = self.list_out[i][0,:]
+            x_data = self.list_out[i][1,:]
+            y_data = self.list_out[i][2,:]
+            z_data = self.list_out[i][3,:]
+            self.axes[i].plot(time_data,x_data, label="X")
+            self.axes[i].plot(time_data,y_data, label="Y")
+            self.axes[i].plot(time_data,z_data, label="Z")
+            self.axes[i].legend()
+            self.axes[i].set_xlabel('time [s]')
+            self.axes[i].set_ylabel("Amplitude [V]")
         self.mpl_graph.canvas.draw()
 
     def manage_data_flow(self, *args, **kwargs):
