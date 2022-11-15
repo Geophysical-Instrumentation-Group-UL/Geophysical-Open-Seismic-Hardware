@@ -2,8 +2,7 @@ from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.QtCore import pyqtSignal, QThread, QThreadPool
 import os
 from PyQt5 import uic
-import seabreeze.spectrometers as sb
-from gui.modules import mockSpectrometer as mock
+from gui.modules import mockLeader as mock
 from gui.widgets.navigationToolBar import NavigationToolbar
 from tools.threadWorker import Worker
 from tools.stack import Stack
@@ -42,6 +41,8 @@ class ShotView(QWidget, Ui_shotView):
 
         self.deviceConnected = False
         self.comPortAvailable = []
+        self.mock = None
+        self.mocking = False
         self.comPortName = None
         self.comPort = None
         self.DCvoltageUpholeList = ['40','60','80','100']
@@ -69,6 +70,8 @@ class ShotView(QWidget, Ui_shotView):
         self.connect_checkbox()
         self.connect_lineEdit()
         self.initToolbar()
+        self.show_comPort_available()
+        self.disable_control_buttons()
 
      
 
@@ -129,20 +132,7 @@ class ShotView(QWidget, Ui_shotView):
         self.pb_finishStack.clicked.connect(self.finish_stack)
 
         self.pb_acquireBackground.clicked.connect(self.acquire_background)
-        
-
-        self.show_comPort_available()
-
-
-        self.disable_control_buttons()
-
-
-
-        # self.sb_absError.valueChanged.connect(lambda: setattr(self, 'maxAcceptedAbsErrorValue', self.sb_absError.value()/100))
-        # self.sb_absError.valueChanged.connect(self.draw_error_regions)
-
-        # self.tb_folderPath.clicked.connect(self.select_save_folder)
-        # self.pb_saveData.clicked.connect(self.save_capture_csv)
+    
 
         log.debug("Connecting GUI buttons...")
 
@@ -165,6 +155,11 @@ class ShotView(QWidget, Ui_shotView):
     def show_comPort_available(self):
         comPortList = list_ports.comports()
         self.comPortAvailable = comPortList
+        if len(self.comPortAvailable) == 0:
+            self.mock = mock.MockLeader()
+            log.info("No device found; Mocking Leader Enabled.")
+            self.tb_status.append("No device found; Mocking Leader Enabled.")
+            self.mocking = True
         self.cb_comPort.clear()       # delete all items from comboBox
         for ports in self.comPortAvailable:
             self.cb_comPort.addItems([str(ports.name)]) # add the actual content of self.comboData
@@ -211,10 +206,12 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle)) 
         self.tb_status.append("COM port set to : {}.".format(self.comPortName))  
         self.initGraph()
-
-        for shuttle in range(self.numberOfShuttle):
-            message = self.currentStack.configWorker(str(shuttle+1)) 
-            [self.tb_status.append(i) for i in message]
+        if self.mocking:
+            pass
+        else:
+            for shuttle in range(self.numberOfShuttle):
+                message = self.currentStack.configWorker(str(shuttle+1)) 
+                [self.tb_status.append(i) for i in message]
         
     def thread_complete(self):
         print("THREAD COMPLETE!")

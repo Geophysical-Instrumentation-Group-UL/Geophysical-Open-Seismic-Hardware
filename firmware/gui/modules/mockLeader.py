@@ -2,7 +2,7 @@ import numpy as np
 import time
 
 
-class MockSpectrometer:
+class MockLeader:
     def __init__(self):
         self.exposureTime = 3000
         self.shutter = 0.2
