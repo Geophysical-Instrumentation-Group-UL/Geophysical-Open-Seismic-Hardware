@@ -141,7 +141,7 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.setPlainText("")
 
     def connect_checkbox(self):
-        self.cb_comPort.currentIndexChanged.connect(self.set_comPort)
+        self.show_comPort_available()
         self.cb_DCvoltageUphole.addItems(self.DCvoltageUpholeList)
         self.cb_DCvoltageUphole.currentIndexChanged.connect(self.set_DCvoltageUphole)
         self.cb_numberOfShuttle.addItems(self.numberOfShuttleList)
@@ -155,11 +155,11 @@ class ShotView(QWidget, Ui_shotView):
     def show_comPort_available(self):
         comPortList = list_ports.comports()
         self.comPortAvailable = comPortList
-        if len(self.comPortAvailable) == 0:
-            self.mock = mock.MockLeader()
-            log.info("No device found; Mocking Leader Enabled.")
-            self.tb_status.append("No device found; Mocking Leader Enabled.")
-            self.mocking = True
+        # if len(self.comPortAvailable) == 0:
+        #     self.mock = mock.MockLeader()
+        #     log.info("No device found; Mocking Leader Enabled.")
+        #     self.tb_status.append("No device found; Mocking Leader Enabled.")
+        #     self.mocking = True
         self.cb_comPort.clear()       # delete all items from comboBox
         for ports in self.comPortAvailable:
             self.cb_comPort.addItems([str(ports.name)]) # add the actual content of self.comboData
@@ -206,12 +206,12 @@ class ShotView(QWidget, Ui_shotView):
         self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle)) 
         self.tb_status.append("COM port set to : {}.".format(self.comPortName))  
         self.initGraph()
-        if self.mocking:
-            pass
-        else:
-            for shuttle in range(self.numberOfShuttle):
-                message = self.currentStack.configWorker(str(shuttle+1)) 
-                [self.tb_status.append(i) for i in message]
+        # if self.mocking:
+        #     pass
+        # else:
+        for shuttle in range(self.numberOfShuttle):
+            message = self.currentStack.configWorker(str(shuttle+1)) 
+            [self.tb_status.append(i) for i in message]
         
     def thread_complete(self):
         print("THREAD COMPLETE!")
