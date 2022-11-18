@@ -292,6 +292,9 @@
               <layout class="QGridLayout" name="gridLayout_2">
                <item row="3" column="0">
                 <widget class="QPushButton" name="pb_showStack">
+                 <property name="statusTip">
+                  <string>Will show the summation of all the shot recorded in this stack</string>
+                 </property>
                  <property name="text">
                   <string>Show stack</string>
                  </property>
@@ -299,6 +302,9 @@
                </item>
                <item row="4" column="0">
                 <widget class="QPushButton" name="pb_finishStack">
+                 <property name="statusTip">
+                  <string>Will close the stack and require a new stack creation</string>
+                 </property>
                  <property name="text">
                   <string>Finish stack</string>
                  </property>
@@ -313,7 +319,7 @@
                   </sizepolicy>
                  </property>
                  <property name="statusTip">
-                  <string>Acquires 1 data set. Will subtract to other data acquisition and readings.</string>
+                  <string>Will arm all the shuttles</string>
                  </property>
                  <property name="text">
                   <string>Arm</string>
@@ -329,7 +335,7 @@
                   </sizepolicy>
                  </property>
                  <property name="statusTip">
-                  <string>Will normalize the spectrum to allow for transmission/reflexion spectral analysis.</string>
+                  <string>Will collect, save and display data from last shot</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true"/>
@@ -341,6 +347,9 @@
                </item>
                <item row="0" column="0">
                 <widget class="QPushButton" name="pb_acquireBackground">
+                 <property name="statusTip">
+                  <string>Will acquire automatically a backgound sample</string>
+                 </property>
                  <property name="text">
                   <string>Acquire background</string>
                  </property>
