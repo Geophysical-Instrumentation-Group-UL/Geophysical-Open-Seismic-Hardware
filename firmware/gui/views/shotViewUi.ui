@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>spectraView</class>
+ <widget class="QWidget" name="spectraView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>2200</width>
+    <height>1250</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font: 10pt;</string>
+  </property>
+  <widget class="QFrame" name="w_controls">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>301</width>
+     <height>661</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_5">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item row="0" column="0" rowspan="2">
+     <widget class="QWidget" name="w_device" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="g_connection">
+         <property name="title">
+          <string>Connect</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="cb_comPort"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="cb_DCvoltageUphole"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="la_DCvoltageUphole">
+            <property name="text">
+             <string>DC Voltage [V]</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="la_comPort">
+            <property name="text">
+             <string>COM port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="la_numberOfShuttle">
+            <property name="text">
+             <string>Number of shuttle</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="cb_numberOfShuttle">
+            <property name="currentText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="g_acquisitionSettings">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="title">
+          <string>Configure</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="spacing">
+             <number>9</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="la_duration">
+              <property name="text">
+               <string>Shot duration:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="la_newStack">
+              <property name="text">
+               <string>New stack name</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QSpinBox" name="sb_acqFreq">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="statusTip">
+               <string>Sets the integration time on the SpectrumDevice.</string>
+              </property>
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>999999</number>
+              </property>
+              <property name="singleStep">
+               <number>2</number>
+              </property>
+              <property name="value">
+               <number>4</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>kHz</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="la_acqFreq">
+              <property name="text">
+               <string>Acquisition frequency</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QSpinBox" name="sb_duration">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="statusTip">
+               <string>Sets exposure time one the SpectrumDevice.</string>
+              </property>
+              <property name="minimum">
+               <number>4</number>
+              </property>
+              <property name="maximum">
+               <number>99999</number>
+              </property>
+              <property name="singleStep">
+               <number>10</number>
+              </property>
+              <property name="value">
+               <number>50</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>ms</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLineEdit" name="le_newStack"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_newStack">
+            <property name="text">
+             <string>Configure and create new stack</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="g_acquisitionControl">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="title">
+          <string>Control</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QWidget" name="w_control" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <item row="3" column="0">
+                <widget class="QPushButton" name="pb_showStack">
+                 <property name="statusTip">
+                  <string>Will show the summation of all the shot recorded in this stack</string>
+                 </property>
+                 <property name="text">
+                  <string>Show stack</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QPushButton" name="pb_finishStack">
+                 <property name="statusTip">
+                  <string>Will close the stack and require a new stack creation</string>
+                 </property>
+                 <property name="text">
+                  <string>Finish stack</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QFlashButton" name="pb_arm">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="statusTip">
+                  <string>Will arm all the shuttles</string>
+                 </property>
+                 <property name="text">
+                  <string>Arm</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPushButton" name="pb_collect">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="statusTip">
+                  <string>Will collect, save and display data from last shot</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>Collect</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QPushButton" name="pb_acquireBackground">
+                 <property name="statusTip">
+                  <string>Will acquire automatically a backgound sample</string>
+                 </property>
+                 <property name="text">
+                  <string>Acquire background</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="g_message">
+         <property name="title">
+          <string>Status / Message</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QTextBrowser" name="tb_status"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>319</x>
+     <y>9</y>
+     <width>851</width>
+     <height>661</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QWidget" name="verticalWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>851</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayoutNav">
+       <property name="spacing">
+        <number>2</number>
+       </property>
+      </layout>
+     </item>
+     <item>
+      <widget class="QMlpGraph" name="mpl_graph" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QFlashButton</class>
+   <extends>QPushButton</extends>
+   <header>/gui/widgets/QFlashButton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QMlpGraph</class>
+   <extends>QWidget</extends>
+   <header location="global">/gui/widgets/QMlpGraph.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

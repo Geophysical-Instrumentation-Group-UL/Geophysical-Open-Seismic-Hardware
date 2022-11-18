@@ -1,13 +1,11 @@
-from socket import timeout
-import numpy as np
 import serial
 import matplotlib.pyplot as plt
-from tools import *
+from tools_deprec import *
 
 
 
 
-serial_port = 'COM7'
+serial_port = 'COM4'
 baud_rate = 115200  # In arduino, Serial.begin(baud_rate)
 
 ser = serial.Serial(serial_port, baud_rate)
@@ -66,8 +64,9 @@ while ON:
         out2 = harvest('2', ser)
         out3 = harvest('3', ser)
         list_out = [out1, out2, out3]
+        # list_out = [out1]
         fig, ax = plt.subplots(3, 1)
-        for i in range(3):
+        for i in range(1):
             ax[i].plot(list_out[i][0], list_out[i][1], label="X")
             ax[i].plot(list_out[i][0], list_out[i][2], label="Y")
             ax[i].plot(list_out[i][0], list_out[i][3], label="Z")
