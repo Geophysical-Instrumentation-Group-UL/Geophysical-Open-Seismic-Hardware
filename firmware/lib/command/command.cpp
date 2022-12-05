@@ -200,3 +200,23 @@ return commandRead;
      buildAndSendCommand(serial_port,configCommand);
      return 0;
  }
+
+ /**	
+ * Send motor command. Forward, backward or stop
+ * @param serial_port - Serial port to send the data
+ */
+ uint16_t motorControl(Stream  *serial_port,
+                      int workerID, String direction)
+ {
+     command motorCommand = {
+         .type = LOCAL,
+         .def = MOTOR,
+         .status = 0,
+         .adcConfig = 0,
+         .data = direction,
+         .workerId = workerID,
+     };
+
+     buildAndSendCommand(serial_port, motorCommand);
+     return 0;
+ }

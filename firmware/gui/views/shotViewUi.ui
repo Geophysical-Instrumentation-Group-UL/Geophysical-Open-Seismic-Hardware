@@ -290,6 +290,20 @@
              </property>
              <item>
               <layout class="QGridLayout" name="gridLayout_2">
+               <item row="6" column="0">
+                <widget class="QPushButton" name="pb_motorB">
+                 <property name="text">
+                  <string>Backward</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QPushButton" name="pb_motorF">
+                 <property name="text">
+                  <string>Forward</string>
+                 </property>
+                </widget>
+               </item>
                <item row="3" column="0">
                 <widget class="QPushButton" name="pb_showStack">
                  <property name="statusTip">
@@ -307,22 +321,6 @@
                  </property>
                  <property name="text">
                   <string>Finish stack</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QFlashButton" name="pb_arm">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="statusTip">
-                  <string>Will arm all the shuttles</string>
-                 </property>
-                 <property name="text">
-                  <string>Arm</string>
                  </property>
                 </widget>
                </item>
@@ -352,6 +350,29 @@
                  </property>
                  <property name="text">
                   <string>Acquire background</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QFlashButton" name="pb_arm">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="statusTip">
+                  <string>Will arm all the shuttles</string>
+                 </property>
+                 <property name="text">
+                  <string>Arm</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QPushButton" name="pb_motorS">
+                 <property name="text">
+                  <string>Stop</string>
                  </property>
                 </widget>
                </item>

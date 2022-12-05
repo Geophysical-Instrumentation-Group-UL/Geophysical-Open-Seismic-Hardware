@@ -6,6 +6,9 @@
 #include <SPI.h>
 #include <Vector.h>
 #include <string>
+#include <elapsedMillis.h>
+
+
 
 #define RS485Serial Serial3
 
@@ -49,6 +52,33 @@ int dout1 = 3;
 int dout2 = 4;
 int clck = 6;
 int drdy = 18;
+#define encoderA 20
+#define encoderB 19
+int cs = 16;
+int IN1 = 7;
+int IN2 = 8;
+
+volatile long countA = 0.0;
+float nbrpoles = 12.0;
+float nbrToursMoteur;
+float nbrToursArbre; 
+float division_factor = 0.00322 * 837.76; 
+elapsedMillis taskTimer = 0;
+unsigned int taskDelay = 100; //ms
+volatile int current = 0;
+volatile int current_limit = 760; //mA
+volatile int current_average_factor = 1000;
+volatile int number_of_averaging_loop = current_average_factor / 20;
+volatile int current_number_of_averaging_loop = 0;
+volatile int avg = 0;
+int pwm = 240;
+int direction = 0; // 0 == IDLE, 1 == FORWARD, -1 == BACKWARD
+int coastingTime = 500; //ms
+
+
+void pulseA();     
+void coast(int time);
+void currentSense();
 
 
 // ISR functions
@@ -116,6 +146,11 @@ void setup() {
   pinMode(drdy, INPUT_PULLDOWN);
   pinMode(clck, INPUT);
   pinMode(chipSelectPin, OUTPUT);
+  pinMode(cs, INPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(encoderA, INPUT);
+  pinMode(encoderB, INPUT);
 
   delay(100);
   ad7768_setup(configType);
@@ -235,8 +270,106 @@ if(RS485Serial.available () >0 and readyToTrig == false)
     mustSendData = true;
     Serial.println("called for harvest");
   }
+  else if (receivedCommand.def == MOTOR)
+  {
+    String direction = receivedCommand.data;
+   if (direction == "forward")
+   {
+    current = 0;
+    coast(coastingTime);
+    analogWrite(IN1, pwm);
+    analogWrite(IN2, 0);
+    delay(1000);
+    
+    attachInterrupt(digitalPinToInterrupt(encoderA), pulseA, RISING);
+
+    while (current < current_limit)
+    {
+    analogWrite(IN1, pwm);
+    analogWrite(IN2, 0);
+    
+    nbrToursMoteur = countA/nbrpoles; //Diviser par le nombre de pole pour obtenir le vrai rpm du moteur
+    nbrToursArbre = nbrToursMoteur/721.0 ;  // Appliquer le ratio du réducteur
+    
+    if (taskTimer > taskDelay )
+  {
+    digitalWrite(Mode,HIGH);
+  
+    RS485Serial.print(current);RS485Serial.print(",");
+    
+    RS485Serial.println(nbrToursArbre);
+    digitalWrite(Mode,LOW);
+    taskTimer = 0;
+
   }
-}
+  
+  
+    }
+    coast(coastingTime);
+        
+    digitalWrite(Mode,HIGH);
+    RS485Serial.println('w');
+    RS485Serial.print('T');
+    RS485Serial.println(nbrToursArbre);
+    RS485Serial.print('S');RS485Serial.println(current);
+    delay(5);
+    digitalWrite(Mode,LOW);
+  }
+   
+   if (direction == "backward")
+   {
+    current = 0;
+    coast(coastingTime);
+    analogWrite(IN1, 0);
+    analogWrite(IN2, pwm);
+    delay(1000);
+
+    attachInterrupt(digitalPinToInterrupt(encoderA), pulseA, RISING);
+
+    while (current < current_limit)
+    {
+    analogWrite(IN1, 0);
+    analogWrite(IN2, pwm);
+    
+    nbrToursMoteur = countA/nbrpoles; //Diviser par le nombre de pole pour obtenir le vrai rpm du moteur
+    nbrToursArbre = nbrToursMoteur/721.0 ;  // Appliquer le ratio du réducteur
+    
+    if (taskTimer > taskDelay )
+  {
+    digitalWrite(Mode,HIGH);
+  
+    RS485Serial.print(current);RS485Serial.print(",");
+    
+    RS485Serial.println(nbrToursArbre);
+    digitalWrite(Mode,LOW);
+    taskTimer = 0;
+
+  }
+  
+  
+    }
+    coast(coastingTime);
+        
+    
+    digitalWrite(Mode,HIGH);
+    RS485Serial.println('w');
+    RS485Serial.print('T');
+    RS485Serial.println(nbrToursArbre);
+    RS485Serial.print('S');RS485Serial.println(current);
+    delay(5);
+    digitalWrite(Mode,LOW);
+   }
+   
+   if (direction == "stop")
+   {
+    coast(coastingTime);
+   }
+   }
+   
+  }
+  
+  }
+
    
 
   if (mustSendData == true)
@@ -339,4 +472,50 @@ void drdy_ISR(){
 	}
 	
 
+}
+
+void currentSense () {
+    current_number_of_averaging_loop += 1;
+    int i = 0;
+    
+    for (i = 0; i < 20; i++) { //The value of 20 is choosen in order to minimize the time spent in this function
+      avg += analogRead(cs);
+    }
+    
+    if(current_number_of_averaging_loop > number_of_averaging_loop) {
+      current_number_of_averaging_loop = 0;
+      
+      current = ((avg/(i * number_of_averaging_loop)) * division_factor )+22.71;
+      avg = 0;
+    
+        if (current > current_limit) {
+          coast(coastingTime);
+          detachInterrupt(digitalPinToInterrupt(encoderA));
+        }
+    }
+
+    
+
+}
+
+void checkDirection(){
+  if(digitalRead(encoderB) ==  HIGH){                             
+    direction = 1;  
+  }
+  else{
+    direction = -1;
+  }
+}
+
+void pulseA(){  
+  checkDirection();
+  currentSense();
+  countA += direction;
+}
+
+void coast(int time) {
+  analogWrite(IN1, 0);
+  analogWrite(IN2, 0);
+  delay(time);
+  direction = 0;
 }
