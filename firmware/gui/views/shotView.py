@@ -75,19 +75,6 @@ class ShotView(QWidget, Ui_shotView):
 
      
 
-    def initialize_device(self):
-        log.debug("Initializing devices...")
-        try:
-            devices = sb.list_devices()
-            self.spec = sb.Spectrometer(devices[0])
-            log.info("Devices:{}".format(devices))
-            self.deviceConnected = True
-        except IndexError as e:
-            log.warning("No SpectrumDevice was found. Try connecting manually.")
-            self.deviceConnected = False
-            self.spec = mock.MockSpectrometer()
-            log.info("No device found; Mocking Spectrometer Enabled.")
-
     def initGraph(self):
         self.mpl_graph.canvas.fig.clear()
         x = np.linspace(0, 1, 1000)
@@ -346,7 +333,7 @@ class ShotView(QWidget, Ui_shotView):
             self.axes[i].plot(time_data,z_data, label="Z")
             self.axes[i].legend()
             self.axes[i].set_xlabel('time [s]')
-            self.axes[i].set_ylabel("Amplitude [V]")
+            self.axes[i].set_ylabel("Acceleration [g]")
         self.mpl_graph.canvas.draw()
 
     def disable_configuration_buttons(self):
