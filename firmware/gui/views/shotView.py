@@ -132,6 +132,12 @@ class ShotView(QWidget, Ui_shotView):
         self.pb_finishStack.clicked.connect(self.finish_stack)
 
         self.pb_acquireBackground.clicked.connect(self.acquire_background)
+
+        self.pb_motorF.clicked.connect(self.motor_forward)
+
+        self.pb_motorB.clicked.connect(self.motor_backward)
+
+        self.pb_motorS.clicked.connect(self.motor_stop)
     
 
         log.debug("Connecting GUI buttons...")
@@ -298,8 +304,28 @@ class ShotView(QWidget, Ui_shotView):
     def autoTrigger(self):
         self.comPort.write("background".encode())
 
-    def serialSend(self, data):
-        self.comPort.write(data)
+    def motor_forward(self):
+        self.comPort.write("forward".encode())
+        a = True
+        while a == True:
+            line = self.comPort.readline()
+            line = line.decode("utf-8")
+            print(line)
+            if line[0] == "S":
+                a = False
+
+    def motor_backward(self):
+        self.comPort.write("backward".encode())
+        a = True
+        while a == True:
+            line = self.comPort.readline()
+            line = line.decode("utf-8")
+            print(line)
+            if line[0] == "S":
+                a = False
+
+    def motor_stop(self):
+        self.comPort.write("stop".encode())
 
     def serialRead(self,until):
         line = self.comPort.read_until(until)

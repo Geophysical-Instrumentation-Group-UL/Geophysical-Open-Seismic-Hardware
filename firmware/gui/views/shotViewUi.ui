@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2200</width>
-    <height>1250</height>
+    <width>1345</width>
+    <height>873</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -290,42 +290,6 @@
              </property>
              <item>
               <layout class="QGridLayout" name="gridLayout_2">
-               <item row="3" column="0">
-                <widget class="QPushButton" name="pb_showStack">
-                 <property name="statusTip">
-                  <string>Will show the summation of all the shot recorded in this stack</string>
-                 </property>
-                 <property name="text">
-                  <string>Show stack</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="0">
-                <widget class="QPushButton" name="pb_finishStack">
-                 <property name="statusTip">
-                  <string>Will close the stack and require a new stack creation</string>
-                 </property>
-                 <property name="text">
-                  <string>Finish stack</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QFlashButton" name="pb_arm">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="statusTip">
-                  <string>Will arm all the shuttles</string>
-                 </property>
-                 <property name="text">
-                  <string>Arm</string>
-                 </property>
-                </widget>
-               </item>
                <item row="2" column="0">
                 <widget class="QPushButton" name="pb_collect">
                  <property name="sizePolicy">
@@ -352,6 +316,70 @@
                  </property>
                  <property name="text">
                   <string>Acquire background</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QFlashButton" name="pb_arm">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="statusTip">
+                  <string>Will arm all the shuttles</string>
+                 </property>
+                 <property name="text">
+                  <string>Arm</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="0">
+                <widget class="QPushButton" name="pb_motorS">
+                 <property name="text">
+                  <string>Stop</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QPushButton" name="pb_motorF">
+                 <property name="text">
+                  <string>Forward</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QPushButton" name="pb_motorB">
+                 <property name="text">
+                  <string>Backward</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QPushButton" name="pb_showStack">
+                 <property name="statusTip">
+                  <string>Will show the summation of all the shot recorded in this stack</string>
+                 </property>
+                 <property name="text">
+                  <string>Show stack</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QPushButton" name="pb_finishStack">
+                 <property name="statusTip">
+                  <string>Will close the stack and require a new stack creation</string>
+                 </property>
+                 <property name="text">
+                  <string>Finish stack</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Motor control (not implemented)</string>
                  </property>
                 </widget>
                </item>

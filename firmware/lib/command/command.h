@@ -28,6 +28,7 @@
 #define CALIBRATE 4
 #define STATUS 5
 #define CONFIG 6
+#define MOTOR 7
 
 /*Status */
 #define IDLE 0
@@ -79,4 +80,6 @@ uint16_t sendConfigToADC(Stream  *serial_port,
                             int workerID);
 uint16_t HarvestData(Stream  *serial_port,
                       int workerID);
+uint16_t motorControl(Stream  *serial_port,
+                      int workerID, String direction);
 #endif

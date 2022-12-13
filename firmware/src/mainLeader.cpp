@@ -11,6 +11,7 @@ int trig = 22;
 String instruction;
 bool waitingForworkerResponse = false;
 bool waitForData = false;
+bool waitForMotorState = false;
 int number_of_data_packet;
 String duration = "50";
 String sampling_rate = "32";
@@ -128,6 +129,37 @@ if (Serial.available() )
     waitingForworkerResponse = false; //I dont want the status, i want the data, the status is allready asked at 
     // the end of the triggered state
   }
+  if (instruction.startsWith("forward")) {
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    motorControl(&RS485Serial,workerid,"forward");
+    delay(5);
+    digitalWrite(Mode,LOW);
+    Serial.print(workerid);Serial.println("Motor forward");
+    waitForData = false;
+    waitingForworkerResponse = false;
+    waitForMotorState = true;
+  }
+  if (instruction.startsWith("backward")) {
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    motorControl(&RS485Serial,workerid,"backward");
+    delay(5);
+    digitalWrite(Mode,LOW);
+    Serial.print(workerid);Serial.println("Motor backward");
+    waitForData = false;
+    waitingForworkerResponse = false;
+    waitForMotorState = true;
+  }
+  if (instruction.startsWith("stop")) {
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    motorControl(&RS485Serial,workerid,"stop");
+    delay(5);
+    digitalWrite(Mode,LOW);
+    Serial.print(workerid);Serial.println("Motor stop");
+    waitForData = false;
+    waitingForworkerResponse = false;
   }
 if (waitingForworkerResponse == true) 
 { 
@@ -186,7 +218,28 @@ if (waitForData == true)
     waitForData = false;
     
 }
+if (waitForMotorState == true)
+{
+    String data;
+    int workeridData;
+    float axlePosition = 0;
+    int currentAtLimit  = 0;
 
+    
+    
+    workeridData = RS485Serial.readStringUntil('w').toInt();
+    Serial.print("worker # "),Serial.println(workeridData);
+
+    axlePosition = RS485Serial.readStringUntil('T').toFloat();
+    Serial.print("Axle position : "),Serial.println(axlePosition);
+
+    currentAtLimit = RS485Serial.readStringUntil('S').toInt();
+    Serial.print("Current at limit : "),Serial.println(currentAtLimit);
+
+    Serial.println("S");
+
+    waitForMotorState = false;
+}
 noInterrupts();
 if (triggered_state == true)
 {
@@ -209,10 +262,11 @@ interrupts();
 
 }
 
-
+}
 
 
  void trig_ISR() {
 		init_trig_detected = true;
 		triggered_state = true;
 }
+
