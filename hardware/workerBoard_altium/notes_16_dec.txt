@@ -1,5 +1,0 @@
-changer les vis pour des m3
-changer le connecteurs 12V pour des vis
-vRifier l'impédance de Vref1 vs Vref2, si cest les même cest ok, ligne a 6 et 43 de même longueur
-mettre une érisistane seul -- laisser sans résistances
-Bord THVD8000 à révisier
