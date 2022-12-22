@@ -1,6 +1,6 @@
 # Firmware
 
-In this page you will find details about the Open-seismic firmware, design guidelines and current stage of development. The details about the librairy used in the projects can be found in the command and ad7768 files.
+In this page you will find details about the Geophysical Open Seismic Hardware firmware, design guidelines and current stage of development. The details about the librairy used in the projects can be found in the command and ad7768 files.
 
 # Design guidelines
 
@@ -9,7 +9,7 @@ This basic software is the first prototype of the control software. Only the ess
 - Ease of use and high-level function to operate the system [main.py and mainLeader].
 - High-speed acquisition of seismic signal from the ADC (32 kHz) [mainWorker].
 
-![Software](https://github.com/armercier/Open-seismic-electrical-design/blob/documentation/media/software.png)
+![Software](https://github.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/blob/main/media/software.png)
 
 # Principal elements in main scripts:
 
@@ -50,6 +50,6 @@ This script runs on every worker MCU (Teensy 4.0). The MCU are programmed from t
 - If the arm command is detected the interrupt for the clock and for the drdy (dataready from the adc) is activated. The status ready to trig is then activated so the serial port is checked for this particular command.
 - Once the ready to trig flag is true, the scripts only waits for a 't' on the serial port. When it sees it, it activated the triggered_state to true and the acquisition time is set to 0. This previous block of code is under a nointerrupt condition.
 - When a drdy interrupt is detected the clck count is set to 0.
-- the read_ISR function is called every clck count the register the data in a pre defined vector (binary data).
+- the read_ISR function is called every clck count the register the data in a pre defined vector (binary data). The data is read on 3 different pins at 4 MHz. This is why we need a fast MCU (the time required to change pins is long...). Alternatively, one could decide to output every channel of the ADC on the same pins, one after the other. This would mean the MCU as only to read data on a single pin, which is faster.
 - At the 33 clck count the data_packet_ready flag is activated and the data is transformed form bit to integer.
 - The interrupt are then disable and the triggered status and ready to trig status are set to false.

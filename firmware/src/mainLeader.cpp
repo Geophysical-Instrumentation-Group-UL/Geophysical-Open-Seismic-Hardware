@@ -9,8 +9,9 @@
 int Mode = 9; // high = send = D2 led off, low = listen = D2 led high
 int trig = 22;
 String instruction;
-bool waitingForSlaveResponse = false;
+bool waitingForworkerResponse = false;
 bool waitForData = false;
+bool waitForMotorState = false;
 int number_of_data_packet;
 String duration = "50";
 String sampling_rate = "32";
@@ -34,7 +35,7 @@ if (Serial.available() )
   {
     instruction = Serial.readStringUntil('\n');
     instruction.trim();
-     // I always want the status of the salve after a command
+     // I always want the status of the worker after a command
     String temp;
     temp = instruction.substring(instruction.length() - 1);
     int workerid = temp.toInt();
@@ -47,9 +48,19 @@ if (Serial.available() )
     digitalWrite(Mode,LOW);
     Serial.println("arming...");
     Serial.flush();
-    attachInterrupt(digitalPinToInterrupt(trig),trig_ISR,RISING);
-    // waitingForSlaveResponse = true;
+    attachInterrupt(digitalPinToInterrupt(trig),trig_ISR,LOW);
+    // waitingForworkerResponse = true;
 
+  }
+  if (instruction.equals("background")){
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    arm(&RS485Serial);
+    delay(5);
+    digitalWrite(Mode,LOW);
+    Serial.println("arming...");
+    Serial.flush();
+    triggered_state = true;
   }
   if (instruction.startsWith("get status")) {
     digitalWrite(Mode,HIGH);
@@ -75,7 +86,7 @@ if (Serial.available() )
     getWorkerStatus(&RS485Serial,workerid);
     delay(5);
     digitalWrite(Mode,LOW);
-    waitingForSlaveResponse = true;
+    waitingForworkerResponse = true;
   }
   if (instruction.startsWith("config default")) {
     Serial.print("Configuration in process to : ");Serial.println(workerid);
@@ -90,7 +101,7 @@ if (Serial.available() )
     // getWorkerStatus(&RS485Serial,workerid);
     // delay(5);
     // digitalWrite(Mode,LOW);
-    waitingForSlaveResponse = true;
+    waitingForworkerResponse = true;
   }
   if (instruction.startsWith("config seismic")) {
     Serial.print("Configuration in process to : ");Serial.println(workerid);
@@ -105,7 +116,7 @@ if (Serial.available() )
     // getWorkerStatus(&RS485Serial,workerid);
     // delay(5);
     // digitalWrite(Mode,LOW);
-    waitingForSlaveResponse = true;
+    waitingForworkerResponse = true;
   }
   if (instruction.startsWith("harvest")) {
     digitalWrite(Mode,HIGH);
@@ -113,19 +124,51 @@ if (Serial.available() )
     HarvestData(&RS485Serial,workerid);
     delay(5);
     digitalWrite(Mode,LOW);
-    Serial.println("harvesting");
+    Serial.print(workerid);Serial.println("harvesting");
     waitForData = true;
-    waitingForSlaveResponse = false; //I dont want the status, i want the data, the status is allready asked at 
+    waitingForworkerResponse = false; //I dont want the status, i want the data, the status is allready asked at 
     // the end of the triggered state
   }
+  if (instruction.startsWith("forward")) {
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    motorControl(&RS485Serial,workerid,"forward");
+    delay(5);
+    digitalWrite(Mode,LOW);
+    Serial.print(workerid);Serial.println("Motor forward");
+    waitForData = false;
+    waitingForworkerResponse = false;
+    waitForMotorState = true;
   }
-if (waitingForSlaveResponse == true) 
+  if (instruction.startsWith("backward")) {
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    motorControl(&RS485Serial,workerid,"backward");
+    delay(5);
+    digitalWrite(Mode,LOW);
+    Serial.print(workerid);Serial.println("Motor backward");
+    waitForData = false;
+    waitingForworkerResponse = false;
+    waitForMotorState = true;
+  }
+  if (instruction.startsWith("stop")) {
+    digitalWrite(Mode,HIGH);
+    delay(5);
+    motorControl(&RS485Serial,workerid,"stop");
+    delay(5);
+    digitalWrite(Mode,LOW);
+    Serial.print(workerid);Serial.println("Motor stop");
+    waitForData = false;
+    waitingForworkerResponse = false;
+  }
+if (waitingForworkerResponse == true) 
 { 
   command receivedStatus; 
   receivedStatus = readCommand(&RS485Serial);
       if (receivedStatus.status == IDLE)
       {
         Serial.print("Status : ");Serial.println("IDLE");
+        // Serial.print("Status : ");Serial.println("CONFIGURED");
       }
       else if (receivedStatus.status == ARMED)
       {
@@ -139,17 +182,17 @@ if (waitingForSlaveResponse == true)
       else if (receivedStatus.status == CONFIGURED)
       {
         String conf;
-        conf = RS485Serial.readStringUntil('s');
+        conf = RS485Serial.readStringUntil('f');
         delay(5);
         // Serial.println("ADC parameters : ");
         // Serial.println("-----------------");
-        // Serial.print(conf);
+        // Serial.println(conf);
         // Serial.println("-----------------");
         Serial.print("Status : ");Serial.println("CONFIGURED");
         Serial.flush();
       }
 
-    waitingForSlaveResponse = false;
+    waitingForworkerResponse = false;
 }
 if (waitForData == true)
 {
@@ -158,7 +201,7 @@ if (waitForData == true)
     
     
     workeridData = RS485Serial.readStringUntil('w').toInt();
-    Serial.print("Slave # "),Serial.println(workeridData);
+    Serial.print("worker # "),Serial.println(workeridData);
 
     Serial.println("-----------------");
 
@@ -175,7 +218,28 @@ if (waitForData == true)
     waitForData = false;
     
 }
+if (waitForMotorState == true)
+{
+    String data;
+    int workeridData;
+    float axlePosition = 0;
+    int currentAtLimit  = 0;
 
+    
+    
+    workeridData = RS485Serial.readStringUntil('w').toInt();
+    Serial.print("worker # "),Serial.println(workeridData);
+
+    axlePosition = RS485Serial.readStringUntil('T').toFloat();
+    Serial.print("Axle position : "),Serial.println(axlePosition);
+
+    currentAtLimit = RS485Serial.readStringUntil('S').toInt();
+    Serial.print("Current at limit : "),Serial.println(currentAtLimit);
+
+    Serial.println("S");
+
+    waitForMotorState = false;
+}
 noInterrupts();
 if (triggered_state == true)
 {
@@ -190,18 +254,19 @@ if (triggered_state == true)
   
 
 
-  // send trigger command to slave
+  // send trigger command to worker
   triggered_state = false;
-  // waitingForSlaveResponse = true;
+  // waitingForworkerResponse = true;
 }
 interrupts();
 
 }
 
-
+}
 
 
  void trig_ISR() {
 		init_trig_detected = true;
 		triggered_state = true;
 }
+
