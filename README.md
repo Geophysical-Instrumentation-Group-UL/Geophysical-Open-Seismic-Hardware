@@ -13,6 +13,8 @@ This repository contains all the design files for the different printed circuit 
 Addition of November 2022 : 
 A basic GUI is now available. This first version allows the user to configure and control the system with 3 shuttles. It also have a display window to anayse the individual shots as well as the stacked trace.
 
+The article titled ``Geophysical Open Seismic Hardware: Design of a Vertical Seismic Profiling Instrument'' documents the performance and the first field validation of the prototype : https://openhardware.metajnl.com/articles/10.5334/joh.50
+
 ![image](https://raw.githubusercontent.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/main/media/workerboardV2.jpg)
 ![image](https://raw.githubusercontent.com/Geophysical-Instrumentation-Group-UL/Geophysical-Open-Seismic-Hardware/main/media/mainboardV2_assembly3D.png)
 ![GUI](https://user-images.githubusercontent.com/38730912/202782073-3bbe8852-5f38-4c2e-a02f-1e7fc5d664b5.jpg)
