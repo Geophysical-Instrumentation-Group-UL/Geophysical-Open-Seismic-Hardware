@@ -69,17 +69,17 @@ typedef struct {
 command readCommand(Stream  *serial_port);
 uint16_t arm(Stream  *serial_port);
 uint16_t getWorkerStatus(Stream  *serial_port,
-                      int workerID);
+                      int workerid);
  uint16_t sendWorkerStatus(Stream  *serial_port,
                             int workerStatus,
-                            int workerID);
+                            int workerid);
 uint16_t sendTrigger(Stream  *serial_port);
 uint16_t sendConfigToADC(Stream  *serial_port,
                             int config,
                             String acq_duration,
-                            int workerID);
+                            int workerid);
 uint16_t HarvestData(Stream  *serial_port,
-                      int workerID);
+                      int workerid);
 uint16_t motorControl(Stream  *serial_port,
-                      int workerID, String direction);
+                      int workerid, String direction);
 #endif
