@@ -27,6 +27,7 @@ void setup() {
   pinMode(Mode,OUTPUT);
   digitalWrite(Mode,LOW);
   pinMode(trig,INPUT_PULLDOWN);
+
 }
 
 void loop() {
@@ -46,10 +47,13 @@ if (Serial.available() )
     arm(&RS485Serial);
     delay(5);
     digitalWrite(Mode,LOW);
+    delay(5);
     Serial.println("arming...");
     Serial.flush();
+
     attachInterrupt(digitalPinToInterrupt(trig),trig_ISR,LOW);
-    // waitingForworkerResponse = true;
+  
+    //waitingForworkerResponse = true;
 
   }
   if (instruction.equals("background")){
@@ -73,17 +77,20 @@ if (Serial.available() )
     Serial.print("Configuration in process to : ");Serial.println(workerid);
     sampling_rate = Serial.readStringUntil('\n');
     duration = Serial.readStringUntil('\n');
-    // Serial.println(sampling_rate);
-    // Serial.println(duration);
+    //Serial.println("Sampling rate : " + sampling_rate);
+    //Serial.println("Duration" + duration);
     digitalWrite(Mode,HIGH);
     delay(5);
+    //Serial.println("Sending config to worker");
     sendConfigToADC(&RS485Serial,DEFAULT, sampling_rate + "T" + duration,workerid);
+    //Serial.println("Sent config to worker");
     delay(5);
     digitalWrite(Mode,LOW);
     delay(5);
     digitalWrite(Mode,HIGH);
     delay(5);
     getWorkerStatus(&RS485Serial,workerid);
+    //Serial.println("Asked for worker status");
     delay(5);
     digitalWrite(Mode,LOW);
     waitingForworkerResponse = true;
@@ -161,14 +168,23 @@ if (Serial.available() )
     waitForData = false;
     waitingForworkerResponse = false;
   }
+
 if (waitingForworkerResponse == true) 
 { 
-  command receivedStatus; 
+  digitalWrite(Mode,LOW);
+  command receivedStatus;
+  //Serial.println("Reading worker status");
   receivedStatus = readCommand(&RS485Serial);
+  //Serial.println("Read worker status : " + receivedStatus.status);
       if (receivedStatus.status == IDLE)
       {
-        Serial.print("Status : ");Serial.println("IDLE");
-        // Serial.print("Status : ");Serial.println("CONFIGURED");
+        Serial.print("Status : ");Serial.print("IDLE ");
+        Serial.print(receivedStatus.workerId); Serial.print(" ");
+        Serial.print(receivedStatus.type); Serial.print(" ");
+        Serial.print(receivedStatus.def); Serial.print(" ");
+        Serial.print(receivedStatus.status); Serial.print(" ");
+        Serial.print(receivedStatus.adcConfig); Serial.print(" ");
+        Serial.print(receivedStatus.data); Serial.println(" ");
       }
       else if (receivedStatus.status == ARMED)
       {
@@ -181,16 +197,23 @@ if (waitingForworkerResponse == true)
       }
       else if (receivedStatus.status == CONFIGURED)
       {
-        String conf;
-        conf = RS485Serial.readStringUntil('f');
-        delay(5);
+        // String conf;
+        // conf = RS485Serial.readStringUntil('f');
+        // delay(5);
         // Serial.println("ADC parameters : ");
         // Serial.println("-----------------");
         // Serial.println(conf);
         // Serial.println("-----------------");
         Serial.print("Status : ");Serial.println("CONFIGURED");
-        Serial.flush();
+        // Serial.flush();
       }
+      else {Serial.print("Status : No valid worker status "); 
+        Serial.print(receivedStatus.workerId); Serial.print(" ");
+        Serial.print(receivedStatus.type); Serial.print(" ");
+        Serial.print(receivedStatus.def); Serial.print(" ");
+        Serial.print(receivedStatus.status); Serial.print(" ");
+        Serial.print(receivedStatus.adcConfig); Serial.print(" ");
+        Serial.print(receivedStatus.data); Serial.println(" ");}
 
     waitingForworkerResponse = false;
 }
@@ -249,7 +272,7 @@ if (triggered_state == true)
   digitalWrite(Mode,LOW);
   detachInterrupt(digitalPinToInterrupt(trig));
   delay(5);
-  Serial.println("trigged");
+  Serial.println("triggered");
   delay(5); 
   
 
