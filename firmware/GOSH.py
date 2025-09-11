@@ -1,8 +1,8 @@
 __author__ = "Arnaud Mercier"
 __copyright__ = "Copyright 2022, Arnaud Mercier"
-__credits__ = ["Marc-André Vigneault"]
+__credits__ = ["Marc-André Vigneault" "Aurélie Beaudoin"]
 __license__ = "GNU General Public License V3"
-__version__ = "0.1"
+__version__ = "0.2"
 __maintainer__ = "Arnaud Mercier"
 __email__ = "arnaud.mercier05@gmail.com"
 __status__ = "Development"

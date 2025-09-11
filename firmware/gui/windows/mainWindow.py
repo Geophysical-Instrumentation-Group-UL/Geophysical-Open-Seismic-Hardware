@@ -48,7 +48,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def connect_buttons(self):
         self.helpAction.triggered.connect(self.show_helpDialog)
-        self.actionChange_Theme.triggered.connect(lambda: self.toggle_stylesheet(os.path.dirname(os.path.realpath(__file__)) + '\\..\\themes\\darkstyle\\darkstyle.qss'))
+        self.actionChange_Theme.triggered.connect(self.choose_theme)
+
+    def choose_theme(self):
+        app = QApplication.instance()
+        if app is None:
+            raise RuntimeError("No Qt Application found.")
+        
+        if not app.styleSheet():
+            self.toggle_stylesheet(os.path.dirname(os.path.realpath(__file__)) + '\\..\\themes\\darkstyle\\darkstyle.qss')
+        else:
+            app.setStyleSheet("")
+
 
     def connect_signals(self):
         self.helpDialog.s_windowClose.connect(lambda: self.setEnabled(True))

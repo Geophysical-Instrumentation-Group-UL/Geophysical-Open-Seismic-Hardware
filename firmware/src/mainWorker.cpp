@@ -22,7 +22,6 @@ bool mustSendStatus = false;
 bool mustSendData = false;
 bool readyToTrig = false;
 int workerStatus = IDLE;
-int workerID = 1;
 int chipSelectPin = 10;
 ad7768_chip _default = {
 		/* Configuration */
@@ -118,20 +117,20 @@ volatile double integer_data2 = 0;
 int number_of_data_packet =1600;
 
 // vector that holds a complete acquisition
-int storage_arrayD0[16000]; //TODO: This maximum array size is 0.5 sec for 32 khz ODR
-int storage_arrayT0[16000];
+int storage_arrayD0[28000]; //TODO: This maximum array size is 0.5 sec for 32 khz ODR
+int storage_arrayT0[28000];
 Vector<int> data0(storage_arrayD0);
-Vector<int> time(storage_arrayT0);
+Vector<int> ttime(storage_arrayT0);
 
-int storage_arrayD1[16000]; //TODO: This maximum array size is 0.5 sec for 32 khz ODR
+int storage_arrayD1[28000]; //TODO: This maximum array size is 0.5 sec for 32 khz ODR
 // int storage_arrayT1[32000];
 Vector<int> data1(storage_arrayD1);
 // Vector<int> time0(storage_arrayT1);
 
-int storage_arrayD2[16000]; //TODO: This maximum array size is 0.5 sec for 32 khz ODR
+int storage_arrayD2[28000]; //TODO: This maximum array size is 0.5 sec for 32 khz ODR
 // int storage_arrayT2[32000];
 Vector<int> data2(storage_arrayD2);
-// Vector<int> time(storage_arrayT2);
+// Vector<int> ttime(storage_arrayT2);
 
 // When the lenght of the array is 32k the memory is overflowing.
 
@@ -151,6 +150,7 @@ void setup() {
   pinMode(IN2, OUTPUT);
   pinMode(encoderA, INPUT);
   pinMode(encoderB, INPUT);
+  workerStatus = IDLE;
 
   delay(100);
   ad7768_setup(configType);
@@ -158,13 +158,17 @@ void setup() {
 
 void loop() {
 
-if(RS485Serial.available () >0 and readyToTrig == false) 
+if(RS485Serial.available () > 0 and readyToTrig == false) 
 {
   // String test;
-
+  /*Serial.print("RS485 available ");
   receivedCommand = readCommand(&RS485Serial);
-  // Serial.println(receivedCommand.def);
-  // Serial.println(receivedCommand.workerId);
+  Serial.print(receivedCommand.workerId); Serial.print(" ");
+  Serial.print(receivedCommand.type); Serial.print(" ");
+  Serial.print(receivedCommand.def); Serial.print(" ");
+  Serial.print(receivedCommand.status); Serial.print(" ");
+  Serial.print(receivedCommand.adcConfig); Serial.print(" ");
+  Serial.println(receivedCommand.data);*/
   // test = RS485Serial.readStringUntil('\n');
   // Serial.println(test);
   if (receivedCommand.type == GLOBAL or receivedCommand.workerId == workerID)
@@ -173,202 +177,212 @@ if(RS485Serial.available () >0 and readyToTrig == false)
     // Serial.println(receivedCommand.def);
     // Serial.println(receivedCommand.workerId);
 
-  if (receivedCommand.def == ARM)
-  {
-    workerStatus = ARMED;
-    Serial.println("armed");
-    data_packet_counter = 0;
-    readyToTrig = true;
-
-    attachInterrupt(digitalPinToInterrupt(drdy), drdy_ISR, RISING);
-    attachInterrupt(digitalPinToInterrupt(clck), read_ISR, FALLING);
-  }
-  else if (receivedCommand.def == STATUS)
-  {
-    digitalWrite(Mode,HIGH);
-    delay(5);
-    sendWorkerStatus(&RS485Serial,workerStatus,workerID);
-    delay(5);
-    digitalWrite(Mode,LOW);
-    delay(5);
-  }
-  else if (receivedCommand.def == CONFIG)
-   {
-    //  Serial.print(receivedCommand.adcConfig);
-     Serial.print("config");
-     if (receivedCommand.adcConfig == DEFAULT)
-     {configType = _default;}
-     else if (receivedCommand.adcConfig == SEISMIC)
-     {configType = _seismic;} 
-     int index = receivedCommand.data.indexOf("T");   
-     samplingRate = receivedCommand.data.substring(0,index).toInt();
-     duration = receivedCommand.data.substring(index+1).toInt();
-    if (samplingRate == 32)
-     {
-      configType.dec_rate = AD7768_DEC_X32;
-      }
-    else if (samplingRate == 16)
-      {
-      configType.dec_rate = AD7768_DEC_X64;
-      }
-    else if (samplingRate == 8)
-      {
-      configType.dec_rate = AD7768_DEC_X128;
-      }
-    else if (samplingRate == 4)
-      {
-      configType.dec_rate = AD7768_DEC_X256;
-      }
-    else if (samplingRate == 2)
-      {
-      configType.dec_rate = AD7768_DEC_X512;
-      }
-    else if (samplingRate == 1)
-      {
-      configType.dec_rate = AD7768_DEC_X1024;
-      }
-
-     ad7768_setup(configType);
-     workerStatus = CONFIGURED;
-
-    // delay(5);
-    // digitalWrite(Mode,HIGH);
-    // delay(5);
-    // sendWorkerStatus(&RS485Serial,workerStatus,workerID);
-    // delay(5);
-    // digitalWrite(Mode,LOW);
-
-
-    number_of_data_packet =  int(((duration/1000.0) * (samplingRate*1000.0)));
-    // delay(5);
-    // digitalWrite(Mode,HIGH);
-    // delay(5);
-
-
-
-    // RS485Serial.println(number_of_data_packet);
-
-    // RS485Serial.println(receivedCommand.data);
-    // RS485Serial.println(receivedCommand.data.substring(index+1).toInt());
-    // ODR = print_config(configType, &RS485Serial);
-    // RS485Serial.flush();
-    // delay(5);
-    // RS485Serial.print(duration);RS485Serial.println(samplingRate);
-    //     delay(5);
-
-    // RS485Serial.println('s');
-    // digitalWrite(Mode,LOW);
-
- 
-    // Serial.println(number_of_data_packet);
-    // workerStatus = IDLE;
-    
-
-   }
-  else if (receivedCommand.def == HARVEST)
-  {
-    mustSendData = true;
-    Serial.println("called for harvest");
-  }
-  else if (receivedCommand.def == MOTOR)
-  {
-    String direction = receivedCommand.data;
-   if (direction == "forward")
-   {
-    current = 0;
-    coast(coastingTime);
-    analogWrite(IN1, pwm);
-    analogWrite(IN2, 0);
-    delay(1000);
-    
-    attachInterrupt(digitalPinToInterrupt(encoderA), pulseA, RISING);
-
-    while (current < current_limit)
+    if (receivedCommand.def == ARM)
     {
-    analogWrite(IN1, pwm);
-    analogWrite(IN2, 0);
-    
-    nbrToursMoteur = countA/nbrpoles; //Diviser par le nombre de pole pour obtenir le vrai rpm du moteur
-    nbrToursArbre = nbrToursMoteur/721.0 ;  // Appliquer le ratio du réducteur
-    
-    if (taskTimer > taskDelay )
-  {
-    digitalWrite(Mode,HIGH);
-  
-    RS485Serial.print(current);RS485Serial.print(",");
-    
-    RS485Serial.println(nbrToursArbre);
-    digitalWrite(Mode,LOW);
-    taskTimer = 0;
-
-  }
-  
-  
+      attachInterrupt(digitalPinToInterrupt(drdy), drdy_ISR, RISING);
+      attachInterrupt(digitalPinToInterrupt(clck), read_ISR, FALLING);
+      Serial.println("armed");
+      data_packet_counter = 0;
+      readyToTrig = true;
+      workerStatus = ARMED;
     }
-    coast(coastingTime);
-        
-    digitalWrite(Mode,HIGH);
-    RS485Serial.println('w');
-    RS485Serial.print('T');
-    RS485Serial.println(nbrToursArbre);
-    RS485Serial.print('S');RS485Serial.println(current);
-    delay(5);
-    digitalWrite(Mode,LOW);
-  }
-   
-   if (direction == "backward")
-   {
-    current = 0;
-    coast(coastingTime);
-    analogWrite(IN1, 0);
-    analogWrite(IN2, pwm);
-    delay(1000);
-
-    attachInterrupt(digitalPinToInterrupt(encoderA), pulseA, RISING);
-
-    while (current < current_limit)
+    else if (receivedCommand.def == STATUS)
     {
-    analogWrite(IN1, 0);
-    analogWrite(IN2, pwm);
-    
-    nbrToursMoteur = countA/nbrpoles; //Diviser par le nombre de pole pour obtenir le vrai rpm du moteur
-    nbrToursArbre = nbrToursMoteur/721.0 ;  // Appliquer le ratio du réducteur
-    
-    if (taskTimer > taskDelay )
-  {
-    digitalWrite(Mode,HIGH);
-  
-    RS485Serial.print(current);RS485Serial.print(",");
-    
-    RS485Serial.println(nbrToursArbre);
-    digitalWrite(Mode,LOW);
-    taskTimer = 0;
-
-  }
-  
-  
+      Serial.print(workerStatus);
+      Serial.println(workerID);
+      digitalWrite(Mode,HIGH);
+      delay(5);
+      sendWorkerStatus(&RS485Serial,workerStatus,workerID);
+      delay(5);
+      digitalWrite(Mode,LOW);
+      delay(5);
+      //Serial.println("Sent worker status");
     }
-    coast(coastingTime);
-        
+    else if (receivedCommand.def == CONFIG)
+    {
+      //workerStatus = CONFIGURED;
+      //  Serial.print(receivedCommand.adcConfig);
+      //delay(1000);
+      //Serial.print("config");
+      if (receivedCommand.adcConfig == DEFAULT)
+      {configType = _default;}
+      else if (receivedCommand.adcConfig == SEISMIC)
+      {configType = _seismic;} 
+      int index = receivedCommand.data.indexOf("T");   
+      samplingRate = receivedCommand.data.substring(0,index).toInt();
+      duration = receivedCommand.data.substring(index+1).toInt();
+      if (samplingRate == 32)
+      {
+        configType.dec_rate = AD7768_DEC_X32;
+        }
+      else if (samplingRate == 16)
+        {
+        configType.dec_rate = AD7768_DEC_X64;
+        }
+      else if (samplingRate == 8)
+        {
+        configType.dec_rate = AD7768_DEC_X128;
+        }
+      else if (samplingRate == 4)
+        {
+        configType.dec_rate = AD7768_DEC_X256;
+        }
+      else if (samplingRate == 2)
+        {
+        configType.dec_rate = AD7768_DEC_X512;
+        }
+      else if (samplingRate == 1)
+        {
+        configType.dec_rate = AD7768_DEC_X1024;
+        }
+      
+      
+      ad7768_setup(configType);
+      workerStatus = CONFIGURED;
+
+      // delay(5);
+      // digitalWrite(Mode,HIGH);
+      // delay(5);
+      // sendWorkerStatus(&RS485Serial,workerStatus,workerID);
+      // delay(5);
+      // digitalWrite(Mode,LOW);
+
+
+      number_of_data_packet =  int(((duration/1000.0) * (samplingRate*1000.0)));
+      // delay(5);
+      // digitalWrite(Mode,HIGH);
+      // delay(5);
+
+
+
+      // RS485Serial.println(number_of_data_packet);
+
+      // RS485Serial.println(receivedCommand.data);
+      // RS485Serial.println(receivedCommand.data.substring(index+1).toInt());
+      // ODR = print_config(configType, &RS485Serial);
+      // RS485Serial.flush();
+      // delay(5);
+      // RS485Serial.print(duration);RS485Serial.println(samplingRate);
+      //     delay(5);
+
+      // RS485Serial.println('s');
+      // digitalWrite(Mode,LOW);
+
+  
+      // Serial.println(number_of_data_packet);
+      // workerStatus = IDLE;
+      
+
+    }
+    else if (receivedCommand.def == HARVEST)
+    {
+      mustSendData = true;
+      Serial.println("called for harvest");
+    }
+    else if (receivedCommand.def == MOTOR)
+    {
+      String direction = receivedCommand.data;
+    if (direction == "forward")
+    {
+      current = 0;
+      coast(coastingTime);
+      analogWrite(IN1, pwm);
+      analogWrite(IN2, 0);
+      delay(1000);
+      
+      attachInterrupt(digitalPinToInterrupt(encoderA), pulseA, RISING);
+
+      while (current < current_limit)
+      {
+      analogWrite(IN1, pwm);
+      analogWrite(IN2, 0);
+      
+      nbrToursMoteur = countA/nbrpoles; //Diviser par le nombre de pole pour obtenir le vrai rpm du moteur
+      nbrToursArbre = nbrToursMoteur/721.0 ;  // Appliquer le ratio du réducteur
+      
+      if (taskTimer > taskDelay )
+    {
+      digitalWrite(Mode,HIGH);
     
-    digitalWrite(Mode,HIGH);
-    RS485Serial.println('w');
-    RS485Serial.print('T');
-    RS485Serial.println(nbrToursArbre);
-    RS485Serial.print('S');RS485Serial.println(current);
-    delay(5);
-    digitalWrite(Mode,LOW);
-   }
-   
-   if (direction == "stop")
-   {
-    coast(coastingTime);
-   }
-   }
-   
-  }
+      RS485Serial.print(current);RS485Serial.print(",");
+      
+      RS485Serial.println(nbrToursArbre);
+      digitalWrite(Mode,LOW);
+      taskTimer = 0;
+
+    }
+    
+    
+      }
+      coast(coastingTime);
+          
+      digitalWrite(Mode,HIGH);
+      RS485Serial.println('w');
+      RS485Serial.print('T');
+      RS485Serial.println(nbrToursArbre);
+      RS485Serial.print('S');RS485Serial.println(current);
+      delay(5);
+      digitalWrite(Mode,LOW);
+    }
+    
+    if (direction == "backward")
+    {
+      current = 0;
+      coast(coastingTime);
+      analogWrite(IN1, 0);
+      analogWrite(IN2, pwm);
+      delay(1000);
+
+      attachInterrupt(digitalPinToInterrupt(encoderA), pulseA, RISING);
+
+      while (current < current_limit)
+      {
+      analogWrite(IN1, 0);
+      analogWrite(IN2, pwm);
+      
+      nbrToursMoteur = countA/nbrpoles; //Diviser par le nombre de pole pour obtenir le vrai rpm du moteur
+      nbrToursArbre = nbrToursMoteur/721.0 ;  // Appliquer le ratio du réducteur
+      
+      if (taskTimer > taskDelay )
+    {
+      digitalWrite(Mode,HIGH);
+    
+      RS485Serial.print(current);RS485Serial.print(",");
+      
+      RS485Serial.println(nbrToursArbre);
+      digitalWrite(Mode,LOW);
+      taskTimer = 0;
+
+    }
+    
+    
+      }
+      coast(coastingTime);
+          
+      
+      digitalWrite(Mode,HIGH);
+      RS485Serial.println('w');
+      RS485Serial.print('T');
+      RS485Serial.println(nbrToursArbre);
+      RS485Serial.print('S');RS485Serial.println(current);
+      delay(5);
+      digitalWrite(Mode,LOW);
+    }
+    
+    if (direction == "stop")
+    {
+      coast(coastingTime);
+    }
+    }
+    
+    else {
+      Serial.println("Invalid command");
+      }
+    }
+
   
   }
+
 
    
 
@@ -382,7 +396,7 @@ if(RS485Serial.available () >0 and readyToTrig == false)
     delay(5);
     for (int i = 0; i < number_of_data_packet; i++)
       {
-        RS485Serial.print(time.at(i));RS485Serial.print(",");
+        RS485Serial.print(ttime.at(i));RS485Serial.print(",");
         RS485Serial.print(data0.at(i));RS485Serial.print(",");
         RS485Serial.print(data1.at(i));RS485Serial.print(",");
         RS485Serial.print(data2.at(i));
@@ -393,7 +407,7 @@ if(RS485Serial.available () >0 and readyToTrig == false)
     digitalWrite(Mode,LOW);
     mustSendData = false;
     workerStatus = IDLE;
-    time.clear();
+    ttime.clear();
     data0.clear();
     data1.clear();
     data2.clear();
@@ -415,7 +429,7 @@ if (data_packet_ready == true and triggered_state == true)
     data0.push_back(integer_data0);
     data1.push_back(integer_data1);
     data2.push_back(integer_data2);
-    time.push_back(micros() - acquisition_initial_time);
+    ttime.push_back(micros() - acquisition_initial_time);
 
 		data_packet_ready = false;
 		data_packet_counter += 1;

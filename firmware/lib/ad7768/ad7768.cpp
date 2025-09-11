@@ -26,7 +26,7 @@ ADC.
  uint16_t read_spi(ad7768_chip chip,
  					uint8_t reg_addr)
 {
-
+//Serial.println("Read SPI");
 u_int16_t buf = (reg_addr & 0x7F) | 0x80;
 buf = buf << 8  ;
 u_int16_t buf_received;
@@ -59,7 +59,7 @@ return buf_received;
  					uint8_t reg_addr,
 					uint8_t mask)
 {
-
+//Serial.println("Read SPI mask");
 u_int16_t buf = (reg_addr & 0x7F) | 0x80;
 buf = buf << 8  ;
 u_int16_t buf_received;
@@ -92,6 +92,7 @@ return buf_received8;
  uint16_t spi_sync(ad7768_chip chip)
 {
 	// write low to SPI_sync command
+//Serial.println("SPI sync");
 u_int16_t sync_low = (0x06 & 0x3F) ;
 sync_low = sync_low << 8  ;
 sync_low = sync_low | 0x00;
@@ -112,6 +113,7 @@ sync_high = sync_high | add;
 digitalWrite(chip.chipSelectPin, LOW);
 SPI.transfer16(sync_high);
 digitalWrite(chip.chipSelectPin, HIGH);
+return sync_low;
 }
 /**
  * SPI write to adc homemade function.
@@ -123,7 +125,7 @@ digitalWrite(chip.chipSelectPin, HIGH);
  					uint8_t reg_addr,
 					uint8_t data)
 {
-	
+//Serial.println("Write SPI");
 u_int16_t buf = (reg_addr & 0x3F) ;
 buf = buf << 8  ;
 buf = buf | data;
@@ -154,6 +156,7 @@ return buf;
 					uint8_t mask,
 					uint8_t data)
 {
+//Serial.println("Write SPI mask");
 uint8_t buf_actual;	
 u_int16_t buf = (reg_addr & 0x3F) ;
 buf = buf << 8  ;
@@ -408,11 +411,17 @@ int32_t set_filter_type(ad7768_chip chip)
  */
 int32_t ad7768_setup(ad7768_chip chip)
 {
+	//Serial.println("Set power mode");
 	set_power_mode(chip);
+	//Serial.println("Set MCLK div");
 	set_mclk_div(chip);
+	//Serial.println("Set decimation rate");
 	set_decimation_rate(chip);
+	//Serial.println("Set filter type");
 	set_filter_type(chip);
+	//Serial.println("Set DCLK div");
 	set_dclk_div(chip);
+	Serial.print("In configuration");
 return 0;
 }
 

@@ -94,7 +94,7 @@ class Stack:
         self.serialPort.reset_output_buffer()
         return message
 
-    def save2file(self,data,shotNumber):
+    def save2file(self,data,shotNumber,background=False):
         
         # ROOT = './'
 
@@ -112,7 +112,10 @@ class Stack:
         #     num = '(%i)' % (int(re.search(r'\(([0-9]+)\)', max(files)).group(1)) + 1)
         
         for i in range(len(data)):
-            output_file = open('data\{}_{}_{}.txt'.format(self.stackName, shotNumber,i+1), 'w')
+            if not background:
+                output_file = open('data\{}_{}_{}.txt'.format(self.stackName, shotNumber,i+1), 'w')
+            else:
+                output_file = open('data\{}_background_{}_{}.txt'.format(self.stackName, shotNumber,i+1), 'w')
             for j, sample in enumerate(data[i].T):
                 output_file.write("{},{},{},{} \n".format(sample[0], sample[1],sample[2],sample[3]))
 

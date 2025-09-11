@@ -11,6 +11,7 @@ import serial
 from serial.tools import list_ports
 import time
 import logging
+from math import ceil
 
 
 
@@ -47,8 +48,9 @@ class ShotView(QWidget, Ui_shotView):
         self.comPort = None
         self.DCvoltageUpholeList = ['40','60','80','100']
         self.DCvoltageUphole = None
-        self.numberOfShuttleList = ['1','2','3']
+        self.numberOfShuttleList = ['1','2','3','4','5','6']
         self.numberOfShuttle = None
+        self.acqFreqList = ['1','2','4','8','16','32']
 
         self.list_out = []
         self.axes = []
@@ -62,6 +64,7 @@ class ShotView(QWidget, Ui_shotView):
         self.stackName = None
         self.nextStackName = None
         self.shotCounter = 0
+        self.backgroundCounter = 0
         self.isTrigged = False
 
       
@@ -72,6 +75,7 @@ class ShotView(QWidget, Ui_shotView):
         self.initToolbar()
         self.show_comPort_available()
         self.disable_control_buttons()
+        self.disable_motor_buttons()
 
      
 
@@ -79,18 +83,19 @@ class ShotView(QWidget, Ui_shotView):
         self.mpl_graph.canvas.fig.clear()
         x = np.linspace(0, 1, 1000)
         y = np.linspace(0, 0.1, 1000)
-
-        self.axes = [self.mpl_graph.canvas.fig.add_subplot(self.numberOfShuttle,1,i+1) for i in range(self.numberOfShuttle)]
-
+         
+        nrows = ceil((self.numberOfShuttle)**(1/2))
+        self.axes = [self.mpl_graph.canvas.fig.add_subplot(nrows,ceil((self.numberOfShuttle)/nrows),i+1) for i in range(self.numberOfShuttle)]
+        
         for i in range(self.numberOfShuttle):
             if i > 0:
-                self.axes[i].get_shared_x_axes().join(self.axes[i], self.axes[i-1])
-                self.axes[i].get_shared_y_axes().join(self.axes[i], self.axes[i-1])
+                self.axes[i].sharex(self.axes[i-1])
+                self.axes[i].sharey(self.axes[i-1])
             self.axes[i].plot(x, y)
             self.axes[i].set_title('Shuttle {}'.format(i+1))
-            self.axes[i].set_ylabel('Accel (g)')
+        self.mpl_graph.canvas.fig.supxlabel('Time [s]')
+        self.mpl_graph.canvas.fig.supylabel('Amplitude [V]')
         
-        self.axes[-1].set_xlabel('Time (s)')
         self.mpl_graph.canvas.fig.tight_layout()
 
         self.mpl_graph.canvas.draw()
@@ -105,8 +110,10 @@ class ShotView(QWidget, Ui_shotView):
 
     def connect_buttons(self):
         self.sb_duration.valueChanged.connect(self.set_acquisition_duration)
-
-        self.sb_acqFreq.valueChanged.connect(self.set_acquisition_frequency)
+        
+        self.sb_acqFreq.addItems(self.acqFreqList)
+        self.sb_acqFreq.setCurrentIndex(2)
+        self.sb_acqFreq.currentIndexChanged.connect(self.set_acquisition_frequency)
 
         self.pb_newStack.clicked.connect(self.configure_create_new_stack)
 
@@ -169,11 +176,11 @@ class ShotView(QWidget, Ui_shotView):
 
     def set_numberOfShuttle(self):
         self.numberOfShuttle = int(self.cb_numberOfShuttle.currentText())
-        self.tb_status.append("Number of shuttle set to: " + str(self.numberOfShuttle))
+        self.tb_status.append("Number of shuttles set to: " + str(self.numberOfShuttle))
 
     def set_acquisition_frequency(self):
-        self.acquisitionFrequency = self.sb_acqFreq.value()
-        self.tb_status.append("Acquisition frequency set to: " + str(self.acquisitionFrequency) + ' Hz')
+        self.acquisitionFrequency = self.sb_acqFreq.currentText()
+        self.tb_status.append("Acquisition frequency set to: " + str(self.acquisitionFrequency) + ' kHz')
     
     def set_acquisition_duration(self):
         self.acquisitionDuration = self.sb_duration.value()
@@ -190,13 +197,15 @@ class ShotView(QWidget, Ui_shotView):
         self.set_acquisition_frequency()
         self.currentStack = Stack(self.comPort, str(self.acquisitionFrequency), str(self.acquisitionDuration), self.stackName,self.numberOfShuttle)
         self.shotCounter = 0
+        self.backgroundCounter = 0
         self.disable_configuration_buttons()
         self.enable_control_buttons()
+        self.enable_motor_buttons()
         self.tb_status.clear()
         self.tb_status.append("New stack created : {}.".format(self.stackName))
-        self.tb_status.append("Acquisition frequency: {} Hz.".format(self.acquisitionFrequency))
+        self.tb_status.append("Acquisition frequency: {} kHz.".format(self.acquisitionFrequency))
         self.tb_status.append("Acquisition duration: {} ms.".format(self.acquisitionDuration))
-        self.tb_status.append("Number of shuttle: {}.".format(self.numberOfShuttle)) 
+        self.tb_status.append("Number of shuttles: {}.".format(self.numberOfShuttle)) 
         self.tb_status.append("COM port set to : {}.".format(self.comPortName))  
         self.initGraph()
         # if self.mocking:
@@ -210,24 +219,30 @@ class ShotView(QWidget, Ui_shotView):
         print("THREAD COMPLETE!")
     
     def arm(self):
-        self.isTrigged = False
-        command = 'arm'
-        self.comPort.write("{}".format(command).encode())
-        line = self.comPort.read_until("...".encode()) # waits for the ok of the leader (very fast, does not block he GUI long enough to be annoying)
+        if self.pb_collect.isEnabled():
+            self.isTrigged = False
+            command = 'arm'
+            self.comPort.write("{}".format(command).encode())
+            line = self.comPort.read_until("...".encode()) # waits for the ok of the leader (very fast, does not block he GUI long enough to be annoying)
+            self.tb_status.append(line.decode("utf-8"))
+            line = self.comPort.readline()
+            print(line.decode("utf-8"))
+            self.tb_status.append("Armed, waiting for trigger.")
+            self.pb_arm.start_flash()
+            self.pb_collect.setEnabled(False)
+            self.pb_acquireBackground.setEnabled(False)
+            self.pb_showStack.setEnabled(False)
+            self.pb_finishStack.setEnabled(False)
+            self.disable_motor_buttons()
+            
 
-        self.tb_status.append(line.decode("utf-8")) 
-        self.tb_status.append("Armed, waiting for trigger.")
-        self.pb_arm.start_flash()
-        self.pb_collect.setEnabled(False)
-        self.pb_acquireBackground.setEnabled(False)
-        self.pb_showStack.setEnabled(False)
-        self.pb_finishStack.setEnabled(False)
-        
+            workerr = Worker(self.waitForTrig)
+            workerr.signals.result.connect(self.print_message)
+            workerr.signals.finished.connect(self.thread_complete)
+            self.threadpool.start(workerr)
 
-        workerr = Worker(self.waitForTrig)
-        workerr.signals.result.connect(self.print_message)
-        workerr.signals.finished.connect(self.thread_complete)
-        self.threadpool.start(workerr)
+        else:
+            self.tb_status.append("Already armed, waiting for trigger.")
               
     def collect(self):
         worker = Worker(self.collect_data)
@@ -238,29 +253,40 @@ class ShotView(QWidget, Ui_shotView):
     def finish_stack(self):
         self.enable_configuration_buttons()
         self.disable_control_buttons()
+        self.disable_motor_buttons
         self.tb_status.append("Stack  " + self.stackName + " is finished, please configure a new one.")
         self._shotCounter = 0
         self.comPort.close()
 
-    def waitForTrig(self,progress_callback):
+    def waitForTrig(self,progress_callback,background=False):
         line = self.serialRead("ed".encode())
         line = line.decode("utf-8")
-        self.pb_arm.stop_flash()
-        self.pb_collect.setEnabled(True)
-        self.pb_arm.setEnabled(False)
+        if not background:
+            self.pb_arm.stop_flash()
+            self.pb_arm.setChecked(False)
+            self.pb_collect.setEnabled(True)
+            self.pb_arm.setEnabled(False)
         progress_callback.emit(line)
         self.tb_status.append(line)
-        self.shotCounter += 1
-        self.tb_status.append("shot count : {}".format(self.shotCounter))
+        if not background:
+            self.shotCounter += 1
+            self.tb_status.append("shot count : {}".format(self.shotCounter))
+        else:
+            self.backgroundCounter += 1
+            self.tb_status.append("background shot count : {}".format(self.backgroundCounter))
+        
 
-    def collect_data(self,progress_callback):
+    def collect_data(self,progress_callback,background=False):
         self.list_out = []
         for i in range(self.numberOfShuttle):
             out = self.currentStack.harvest('{}'.format(i+1),show=False)
             self.tb_status.append("shuttle {} harvested".format(i+1))
             self.list_out.append(out)
         
-        self.currentStack.save2file(self.list_out, self.shotCounter)
+        if not background:
+            self.currentStack.save2file(self.list_out, self.shotCounter,background)
+        else:
+            self.currentStack.save2file(self.list_out, self.backgroundCounter,background)
         self.tb_status.append("Data saved to file.")
         time.sleep(2) # to let the time to write the file
         self.update_graph()
@@ -268,6 +294,7 @@ class ShotView(QWidget, Ui_shotView):
         self.pb_showStack.setEnabled(True)
         self.pb_finishStack.setEnabled(True)
         self.pb_arm.setEnabled(True)
+        self.enable_motor_buttons()
 
     def show_stack(self):
         self.list_out = self.currentStack.loadStack()
@@ -277,6 +304,7 @@ class ShotView(QWidget, Ui_shotView):
 
     def acquire_background(self):
         self.disable_control_buttons()
+        self.disable_motor_buttons
         workerd = Worker(self.acquire_background_worker)
         workerd.signals.result.connect(self.print_message)
         workerd.signals.finished.connect(self.thread_complete)
@@ -284,9 +312,11 @@ class ShotView(QWidget, Ui_shotView):
 
     def acquire_background_worker(self,progress_callback):
         self.autoTrigger()
+        self.waitForTrig(progress_callback,background=True)
         time.sleep(1)
-        self.collect_data(progress_callback)
+        self.collect_data(progress_callback,background=True)
         self.enable_control_buttons()
+        self.enable_motor_buttons()
 
     def autoTrigger(self):
         self.comPort.write("background".encode())
@@ -332,8 +362,11 @@ class ShotView(QWidget, Ui_shotView):
             self.axes[i].plot(time_data,y_data, label="Y")
             self.axes[i].plot(time_data,z_data, label="Z")
             self.axes[i].legend()
-            self.axes[i].set_xlabel('time [s]')
-            self.axes[i].set_ylabel("Acceleration [g]")
+            self.axes[i].set_title("Shuttle {}".format(i+1))
+            if i <= 2:
+                self.axes[i].set_ylabel('Acceleration [g]')
+            if (i+1) % 3 == 0:
+                self.axes[-1].set_xlabel('Time [s]')
         self.mpl_graph.canvas.draw()
 
     def disable_configuration_buttons(self):
@@ -351,6 +384,10 @@ class ShotView(QWidget, Ui_shotView):
         self.pb_acquireBackground.setEnabled(False)
         self.pb_showStack.setEnabled(False)
 
+    def disable_motor_buttons(self):
+        self.pb_motorF.setEnabled(False)
+        self.pb_motorB.setEnabled(False)
+
     def enable_configuration_buttons(self):
         self.cb_comPort.setEnabled(True)
         self.cb_numberOfShuttle.setEnabled(True)
@@ -365,3 +402,7 @@ class ShotView(QWidget, Ui_shotView):
         self.pb_arm.setEnabled(True)
         self.pb_acquireBackground.setEnabled(True)
         self.pb_showStack.setEnabled(True)
+
+    def enable_motor_buttons(self):
+        self.pb_motorF.setEnabled(True)
+        self.pb_motorB.setEnabled(True)

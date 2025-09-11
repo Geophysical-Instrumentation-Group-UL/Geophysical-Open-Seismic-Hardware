@@ -108,7 +108,7 @@ return commandRead;
  * @param serial_port - Serial port to send the data
  */
  uint16_t HarvestData(Stream  *serial_port,
-                      int workerID)
+                      int workerId)
  {
      command harvestCommand = {
          .type = LOCAL,
@@ -116,7 +116,7 @@ return commandRead;
          .status = 0,
          .adcConfig = 0,
          .data = "",
-         .workerId = workerID,
+         .workerId = workerId,
      };
 
      buildAndSendCommand(serial_port, harvestCommand);
@@ -126,10 +126,10 @@ return commandRead;
    /**	
  * get the status of all the workers
  * @param serial_port - Serial port to send the data
- * @param workerID - the adress of the worker
+ * @param workerId - the adress of the worker
  */
  uint16_t getWorkerStatus(Stream  *serial_port,
-                      int workerID)
+                      int workerId)
  {
          command statusCommand = {
          .type = LOCAL,
@@ -137,7 +137,7 @@ return commandRead;
          .status = 0,
          .adcConfig = 0,
          .data = "",
-         .workerId = workerID,
+         .workerId = workerId,
      };
     buildAndSendCommand(serial_port,statusCommand);
     return 0;
@@ -150,7 +150,7 @@ return commandRead;
  */
  uint16_t sendWorkerStatus(Stream  *serial_port,
                             int workerStatus,
-                            int workerID)
+                            int workerId)
  {
      command statusCommand = {
          .type = LOCAL,
@@ -158,7 +158,7 @@ return commandRead;
          .status = workerStatus,
          .adcConfig = 0,
          .data = "",
-         .workerId = workerID,         
+         .workerId = workerId,         
      };
      buildAndSendCommand(serial_port,statusCommand);
      return 0;
@@ -179,12 +179,12 @@ return commandRead;
  * send adc config to workers
  * @param serial_port - Serial port to send the data
  * @param config - the config type
- * @param workerID - the ID of the worker
+ * @param workerId - the ID of the worker
  */
  uint16_t sendConfigToADC(Stream  *serial_port,
                             int config,
                             String acq_duration,
-                            int workerID)
+                            int workerId)
  {  
     //  String duration = String(acq_duration);
      
@@ -194,7 +194,7 @@ return commandRead;
          .status = IDLE,
          .adcConfig = config,
          .data = acq_duration,
-         .workerId = workerID,
+         .workerId = workerId,
          
      };
      buildAndSendCommand(serial_port,configCommand);
@@ -206,7 +206,7 @@ return commandRead;
  * @param serial_port - Serial port to send the data
  */
  uint16_t motorControl(Stream  *serial_port,
-                      int workerID, String direction)
+                      int workerId, String direction)
  {
      command motorCommand = {
          .type = LOCAL,
@@ -214,7 +214,7 @@ return commandRead;
          .status = 0,
          .adcConfig = 0,
          .data = direction,
-         .workerId = workerID,
+         .workerId = workerId,
      };
 
      buildAndSendCommand(serial_port, motorCommand);

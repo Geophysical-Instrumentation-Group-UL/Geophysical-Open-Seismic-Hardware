@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 
 
 class QFlashButton(QPushButton):
+
     def __init__(self, *args, **kwargs):
         QPushButton.__init__(self, *args, **kwargs)
         self.flashColor = QColor(0, 255, 0)
@@ -14,6 +15,7 @@ class QFlashButton(QPushButton):
         self.animation.setStartValue(self.default_color)
         self.animation.setEndValue(self.default_color)
         self.animation.setKeyValueAt(0.1, self.flashColor)
+        self.setCheckable(True)
 
     def start_flash(self):
         self.animation.start()
